@@ -63,6 +63,8 @@ export class MapsComponent implements OnInit {
     zoom: 14,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     streetViewControl: false,
+    fullscreenControl: false,
+    mapTypeControl: false,
     styles: [
       {"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#444444"}]},
       {"featureType":"landscape","elementType":"all","stylers":[{"color":"#f2f2f2"}]},
