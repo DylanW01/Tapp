@@ -84,8 +84,14 @@ export class MapsComponent implements OnInit {
     }
   }
 
-  addBowser(event) {
+  addActiveBowser(event) {
     this.bowsersPositions.push(event.latLng.toJSON());
+  }
+  addInactiveBowser(event) {
+    this.bowserOfflinePositions.push(event.latLng.toJSON());
+  }
+  addProblematicBowser(event) {
+    this.bowserSpannerPositions.push(event.latLng.toJSON());
   }
   
 }

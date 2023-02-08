@@ -100,8 +100,7 @@
           <google-map width="100%" 
                       height="800px"
                       [options]="options"
-                      [center]="center"
-                      (mapClick)="addBowser($event)">
+                      [center]="center">
             <map-marker *ngFor="let bowserPosition of bowsersPositions"
                       [position]="bowserPosition"
                       [options]="bowserMarkerOptions">
