@@ -62,27 +62,23 @@
               ]
             },
             "development": {
-              "vendorChunk": true,
-              "extractLicenses": false,
-              "sourceMap": true,
-              "namedChunks": true,
-              "buildOptimizer": false,
-              "optimization": {
-                "scripts": true,
-                "styles": {
-                  "minify": false,
-                  "inlineCritical": true
-                },
-                "fonts": true
-              },
-              "outputHashing": "all"
-            }
+            "buildOptimizer": false,
+            "optimization": false,
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "sourceMap": true,
+            "namedChunks": true
+          }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "argon-dashboard-angular:build"
+            "browserTarget": "argon-dashboard-angular:build",
+            "sslKey": "ssl/localhost.key",
+            "sslCert": "ssl/localhost.crt",
+            "ssl": true,
+            "hmr": true
           },
           "configurations": {
             "production": {
