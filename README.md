@@ -16,7 +16,7 @@ Each element is well presented in a very complex documentation. You can read mor
 * [Useful Links](#useful-links)
 
 ## Documentation
-The documentation for the Argon Dashboard Angular is hosted at our [website](https://demos.creative-tim.com/argon-dashboard-angular/documentation/tutorial).
+The documentation for the Argon Dashboard Angular is hosted at our [website](https://demos.creative-tim.com/argon-dashboard-angular/#/documentation/tutorial).
 
 ## Browser Support
 
@@ -29,7 +29,7 @@ At present, we aim to support the last two versions of the following browsers:
 ## Resources
 - Demo: <https://demos.creative-tim.com/argon-dashboard-angular/dashboard>
 - Download Page: <https://www.creative-tim.com/product/argon-dashboard-angular>
-- Documentation: <https://demos.creative-tim.com/argon-dashboard-angular/documentation/tutorial>
+- Documentation: <https://demos.creative-tim.com/argon-dashboard-angular/#/documentation/tutorial>
 - License Agreement: <https://www.creative-tim.com/license>
 - Support: <https://www.creative-tim.com/contact-us>
 - Issues: [Github Issues Page](https://github.com/creativetimofficial/argon-dashboard-angular/issues)
