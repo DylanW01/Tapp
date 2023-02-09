@@ -16,7 +16,7 @@ Each element is well presented in a very complex documentation. You can read mor
 * [Useful Links](#useful-links)
 
 ## Documentation
-The documentation for the Argon Dashboard Angular is hosted at our [website](https://demos.creative-tim.com/argon-dashboard-angular/documentation/tutorial?ref=ada-github-readme).
+The documentation for the Argon Dashboard Angular is hosted at our [website](https://demos.creative-tim.com/argon-dashboard-angular/documentation/tutorial).
 
 ## Browser Support
 
@@ -27,22 +27,22 @@ At present, we aim to support the last two versions of the following browsers:
 
 
 ## Resources
-- Demo: <https://demos.creative-tim.com/argon-dashboard-angular/dashboard?ref=ada-github-readme>
-- Download Page: <https://www.creative-tim.com/product/argon-dashboard-angular?ref=ada-github-readme>
-- Documentation: <https://demos.creative-tim.com/argon-dashboard-angular/documentation/tutorial?ref=ada-github-readme>
-- License Agreement: <https://www.creative-tim.com/license?ref=ada-github-readme>
-- Support: <https://www.creative-tim.com/contact-us?ref=ada-github-readme>
-- Issues: [Github Issues Page](https://github.com/creativetimofficial/argon-dashboard-angular/issues?ref=ada-github-readme)
+- Demo: <https://demos.creative-tim.com/argon-dashboard-angular/dashboard>
+- Download Page: <https://www.creative-tim.com/product/argon-dashboard-angular>
+- Documentation: <https://demos.creative-tim.com/argon-dashboard-angular/documentation/tutorial>
+- License Agreement: <https://www.creative-tim.com/license>
+- Support: <https://www.creative-tim.com/contact-us>
+- Issues: [Github Issues Page](https://github.com/creativetimofficial/argon-dashboard-angular/issues)
 
 ## Useful Links
 
 - [Tutorials](https://www.youtube.com/channel/UCVyTG4sCw-rOvB9oHkzZD1w?ref=creativetim)
-- [Affiliate Program](https://www.creative-tim.com/affiliates/new?ref=ada-github-readme) (earn money)
-- [Blog Creative Tim](http://blog.creative-tim.com/?ref=ada-github-readme)
-- [Free Products](https://www.creative-tim.com/bootstrap-themes/free?ref=ada-github-readme) from Creative Tim
-- [Premium Products](https://www.creative-tim.com/bootstrap-themes/premium?ref=ada-github-readme) from Creative Tim
-- [React Products](https://www.creative-tim.com/bootstrap-themes/react-themes?ref=ada-github-readme) from Creative Tim
-- [Angular Products](https://www.creative-tim.com/bootstrap-themes/angular-themes?ref=ada-github-readme) from Creative Tim
-- [VueJS Products](https://www.creative-tim.com/bootstrap-themes/vuejs-themes?ref=ada-github-readme) from Creative Tim
-- [More products](https://www.creative-tim.com/bootstrap-themes?ref=ada-github-readme) from Creative Tim
-- Check our Bundles [here](https://www.creative-tim.com/bundles?ref=ada-github-readme)
+- [Affiliate Program](https://www.creative-tim.com/affiliates/new) (earn money)
+- [Blog Creative Tim](http://blog.creative-tim.com/)
+- [Free Products](https://www.creative-tim.com/bootstrap-themes/free) from Creative Tim
+- [Premium Products](https://www.creative-tim.com/bootstrap-themes/premium) from Creative Tim
+- [React Products](https://www.creative-tim.com/bootstrap-themes/react-themes) from Creative Tim
+- [Angular Products](https://www.creative-tim.com/bootstrap-themes/angular-themes) from Creative Tim
+- [VueJS Products](https://www.creative-tim.com/bootstrap-themes/vuejs-themes) from Creative Tim
+- [More products](https://www.creative-tim.com/bootstrap-themes) from Creative Tim
+- Check our Bundles [here](https://www.creative-tim.com/bundles)
