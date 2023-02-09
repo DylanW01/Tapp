@@ -28,8 +28,10 @@ module.exports = function (config) {
     browsers: ['Chrome', "ChromeHeadlessCI"],
     singleRun: false,
     customLaunchers: {
+      ChromeHeadlessCI: {
       base: 'ChromeHeadless',
       flags: ['--no-sandbox']
+      }
     }
   });
 };
