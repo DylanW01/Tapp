@@ -74,7 +74,7 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "argon-dashboard-angular:build",
+            "browserTarget": "Tapp-Refactored:build",
             "sslKey": "ssl/localhost.key",
             "sslCert": "ssl/localhost.crt",
             "ssl": true,
@@ -82,10 +82,10 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "argon-dashboard-angular:build:production"
+              "browserTarget": "Tapp-Refactored:build:production"
             },
             "development": {
-              "browserTarget": "argon-dashboard-angular:build:development"
+              "browserTarget": "Tapp-Refactored:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -93,7 +93,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "argon-dashboard-angular:build"
+            "browserTarget": "Tapp-Refactored:build"
           }
         },
         "test": {
@@ -127,7 +127,7 @@
         }
       }
     },
-    "argon-dashboard-angular-e2e": {
+    "Tapp-Refactored-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -135,11 +135,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "argon-dashboard-angular:serve"
+            "devServerTarget": "Tapp-Refactored:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "argon-dashboard-angular:serve:production"
+              "devServerTarget": "Tapp-Refactored:serve:production"
             }
           }
         },
@@ -155,7 +155,7 @@
       }
     }
   },
-  "defaultProject": "argon-dashboard-angular",
+  "defaultProject": "Tapp-Refactored",
   "schematics": {
     "@schematics/angular:component": {
       "styleext": "scss"

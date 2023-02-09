@@ -8,6 +8,9 @@ describe('MapsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        
+      ],
       declarations: [ MapsComponent ]
     })
     .compileComponents();

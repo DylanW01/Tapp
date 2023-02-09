@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { GoogleMap, GoogleMapsModule } from '@angular/google-maps';
 import { Observable, map, catchError, of } from 'rxjs';
 
+declare var google: any;
+
 @Component({
   selector: 'app-maps',
   templateUrl: './maps.component.html',
