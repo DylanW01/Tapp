@@ -1,6 +1,6 @@
 {
-  "name": "argon-dashboard-angular",
-  "version": "1.5.0",
+  "name": "Tapp-Refactored",
+  "version": "0.1.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

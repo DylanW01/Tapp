@@ -1,0 +1,21 @@
+image: node:18.14.0-bullseye
+
+stages:          # List of stages for jobs, and their order of execution
+  - setup
+  - test
+
+setup-job:       # This job runs in the setup stage, which runs first.
+  stage: setup
+  script:
+    - npm ci --force
+
+unit-test-job:   # This job runs in the test stage.
+  stage: test    # It only starts when the job in the build stage completes successfully.
+  before_script:
+    - apt-get update
+    - wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    - apt-get install -y ./google-chrome-stable_current_amd64.deb
+    - export CHROME_BIN=/usr/bin/google-chrome
+  script:
+      - npm ci --force
+      - npm run test -- --no-watch --browsers=ChromeHeadlessCI
