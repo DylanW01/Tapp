@@ -12,9 +12,11 @@ declare var google: any;
 })
 export class MapsComponent implements OnInit {
 
+  apiLoaded: Observable<boolean>;
+
   // ---- MAP INIT ----
   constructor(httpClient: HttpClient) {
-    httpClient.jsonp('https://maps.googleapis.com/maps/api/js?key=AIzaSyASHU1WvCipdeZGJoIeI-TQkLKoPur3PDE', 'callback')
+    this.apiLoaded = httpClient.jsonp('https://maps.googleapis.com/maps/api/js?key=AIzaSyASHU1WvCipdeZGJoIeI-TQkLKoPur3PDE', 'callback')
         .pipe(
           map(() => true),
           catchError(() => of(false)),
