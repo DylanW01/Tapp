@@ -7,7 +7,7 @@ stages:          # List of stages for jobs, and their order of execution
 setup-job:       # This job runs in the setup stage, which runs first.
   stage: setup
   script:
-    - npm ci
+    - npm ci --force
 
 unit-test-job:   # This job runs in the test stage.
   stage: test    # It only starts when the job in the build stage completes successfully.
