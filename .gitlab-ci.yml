@@ -1,10 +1,10 @@
-image: node:18.14.0-bullseye
+image: node:18.14.0-bullseye-slim
 
 stages:
  # - setup
   #- test
   - publish
-  - deploy
+  - release
 
 #setup-job:
 #  stage: setup
