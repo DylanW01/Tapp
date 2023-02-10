@@ -27,3 +27,6 @@ publish_test:
   script:
     - npm ci --force
     - npm run build --prod
+  artifacts:
+    paths:
+      - /dist
