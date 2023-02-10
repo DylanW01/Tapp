@@ -25,7 +25,7 @@ stages:
 Publish TappSPA-TEST:
   stage: publish
   script:
-    - npm ci --force
+    - npm ci
     - npm run build --prod
   artifacts:
     name: TappSPA TEST
