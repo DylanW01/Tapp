@@ -26,7 +26,7 @@
 ![Test Deploy Status](https://github.com/DylanW01/Tapp-Refactored/actions/workflows/TestDeploy.yml/badge.svg)
 ![Live Deploy Status](https://github.com/DylanW01/Tapp-Refactored/actions/workflows/liveDeploy.yml/badge.svg)
 
-</div>
+</div> 
 
 
 
