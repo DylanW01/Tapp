@@ -1,0 +1,23 @@
+image: node:18.14.0-bullseye-slim
+
+stages:
+ # - setup
+  #- test
+  #- publish
+  #- release
+
+Publish TappSPA-TEST:
+  stage: publish
+  script:
+    - npm ci --force
+    - npm run build --prod
+  artifacts:
+    name: TappSPA TEST
+    paths:
+      - dist/
+    expire_in: 1 hour
+
+Deploy TappSPA-TEST:
+  stage: publish
+  script:
+      - firebase deploy --token "$FIREBASE_TOKEN"
