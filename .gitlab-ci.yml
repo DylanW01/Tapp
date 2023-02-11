@@ -19,5 +19,6 @@ Publish TappSPA-TEST:
 
 Deploy TappSPA-TEST:
   stage: publish
+  needs: [Publish TappSPA-TEST]
   script:
       - firebase deploy --token "$FIREBASE_TOKEN"
