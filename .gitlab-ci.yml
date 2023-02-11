@@ -8,7 +8,7 @@ login:
   script:
     - npm ci --force
     - npm install -g firebase-tools --force
-    - firebase login:ci --no-localhost
+    - firebase login
 
 Publish TappSPA-TEST:
   stage: publish
