@@ -1,16 +1,19 @@
 image: node:18.14.0-bullseye-slim
 
 stages:
- # - setup
-  #- test
   - publish
-  #- release
+
+login:
+  stage: publish
+  script:
+    - npm install -g firebase-tools --force
+    - firebase login --no-localhost
 
 Publish TappSPA-TEST:
   stage: publish
+  needs:
+    [login]
   script:
-    - npm ci --force
-    - npm install -g firebase-tools --force
-    - npm run build --prod
-    - firebase login --no-localhost
-    - firebase deploy --token "$FIREBASE_TOKEN"
+  - npm ci --force
+  - npm run build --prod
+  - firebase deploy --token "$FIREBASE_TOKEN"
