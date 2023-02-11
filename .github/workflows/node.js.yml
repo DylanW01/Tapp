@@ -27,6 +27,6 @@ jobs:
           REPO: git@github.com:DylanW01/Tapp-Refactored.git
           BRANCH: build # The branch name where you want to push the assets
           FOLDER: dist/ # The directory where your assets are generated
-          SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_PRIVATE_KEY }}
+          SSH_PRIVATE_KEY: ${{ variables.DEPLOY_PRIVATE_KEY }}
           #GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub will automatically add this - you don't need to bother getting a token
           MESSAGE: "Build: ({sha}) {msg}" # The commit message
