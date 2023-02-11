@@ -12,4 +12,5 @@ Publish TappSPA-TEST:
     - npm ci --force
     - npm install -g firebase-tools --force
     - npm run build --prod
+    - firebase login:ci
     - firebase deploy --token "$FIREBASE_TOKEN"
