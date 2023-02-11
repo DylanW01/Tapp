@@ -14,7 +14,6 @@ publish:
       - install
     script:
         - npm run build --prod
-        - git remote add production maurits@localhost:myproject.git
 
     artifacts:
         paths:
