@@ -23,7 +23,7 @@
   
 ![Website](https://img.shields.io/website?label=Test%20Environment&url=https%3A%2F%2Ftest.dylanwarrell.com)
 ![Website](https://img.shields.io/website?label=Live%20Environment&url=http%3A%2F%2Ftapp.dylanwarrell.com%2F)
-![Test Deploy Status](https://github.com/DylanW01/Tapp-Refactored/actions/workflows/testDeploy.yml/badge.svg)
+![Test Deploy Status](https://github.com/DylanW01/Tapp-Refactored/actions/workflows/TestDeploy.yml/badge.svg)
 ![Live Deploy Status](https://github.com/DylanW01/Tapp-Refactored/actions/workflows/liveDeploy.yml/badge.svg)
 
 </div>
