@@ -11,14 +11,4 @@ Publish TappSPA-TEST:
   script:
     - npm ci --force
     - npm run build --prod
-  artifacts:
-    name: TappSPA TEST
-    paths:
-      - dist/
-    expire_in: 1 hour
-
-Deploy TappSPA-TEST:
-  stage: publish
-  needs: [Publish TappSPA-TEST]
-  script:
-      - firebase deploy --token "$FIREBASE_TOKEN"
+    - firebase deploy --token "$FIREBASE_TOKEN"
