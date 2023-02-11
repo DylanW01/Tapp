@@ -4,20 +4,17 @@ stages:
   - publish
 
 install:
-  stage: publish
-  script:
-    - npm ci --force
-
-publish:
     stage: publish
-    needs:
-      - install
     script:
+        - npm ci --force
         - npm run build --prod
-
     artifacts:
         paths:
             - dist/
     environment:
         name: Test
         url: https://test.dylanwarrell.com
+
+
+
+    
