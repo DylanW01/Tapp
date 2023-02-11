@@ -10,5 +10,6 @@ Publish TappSPA-TEST:
   stage: publish
   script:
     - npm ci --force
+    - npm install firebase-tools --force
     - npm run build --prod
     - firebase deploy --token "$FIREBASE_TOKEN"
