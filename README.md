@@ -9,7 +9,7 @@
   <h3 align="center">Tapp Refactored</h3>
 
   <p align="center">
-    An Angular web app developed by <a href="https://github.com/DylanW01">Dylan Warrell</a> to view and manage water bowsers.
+    An Angular web app developed by <a href="https://github.com/DylanW01">Dylan Warrell</a>, <a href="https://github.com/BenGriff">Ben Griffin</a> and Nathan Wright to view and manage water bowsers.
     <br />
     <a href="#getting-started"><strong>Get started now »</strong></a>
     <br />
