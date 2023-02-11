@@ -6,6 +6,7 @@ stages:
 login:
   stage: publish
   script:
+    - npm ci --force
     - npm install -g firebase-tools --force
     - firebase login:ci --no-localhost
 
@@ -14,6 +15,5 @@ Publish TappSPA-TEST:
   needs:
     [login]
   script:
-  - npm ci --force
   - npm run build --prod
   - firebase deploy --token "$FIREBASE_TOKEN"
