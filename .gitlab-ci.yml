@@ -3,7 +3,7 @@ image: node:18.14.0-bullseye-slim
 stages:
  # - setup
   #- test
-  #- publish
+  - publish
   #- release
 
 Publish TappSPA-TEST:
