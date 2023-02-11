@@ -1,0 +1,24 @@
+image: node:18.14.0-bullseye-slim
+
+stages:
+  - publish
+
+install:
+  stage: publish
+  script:
+    - npm ci --force
+
+publish:
+    stage: publish
+    needs:
+      - install
+    script:
+        - npm run build --prod
+        - git remote add production maurits@localhost:myproject.git
+
+    artifacts:
+        paths:
+            - dist/
+    environment:
+        name: Test
+        url: https://test.dylanwarrell.com
