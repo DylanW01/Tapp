@@ -8,7 +8,7 @@ login:
   script:
     - npm ci --force
     - npm install -g firebase-tools --force
-    - firebase login
+    - firebase login --token "$FIREBASE_TOKEN"
 
 Publish TappSPA-TEST:
   stage: publish
