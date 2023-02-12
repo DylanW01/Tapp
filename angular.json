@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Tapp-Refactored": {
+    "Tapp Refactored": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -22,17 +22,9 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
-            "allowedCommonJsDependencies": [
-              "chart.js"
-            ],
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.scss",
-              "src/assets/scss/argon.scss"
-            ],
+            "allowedCommonJsDependencies": ["chart.js"],
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/styles.scss", "src/assets/scss/argon.scss"],
             "scripts": [
               "node_modules/chart.js/dist/Chart.min.js",
               "node_modules/clipboard/dist/clipboard.min.js"
@@ -62,19 +54,19 @@
               ]
             },
             "development": {
-            "buildOptimizer": false,
-            "optimization": false,
-            "vendorChunk": true,
-            "extractLicenses": false,
-            "sourceMap": true,
-            "namedChunks": true
-          }
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "Tapp-Refactored:build",
+            "browserTarget": "Tapp Refactored:build",
             "sslKey": "ssl/localhost.key",
             "sslCert": "ssl/localhost.crt",
             "ssl": true,
@@ -82,10 +74,10 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "Tapp-Refactored:build:production"
+              "browserTarget": "Tapp Refactored:build:production"
             },
             "development": {
-              "browserTarget": "Tapp-Refactored:build:development"
+              "browserTarget": "Tapp Refactored:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -93,7 +85,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Tapp-Refactored:build"
+            "browserTarget": "Tapp Refactored:build"
           }
         },
         "test": {
@@ -103,31 +95,21 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
-            "styles": [
-              "src/styles.scss"
-            ],
+            "styles": ["src/styles.scss"],
             "scripts": [],
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ]
+            "assets": ["src/favicon.ico", "src/assets"]
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "tsConfig": ["src/tsconfig.app.json", "src/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
     },
-    "Tapp-Refactored-e2e": {
+    "Tapp Refactored-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -135,11 +117,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "Tapp-Refactored:serve"
+            "devServerTarget": "Tapp Refactored:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "Tapp-Refactored:serve:production"
+              "devServerTarget": "Tapp Refactored:serve:production"
             }
           }
         },
@@ -147,15 +129,13 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
     }
   },
-  "defaultProject": "Tapp-Refactored",
+  "defaultProject": "Tapp Refactored",
   "schematics": {
     "@schematics/angular:component": {
       "style": "scss"

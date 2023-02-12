@@ -1,23 +1,22 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { AccountsTableComponent } from './accounts-table.component';
+import { AccountsTableComponent } from "./accounts-table.component";
 
-describe('AccountsTableComponent', () => {
+describe("AccountsTableComponent", () => {
   let component: AccountsTableComponent;
   let fixture: ComponentFixture<AccountsTableComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AccountsTableComponent ]
-    })
-    .compileComponents();
+      declarations: [AccountsTableComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(AccountsTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

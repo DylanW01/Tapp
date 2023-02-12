@@ -1,10 +1,10 @@
-import Chart from 'chart.js';
+import Chart from "chart.js";
 //
 // Chart extension for making the bars rounded
 // Code from: https://codepen.io/jedtrow/full/ygRYgo
 //
 
-Chart.elements.Rectangle.prototype.draw = function() {
+Chart.elements.Rectangle.prototype.draw = function () {
   var ctx = this._chart.ctx;
   var vm = this._view;
   var left, right, top, bottom, signX, signY, borderSkipped, radius;
@@ -67,7 +67,12 @@ Chart.elements.Rectangle.prototype.draw = function() {
   // Corner points, from bottom-left to bottom-right clockwise
   // | 1 2 |
   // | 0 3 |
-  var corners = [[left, bottom], [left, top], [right, top], [right, bottom]];
+  var corners = [
+    [left, bottom],
+    [left, top],
+    [right, top],
+    [right, bottom],
+  ];
 
   // Find first (starting) corner with fallback to 'bottom'
   var borders = ["bottom", "left", "top", "right"];
@@ -125,191 +130,198 @@ Chart.elements.Rectangle.prototype.draw = function() {
   }
 };
 
-var mode = 'light';//(themeMode) ? themeMode : 'light';
+var mode = "light"; //(themeMode) ? themeMode : 'light';
 var fonts = {
-  base: 'Open Sans'
-}
+  base: "Open Sans",
+};
 
 // Colors
 var colors = {
   gray: {
-    100: '#f6f9fc',
-    200: '#e9ecef',
-    300: '#dee2e6',
-    400: '#ced4da',
-    500: '#adb5bd',
-    600: '#8898aa',
-    700: '#525f7f',
-    800: '#32325d',
-    900: '#212529'
+    100: "#f6f9fc",
+    200: "#e9ecef",
+    300: "#dee2e6",
+    400: "#ced4da",
+    500: "#adb5bd",
+    600: "#8898aa",
+    700: "#525f7f",
+    800: "#32325d",
+    900: "#212529",
   },
   theme: {
-    'default': '#172b4d',
-    'primary': '#5e72e4',
-    'secondary': '#f4f5f7',
-    'info': '#11cdef',
-    'success': '#2dce89',
-    'danger': '#f5365c',
-    'warning': '#fb6340'
+    default: "#172b4d",
+    primary: "#5e72e4",
+    secondary: "#f4f5f7",
+    info: "#11cdef",
+    success: "#2dce89",
+    danger: "#f5365c",
+    warning: "#fb6340",
   },
-  black: '#12263F',
-  white: '#FFFFFF',
-  transparent: 'transparent',
+  black: "#12263F",
+  white: "#FFFFFF",
+  transparent: "transparent",
 };
 
 export function chartOptions() {
-
   // Options
   var options = {
     defaults: {
       global: {
         responsive: true,
         maintainAspectRatio: false,
-        defaultColor: (mode == 'dark') ? colors.gray[700] : colors.gray[600],
-        defaultFontColor: (mode == 'dark') ? colors.gray[700] : colors.gray[600],
+        defaultColor: mode == "dark" ? colors.gray[700] : colors.gray[600],
+        defaultFontColor: mode == "dark" ? colors.gray[700] : colors.gray[600],
         defaultFontFamily: fonts.base,
         defaultFontSize: 13,
         layout: {
-          padding: 0
+          padding: 0,
         },
         legend: {
           display: false,
-          position: 'bottom',
+          position: "bottom",
           labels: {
             usePointStyle: true,
-            padding: 16
-          }
+            padding: 16,
+          },
         },
         elements: {
           point: {
             radius: 0,
-            backgroundColor: colors.theme['primary']
+            backgroundColor: colors.theme["primary"],
           },
           line: {
-            tension: .4,
+            tension: 0.4,
             borderWidth: 4,
-            borderColor: colors.theme['primary'],
+            borderColor: colors.theme["primary"],
             backgroundColor: colors.transparent,
-            borderCapStyle: 'rounded'
+            borderCapStyle: "rounded",
           },
           rectangle: {
-            backgroundColor: colors.theme['warning']
+            backgroundColor: colors.theme["warning"],
           },
           arc: {
-            backgroundColor: colors.theme['primary'],
-            borderColor: (mode == 'dark') ? colors.gray[800] : colors.white,
-            borderWidth: 4
-          }
+            backgroundColor: colors.theme["primary"],
+            borderColor: mode == "dark" ? colors.gray[800] : colors.white,
+            borderWidth: 4,
+          },
         },
         tooltips: {
           enabled: true,
-          mode: 'index',
+          mode: "index",
           intersect: false,
-        }
+        },
       },
       doughnut: {
         cutoutPercentage: 83,
-        legendCallback: function(chart) {
+        legendCallback: function (chart) {
           var data = chart.data;
-          var content = '';
+          var content = "";
 
-          data.labels.forEach(function(label, index) {
+          data.labels.forEach(function (label, index) {
             var bgColor = data.datasets[0].backgroundColor[index];
 
             content += '<span class="chart-legend-item">';
-            content += '<i class="chart-legend-indicator" style="background-color: ' + bgColor + '"></i>';
+            content +=
+              '<i class="chart-legend-indicator" style="background-color: ' +
+              bgColor +
+              '"></i>';
             content += label;
-            content += '</span>';
+            content += "</span>";
           });
 
           return content;
-        }
-      }
-    }
-  }
+        },
+      },
+    },
+  };
 
   // yAxes
-  Chart.scaleService.updateScaleDefaults('linear', {
+  Chart.scaleService.updateScaleDefaults("linear", {
     gridLines: {
       borderDash: [2],
       borderDashOffset: [2],
-      color: (mode == 'dark') ? colors.gray[900] : colors.gray[300],
+      color: mode == "dark" ? colors.gray[900] : colors.gray[300],
       drawBorder: false,
       drawTicks: false,
-      drawOnChartArea: (mode == 'dark') ? false : true,
+      drawOnChartArea: mode == "dark" ? false : true,
       lineWidth: 1,
       zeroLineWidth: 0,
-      zeroLineColor: (mode == 'dark') ? colors.gray[900] : colors.gray[300],
+      zeroLineColor: mode == "dark" ? colors.gray[900] : colors.gray[300],
       zeroLineBorderDash: [2],
-      zeroLineBorderDashOffset: [2]
+      zeroLineBorderDashOffset: [2],
     },
     ticks: {
       beginAtZero: true,
       padding: 10,
-      callback: function(value) {
+      callback: function (value) {
         if (!(value % 10)) {
-          return value
+          return value;
         }
-      }
-    }
+      },
+    },
   });
 
   // xAxes
-  Chart.scaleService.updateScaleDefaults('category', {
+  Chart.scaleService.updateScaleDefaults("category", {
     gridLines: {
       drawBorder: false,
       drawOnChartArea: false,
-      drawTicks: false
+      drawTicks: false,
     },
     ticks: {
-      padding: 20
+      padding: 20,
     },
-    datasets: [{
-        maxBarThickness: 10
-    }]
+    datasets: [
+      {
+        maxBarThickness: 10,
+      },
+    ],
   });
 
   return options;
-
 }
 
 export const parseOptions = (parent, options) => {
-		for (var item in options) {
-			if (typeof options[item] !== 'object') {
-				parent[item] = options[item];
-			} else {
-				parseOptions(parent[item], options[item]);
-			}
-		}
-	}
+  for (var item in options) {
+    if (typeof options[item] !== "object") {
+      parent[item] = options[item];
+    } else {
+      parseOptions(parent[item], options[item]);
+    }
+  }
+};
 
 export const chartExample1 = {
   options: {
     scales: {
-      yAxes: [{
-        gridLines: {
-          color: colors.gray[900],
-          zeroLineColor: colors.gray[900],
-          drawOnChartArea: false
+      yAxes: [
+        {
+          gridLines: {
+            color: colors.gray[900],
+            zeroLineColor: colors.gray[900],
+            drawOnChartArea: false,
+          },
+          ticks: {
+            callback: function (value) {
+              if (!(value % 10)) {
+                return "$" + value + "k";
+              }
+            },
+          },
         },
-        ticks: {
-          callback: function(value) {
-            if (!(value % 10)) {
-              return '$' + value + 'k';
-            }
-          }
-        }
-      }]
-    }
+      ],
+    },
   },
   data: {
-    labels: ['May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-    datasets: [{
-      label: 'Performance',
-      data: [0, 20, 10, 30, 15, 40, 20, 60, 60]
-    }]
-  }
-}
+    labels: ["May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    datasets: [
+      {
+        label: "Performance",
+        data: [0, 20, 10, 30, 15, 40, 20, 60, 60],
+      },
+    ],
+  },
+};
 
 export const chartExample2 = {
   options: {
@@ -317,19 +329,19 @@ export const chartExample2 = {
       yAxes: [
         {
           ticks: {
-            callback: function(value) {
+            callback: function (value) {
               if (!(value % 10)) {
                 //return '$' + value + 'k'
                 return value;
               }
-            }
-          }
-        }
-      ]
+            },
+          },
+        },
+      ],
     },
     tooltips: {
       callbacks: {
-        label: function(item, data) {
+        label: function (item, data) {
           var label = data.datasets[item.datasetIndex].label || "";
           var yLabel = item.yLabel;
           var content = "";
@@ -338,9 +350,9 @@ export const chartExample2 = {
           }
           content += yLabel;
           return content;
-        }
-      }
-    }
+        },
+      },
+    },
   },
   data: {
     labels: ["Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
@@ -348,8 +360,8 @@ export const chartExample2 = {
       {
         label: "Sales",
         data: [25, 20, 30, 22, 17, 29],
-        maxBarThickness: 10
-      }
-    ]
-  }
-}
+        maxBarThickness: 10,
+      },
+    ],
+  },
+};

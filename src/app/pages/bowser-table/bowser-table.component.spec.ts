@@ -1,16 +1,15 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { BowserTablesComponent } from './bowser-table.component';
+import { BowserTablesComponent } from "./bowser-table.component";
 
-describe('TablesComponent', () => {
+describe("TablesComponent", () => {
   let component: BowserTablesComponent;
   let fixture: ComponentFixture<BowserTablesComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BowserTablesComponent ]
-    })
-    .compileComponents();
+      declarations: [BowserTablesComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('TablesComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });
