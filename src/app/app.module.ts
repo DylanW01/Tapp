@@ -17,9 +17,9 @@ import { NgxUiLoaderModule, NgxUiLoaderConfig, SPINNER, POSITION,PB_DIRECTION, N
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   "bgsColor": "$default",
-  "bgsOpacity": 0.5,
+  "bgsOpacity": 1,
   "bgsPosition": "bottom-right",
-  "delay": 0.25,
+  "delay": 0.1,
   "bgsType": "rectangle-bounce",
   "blur": 5,
   "fgsColor": "$default",
