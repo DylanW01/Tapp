@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { GoogleMap, GoogleMapsModule } from '@angular/google-maps';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Observable, map, catchError, of } from 'rxjs';
 
 declare var google: any;
@@ -15,7 +16,8 @@ export class MapsComponent implements OnInit {
   apiLoaded: Observable<boolean>;
 
   // ---- MAP INIT ----
-  constructor(httpClient: HttpClient) {
+  constructor(httpClient: HttpClient,
+    private ngxLoader: NgxUiLoaderService) {
     this.apiLoaded = httpClient.jsonp('https://maps.googleapis.com/maps/api/js?key=AIzaSyASHU1WvCipdeZGJoIeI-TQkLKoPur3PDE', 'callback')
         .pipe(
           map(() => true),
@@ -83,10 +85,14 @@ export class MapsComponent implements OnInit {
   // ------- END OF MAP SETUP -------
   
   ngOnInit() {
+    this.ngxLoader.startBackground();
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
         this.userLocation.push({lat: position.coords.latitude, lng: position.coords.longitude});
+        this.ngxLoader.stopBackground();
       });    
+    } else {
+      this.ngxLoader.stopBackground();
     }
   }
 

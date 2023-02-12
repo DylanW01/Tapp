@@ -12,6 +12,23 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
+import { NgxUiLoaderModule, NgxUiLoaderConfig, SPINNER, POSITION,PB_DIRECTION, NgxUiLoaderRouterModule, NgxUiLoaderHttpModule  } from 'ngx-ui-loader';
+
+
+const ngxUiLoaderConfig: NgxUiLoaderConfig = {
+  "bgsColor": "$default",
+  "bgsOpacity": 0.5,
+  "bgsPosition": "bottom-right",
+  "delay": 0.25,
+  "bgsType": "rectangle-bounce",
+  "blur": 5,
+  "fgsColor": "$default",
+  "fgsPosition": "center-center",
+  "fgsType": "rectangle-bounce",
+  "logoUrl": "../assets/img/brand/tapp-logos_transparent_icon.png",
+  "overlayColor": "rgba(40, 40, 40, 0.8)",
+  "pbColor": "$default",
+};
 
 
 @NgModule({
@@ -22,7 +39,11 @@ import { ComponentsModule } from './components/components.module';
     ComponentsModule,
     NgbModule,
     RouterModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgxUiLoaderModule,
+    NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
+    NgxUiLoaderHttpModule,
+    NgxUiLoaderRouterModule.forRoot({showForeground:false})
   ],
   declarations: [
     AppComponent,

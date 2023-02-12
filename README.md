@@ -54,7 +54,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-<img src="https://i.ibb.co/TYnWpkL/Screenshot-2023-02-11-183613.png" alt="Screenshot-2023-02-11-183613" border="0">
+<img src="https://i.ibb.co/TYnWpkL/Screenshot-2023-02-11-183613.png" alt="Preview of the Tapp dashboard" border="0">
 
 TODO: Write a description of the application here & update screenshot
 
@@ -63,8 +63,7 @@ TODO: Write a description of the application here & update screenshot
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+To get Tapp Refactored running locally on your machine for development use, the following steps must be completed to install the nessessary dependencies.
 
 ### Prerequisites
 

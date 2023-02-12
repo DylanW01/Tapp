@@ -76,22 +76,11 @@
           </div>
         </div>
       </div>
-      <!-- Form -->
-      <form class="mt-4 mb-3 d-md-none">
-        <div class="input-group input-group-rounded input-group-merge">
-          <input type="search" class="form-control form-control-rounded form-control-prepended" placeholder="Search" aria-label="Search">
-          <div class="input-group-prepend">
-            <div class="input-group-text">
-              <span class="fa fa-search"></span>
-            </div>
-          </div>
-        </div>
-      </form>
       <!-- Navigation -->
       <ul class="navbar-nav">
           <li *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
               <a routerLinkActive="active" [routerLink]="[menuItem.path]" class="nav-link">
-                  <i class="ni {{menuItem.icon}}"></i>
+                  <i class="{{menuItem.icon}}"></i>
                   {{menuItem.title}}
               </a>
           </li>
@@ -99,22 +88,22 @@
       <!-- Divider -->
       <hr class="my-3">
       <!-- Heading -->
-      <h6 class="navbar-heading text-muted">Documentation</h6>
+      <h6 class="navbar-heading text-muted">Useful Links</h6>
       <!-- Navigation -->
       <ul class="navbar-nav mb-md-3">
         <li class="nav-item">
-          <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard-angular/documentation/tutorial">
-            <i class="ni ni-spaceship"></i> Getting started
+          <a class="nav-link" href="https://github.com/DylanW01/Tapp-Refactored">
+            <i class="fa-brands fa-github"></i> GitHub Repository
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard-angular/documentation/colors">
-            <i class="ni ni-palette"></i> Foundation
+          <a class="nav-link" href="https://github.com/DylanW01/Tapp-Refactored#readme">
+            <i class="fa-regular fa-file-lines"></i> Readme File
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard-angular/documentation/alerts">
-            <i class="ni ni-ui-04"></i> Components
+          <a class="nav-link" href="https://github.com/DylanW01/Tapp-Refactored/actions">
+            <i class="fa-brands fa-angular"></i> Deployments
           </a>
         </li>
       </ul>
