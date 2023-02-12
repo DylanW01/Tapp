@@ -8,5 +8,5 @@ import { NgxUiLoaderService } from "ngx-ui-loader";
   styleUrls: ["./app.component.scss"],
 })
 export class AppComponent {
-  title = "Tapp Refactored";
+  title = "Tapp-Refactored";
 }

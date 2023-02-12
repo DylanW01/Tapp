@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { GoogleMap, GoogleMapsModule } from "@angular/google-maps";
+import { ToastrService } from "ngx-toastr";
 import { NgxUiLoaderService } from "ngx-ui-loader";
 import { Observable, map, catchError, of } from "rxjs";
 
@@ -15,7 +16,7 @@ export class MapsComponent implements OnInit {
   apiLoaded: Observable<boolean>;
 
   // ---- MAP INIT ----
-  constructor(httpClient: HttpClient, private ngxLoader: NgxUiLoaderService) {
+  constructor(httpClient: HttpClient, private ngxLoader: NgxUiLoaderService, private toastr: ToastrService) {
     this.apiLoaded = httpClient
       .jsonp(
         "https://maps.googleapis.com/maps/api/js?key=AIzaSyASHU1WvCipdeZGJoIeI-TQkLKoPur3PDE",
@@ -133,6 +134,9 @@ export class MapsComponent implements OnInit {
 
   ngOnInit() {
     this.ngxLoader.startBackground();
+    setTimeout(() => {
+      this.ngxLoader.stopBackground();
+    }, 10000);
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         this.userLocation.push({
@@ -143,7 +147,12 @@ export class MapsComponent implements OnInit {
       });
     } else {
       this.ngxLoader.stopBackground();
+      this.toastr.warning('Please allow location access to use the maps feature', 'Cannot find location');
     }
+  }
+
+  ngOnDestroy() {
+    this.ngxLoader.stopBackground();
   }
 
   addActiveBowser(event) {
