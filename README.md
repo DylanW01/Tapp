@@ -1,11 +1,10 @@
 <a name="readme-top"></a>
 
 <!-- PROJECT LOGO -->
-<div align="center">
-  <a href="https://ibb.co/7ps2R5J">
-    <img src="https://i.ibb.co/C9RhMZ5/tapp-logos-transparent.png" alt="Logo" height="80">
-  </a>
-
+  <div align="center">
+    <img src="https://github.com/DylanW01/Tapp-Refactored/blob/2614ae6692e66f35e4f87ab3e72fc2ab6326ba53/src/assets/img/brand/tapp-logos_black.png#gh-light-mode-only" alt="Logo" height="80">
+        <img src="https://github.com/DylanW01/Tapp-Refactored/blob/2614ae6692e66f35e4f87ab3e72fc2ab6326ba53/src/assets/img/brand/tapp-logos_transparent.png#gh-dark-mode-only" alt="Logo" height="80">  
+ 
   <h3 align="center">Tapp Refactored</h3>
 
   <p align="center">
