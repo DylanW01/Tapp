@@ -109,7 +109,7 @@ Don't forget to give the project a star! Thanks again!
 2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
 3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+5. Open a Pull Request (All PR's should point to the "Build" branch. They will later be merged by <a href="https://github.com/DylanW01">Dylan</a> into Main.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
