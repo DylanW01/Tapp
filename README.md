@@ -53,7 +53,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-<img src="https://i.ibb.co/TYnWpkL/Screenshot-2023-02-11-183613.png" alt="Preview of the Tapp dashboard" border="0">
+<img src="https://i.ibb.co/mDwL4JB/2023-02-13-09-23-20-Tapp-Refactored.png" alt="Preview of the Tapp dashboard" border="0">
 
 TODO: Write a description of the application here & update screenshot
 
