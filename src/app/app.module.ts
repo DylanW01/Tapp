@@ -45,7 +45,6 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     ToastrModule.forRoot({
       timeOut: 10000,
       progressBar: true,
-      progressAnimation: 'increasing'
     }),
     FormsModule,
     HttpClientModule,
