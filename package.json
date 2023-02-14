@@ -1,17 +1,19 @@
 {
   "name": "Tapp-Refactored",
-  "version": "0.1.1",
+  "version": "0.1.6",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "version-update": "npm --no-git-tag-version version patch",
+    "version-patch": "npm --no-git-tag-version version patch",
+    "version-minor": "npm --no-git-tag-version version minor",
+    "version-major": "npm --no-git-tag-version version major",
+    "format-code": "prettier --write \"./**/*.{js,jsx,ts,tsx,json}\"",
     "build-dev": "ng build",
     "build-test": "ng build --configuration=test",
     "build-live": "ng build --configuration=prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "pretty": "prettier --write \"./**/*.{js,jsx,ts,tsx,json}\""
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {

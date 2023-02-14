@@ -16,9 +16,6 @@ jobs:
       - name: Install all dependencies
         run: npm ci --force
 
-      - name: Update version
-        run: npm run version-update
-
       - name: Build for test
         run: npm run build-test # The build command of your project
 
