@@ -82,7 +82,6 @@ After npm is installed on your local machine, open the repo folder and run the f
    ```sh
    npm install
    ```
-   If this fails, try using: `npm install --force` to force the install.
 2. Create a folder titled "SSL" which will contain the security certificate that allows Tapp to run locally. Details on how to create the certificate can be found <a href="https://stackoverflow.com/a/48790088">HERE</a>
 
 3. Run the development server
