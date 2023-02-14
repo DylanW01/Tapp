@@ -16,7 +16,11 @@ export class MapsComponent implements OnInit {
   apiLoaded: Observable<boolean>;
 
   // ---- MAP INIT ----
-  constructor(httpClient: HttpClient, private ngxLoader: NgxUiLoaderService, private toastr: ToastrService) {
+  constructor(
+    httpClient: HttpClient,
+    private ngxLoader: NgxUiLoaderService,
+    private toastr: ToastrService
+  ) {
     this.apiLoaded = httpClient
       .jsonp(
         "https://maps.googleapis.com/maps/api/js?key=AIzaSyASHU1WvCipdeZGJoIeI-TQkLKoPur3PDE",
@@ -147,7 +151,10 @@ export class MapsComponent implements OnInit {
       });
     } else {
       this.ngxLoader.stopBackground();
-      this.toastr.warning('Please allow location access to use the maps feature', 'Cannot find location');
+      this.toastr.warning(
+        "Please allow location access to use the maps feature",
+        "Cannot find location"
+      );
     }
   }
 
