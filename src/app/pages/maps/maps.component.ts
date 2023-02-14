@@ -14,6 +14,7 @@ declare var google: any;
 })
 export class MapsComponent implements OnInit {
   apiLoaded: Observable<boolean>;
+  timeout;
 
   // ---- MAP INIT ----
   constructor(
@@ -138,7 +139,7 @@ export class MapsComponent implements OnInit {
 
   ngOnInit() {
     this.ngxLoader.startBackground();
-    setTimeout(() => {
+    this.timeout = setTimeout(() => {
       this.ngxLoader.stopBackground();
     }, 10000);
     if (navigator.geolocation) {
@@ -147,7 +148,9 @@ export class MapsComponent implements OnInit {
           lat: position.coords.latitude,
           lng: position.coords.longitude,
         });
+        this.center = {lat: position.coords.latitude, lng: position.coords.longitude};
         this.ngxLoader.stopBackground();
+        clearTimeout(this.timeout);
       });
     } else {
       this.ngxLoader.stopBackground();
@@ -160,6 +163,7 @@ export class MapsComponent implements OnInit {
 
   ngOnDestroy() {
     this.ngxLoader.stopBackground();
+    clearTimeout(this.timeout);
   }
 
   addActiveBowser(event) {
