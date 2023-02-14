@@ -4,8 +4,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "prebuild": "npm --no-git-tag-version version patch",
-    "build": "ng build",
+    "version-update": "npm --no-git-tag-version version patch",
+    "build-dev": "ng build",
+    "build-test": "ng build --configuration=test",
+    "build-live": "ng build --configuration=prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
