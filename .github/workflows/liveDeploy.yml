@@ -10,16 +10,16 @@ jobs:
     runs-on: ubuntu-latest
     name: Build and Push
     steps:
-      - name: git-checkout
+      - name: Git Checkout
         uses: actions/checkout@v2
 
       - name: Install all dependencies
         run: npm ci --force
 
-      - name: Build
+      - name: Build for production
         run: npm run build-live # The build command of your project
 
-      - name: Push
+      - name: Deploy to production server
         uses: s0/git-publish-subdir-action@develop
         env:
           REPO: self
