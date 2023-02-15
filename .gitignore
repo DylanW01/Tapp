@@ -24,7 +24,6 @@
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-/ssl
 
 # misc
 /.sass-cache
@@ -39,3 +38,6 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# SSL Files
+ssl/*
