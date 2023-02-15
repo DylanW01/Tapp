@@ -141,6 +141,10 @@ export class MapsComponent implements OnInit {
     this.ngxLoader.startBackground();
     this.timeout = setTimeout(() => {
       this.ngxLoader.stopBackground();
+      this.toastr.warning(
+        "Please allow location access to use the maps feature",
+        "Cannot find location"
+      );
     }, 10000);
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {

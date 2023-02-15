@@ -1,4 +1,7 @@
 import { Component, OnInit } from "@angular/core";
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+
+const FILTER_PAG_REGEX = /[^0-9]/g;
 
 @Component({
   selector: "bowser-table",
@@ -6,7 +9,8 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./bowser-table.component.scss"],
 })
 export class BowserTablesComponent implements OnInit {
-  constructor() {}
+  page = 1;
 
   ngOnInit() {}
+
 }
