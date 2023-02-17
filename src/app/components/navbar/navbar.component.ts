@@ -1,5 +1,7 @@
-import { Component, OnInit, ElementRef } from "@angular/core";
+import { Component, OnInit, ElementRef, Inject } from "@angular/core";
 import { ROUTES } from "../sidebar/sidebar.component";
+import { OktaAuth } from '@okta/okta-auth-js';
+import { OktaAuthStateService, OKTA_AUTH } from '@okta/okta-angular';
 import {
   Location,
   LocationStrategy,
@@ -19,7 +21,9 @@ export class NavbarComponent implements OnInit {
   constructor(
     location: Location,
     private element: ElementRef,
-    private router: Router
+    private router: Router,
+    @Inject(OKTA_AUTH) public oktaAuth: OktaAuth,
+    private authStateService: OktaAuthStateService,
   ) {
     this.location = location;
   }
@@ -39,5 +43,13 @@ export class NavbarComponent implements OnInit {
       }
     }
     return "Dashboard";
+  }
+
+  async login() {
+    await this.oktaAuth.signInWithRedirect();
+  }
+
+  async logout() {
+    await this.oktaAuth.signOut();
   }
 }
