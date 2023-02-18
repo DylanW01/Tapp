@@ -7,6 +7,7 @@ import { UserProfileComponent } from "../../pages/user-profile/user-profile.comp
 import { TablesComponent } from "../../pages/tables/tables.component";
 import { BowserTablesComponent } from "../../pages/bowser-table/bowser-table.component";
 import { AccountsTableComponent } from "src/app/pages/accounts-table/accounts-table.component";
+import { OktaCallbackComponent } from "@okta/okta-angular";
 
 export const AdminLayoutRoutes: Routes = [
   { path: "dashboard", component: DashboardComponent },
@@ -16,4 +17,7 @@ export const AdminLayoutRoutes: Routes = [
   { path: "icons", component: IconsComponent },
   { path: "maps", component: MapsComponent },
   { path: "user-accounts", component: AccountsTableComponent },
+  { path: 'login/callback',
+    component: OktaCallbackComponent
+  },
 ];
