@@ -42,7 +42,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
 const oktaAuth = new OktaAuth({
   issuer: 'https://dev-88138568.okta.com/oauth2/default',
   clientId: '0oa8d8o93uPFQw7415d7',
-  redirectUri: 'https://test.dylanwarrell.com/login/callback'
+  redirectUri: 'https://localhost:4200/login/callback'
 });
 
 @NgModule({
