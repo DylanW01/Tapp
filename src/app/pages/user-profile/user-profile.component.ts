@@ -9,7 +9,7 @@ import { filter, map, Observable } from "rxjs";
   styleUrls: ["./user-profile.component.scss"],
 })
 export class UserProfileComponent implements OnInit {
-
+  public isAuthenticated$!: Observable<boolean>;
   public name$!: Observable<string>;
   public email$!: Observable<string>;
   public given_name$!: Observable<string>;
@@ -21,6 +21,10 @@ export class UserProfileComponent implements OnInit {
   constructor(private _oktaAuthStateService: OktaAuthStateService) { }
 
   public ngOnInit(): void {
+    this.isAuthenticated$ = this._oktaAuthStateService.authState$.pipe(
+      filter((s: AuthState) => !!s),
+      map((s: AuthState) => s.isAuthenticated ?? false)
+    );
     this.name$ = this._oktaAuthStateService.authState$.pipe(
       filter((authState: AuthState) => !!authState && !!authState.isAuthenticated),
       map((authState: AuthState) => authState.idToken?.claims.name ?? '')

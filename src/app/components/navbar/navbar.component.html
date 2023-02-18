@@ -20,7 +20,8 @@
         <a class="nav-link pr-0" role="button" ngbDropdownToggle>
           <div class="media align-items-center">
             <span class="avatar avatar-sm rounded-circle">
-              <img alt="Image placeholder" src="../../../assets/img/theme/1667090458369 (1).jpg">
+              <img *ngIf="(isAuthenticated$ | async)" alt="Image placeholder" src="../../../assets/img/theme/1667090458369 (1).jpg">
+              <img *ngIf="!(isAuthenticated$ | async)" alt="Image placeholder" src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541">
             </span>
             <div class="media-body ml-2 d-none d-lg-block">
               <span *ngIf="(isAuthenticated$ | async)" class="mb-0 text-sm font-weight-bold">{{ name$ | async }}</span>
