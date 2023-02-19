@@ -42,7 +42,7 @@ const routes: Routes = [
     path: "**",
     redirectTo: "dashboard",
   },
-  { path: 'login/callback',
+  { path: '#/login/callback',
     component: OktaCallbackComponent
   },
 ];
