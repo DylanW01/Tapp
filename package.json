@@ -1,6 +1,6 @@
 {
   "name": "Tapp-Refactored",
-  "version": "0.3.5",
+  "version": "0.3.11",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

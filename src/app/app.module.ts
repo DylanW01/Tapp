@@ -12,7 +12,7 @@ import { CommonModule } from "@angular/common";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { ToastrModule } from "ngx-toastr";
 
-import { AppRoutingModule } from "./app.routing";
+import { AppRoutingModule } from "./app-routing.module";
 import { ComponentsModule } from "./components/components.module";
 import {
   NgxUiLoaderModule,
@@ -42,7 +42,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
 const oktaAuth = new OktaAuth({
   issuer: 'https://dev-88138568.okta.com/oauth2/default',
   clientId: '0oa8d8o93uPFQw7415d7',
-  redirectUri: 'https://test.dylanwarrell.com/login/callback'
+  redirectUri: window.location.origin + '/login/callback'
 });
 
 @NgModule({

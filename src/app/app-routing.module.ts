@@ -42,7 +42,7 @@ const routes: Routes = [
     path: "**",
     redirectTo: "dashboard",
   },
-  { path: 'login/callback',
+  { path: '#/login/callback',
     component: OktaCallbackComponent
   },
 ];
@@ -51,9 +51,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     BrowserModule,
-    RouterModule.forRoot(routes, {
-      useHash: true,
-    }),
+    RouterModule.forRoot(routes,  { useHash: true }),
   ],
   exports: [],
 })
