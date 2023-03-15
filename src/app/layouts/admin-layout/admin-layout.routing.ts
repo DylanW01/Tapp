@@ -12,7 +12,7 @@ import { OktaAuthGuard, OktaCallbackComponent } from "@okta/okta-angular";
 export const AdminLayoutRoutes: Routes = [
   { path: "dashboard", component: DashboardComponent },
   { path: "bowsers", component: BowserTablesComponent },
-  { path: "user-profile", component: UserProfileComponent },
+  { path: "user-profile", component: UserProfileComponent, canActivate: [OktaAuthGuard] },
   { path: "tables", component: TablesComponent },
   { path: "icons", component: IconsComponent },
   { path: "maps", component: MapsComponent },
