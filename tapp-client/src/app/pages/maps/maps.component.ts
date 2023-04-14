@@ -36,25 +36,25 @@ export class MapsComponent implements OnInit {
   // ---- BOWSER MARKER ICONS ----
   center: google.maps.LatLngLiteral = { lat: 51.8994, lng: -2.0783 };
   userLocationIcon = {
-    url: "http://maps.google.com/mapfiles/kml/shapes/homegardenbusiness.png",
+    url: "https://maps.google.com/mapfiles/kml/shapes/homegardenbusiness.png",
     scaledSize: new google.maps.Size(35, 35),
     origin: new google.maps.Point(0, 0),
     anchor: new google.maps.Point(17.5, 17.5),
   };
   bowserIcon = {
-    url: "http://maps.google.com/mapfiles/kml/shapes/water.png",
+    url: "https://maps.google.com/mapfiles/kml/shapes/water.png",
     scaledSize: new google.maps.Size(35, 35),
     origin: new google.maps.Point(0, 0),
     anchor: new google.maps.Point(17.5, 17.5),
   };
   bowserSpannerIcon = {
-    url: "http://maps.google.com/mapfiles/kml/shapes/mechanic.png",
+    url: "https://maps.google.com/mapfiles/kml/shapes/mechanic.png",
     scaledSize: new google.maps.Size(35, 35),
     origin: new google.maps.Point(0, 0),
     anchor: new google.maps.Point(17.5, 17.5),
   };
   bowserOfflineIcon = {
-    url: "http://maps.google.com/mapfiles/kml/shapes/caution.png",
+    url: "https://maps.google.com/mapfiles/kml/shapes/caution.png",
     scaledSize: new google.maps.Size(35, 35),
     origin: new google.maps.Point(0, 0),
     anchor: new google.maps.Point(17.5, 17.5),

@@ -4,10 +4,10 @@
 /dist
 /tmp
 /out-tsc
-/.angular
+.angular
 
 # dependencies
-/node_modules
+node_modules
 
 # IDEs and editors
 /.idea
@@ -40,4 +40,4 @@ testem.log
 Thumbs.db
 
 # SSL Files
-ssl/*
+tapp-client/ssl/*

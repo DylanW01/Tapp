@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  hmr: true,
+  hmr: false,
+  serverUrl: 'http://localhost:8080',
   appVersion: require("../../package.json").version + "-dev",
 };
 
