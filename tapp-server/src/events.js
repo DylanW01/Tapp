@@ -94,7 +94,7 @@ function createRouter(db) {
     //const owner = req.user.email;
     db.query(
       'UPDATE bowsers SET lat=?, lon=?, size=?, lastTopUp=?, status=? WHERE id=?',
-      [req.body.lat, req.body.lon, req.body.size, req.body.lastTopUp, req.body.Status,],
+      [req.body.lat, req.body.lon, req.body.size, req.body.lastTopUp, req.body.Status, req.body.Id],
       (error) => {
         if (error) {
           res.status(500).json({status: 'error'});

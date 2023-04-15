@@ -23,22 +23,6 @@ export class BowserTablesComponent implements OnInit {
   private getBowsersForTable() {
     this.server.getBowsers().then((response: any[]) => {
       this.bowsers = response;
-      console.log(this.bowsers);
-    });
-  }
-
-  updateEvent() {
-    const bowserData = {
-      id: 1,
-      lat: '51.904563',
-      lon: '2.077380',
-      size: 'Small',
-      lastTopUp: null,
-      status: 'Active',
-
-    };
-    this.server.updateBowser(bowserData).then(() => {
-      this.getBowsersForTable();
     });
   }
 
