@@ -18,6 +18,7 @@ export class HeaderInfoCardsComponent implements OnInit {
     this.getBowserCount();
     this.getActiveBowsers();
     this.getPendingTickets();
+    this.geActiveTickets();
   }
 
   getBowserCount() {
