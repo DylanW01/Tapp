@@ -48,6 +48,48 @@ function createRouter(db) {
     );
   });
 
+  router.get('/activebowserscount', function (req, res, next) {
+    db.query(
+      'SELECT COUNT(*) FROM bowsers WHERE status = "Active"',
+      (error, results) => {
+        if (error) {
+          console.log(error);
+          res.status(500).json({status: 'error'});
+        } else {
+          res.status(200).json(results);
+        }
+      }
+    );
+  });
+
+  router.get('/pendingticketcount', function (req, res, next) {
+    db.query(
+      'SELECT COUNT(*) FROM tickets WHERE status = "Pending"',
+      (error, results) => {
+        if (error) {
+          console.log(error);
+          res.status(500).json({status: 'error'});
+        } else {
+          res.status(200).json(results);
+        }
+      }
+    );
+  });
+
+  router.get('/activeticketcount', function (req, res, next) {
+    db.query(
+      'SELECT COUNT(*) FROM tickets WHERE status = "In Progress"',
+      (error, results) => {
+        if (error) {
+          console.log(error);
+          res.status(500).json({status: 'error'});
+        } else {
+          res.status(200).json(results);
+        }
+      }
+    );
+  });
+
   router.put('/updateBowsers', function (req, res, next) {
     //const owner = req.user.email;
     db.query(

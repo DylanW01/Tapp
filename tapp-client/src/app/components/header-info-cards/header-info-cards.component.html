@@ -5,7 +5,7 @@
           <div class="row">
             <div class="col">
               <h5 class="card-title text-uppercase text-muted mb-0">Active Bowsers</h5>
-              <span class="h2 font-weight-bold mb-0">54 of 62</span>
+              <span class="h2 font-weight-bold mb-0">{{this.activeBowsers}} of {{this.totalBowsers}}</span>
             </div>
             <div class="col-auto">
               <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
@@ -22,7 +22,7 @@
           <div class="row">
             <div class="col">
               <h5 class="card-title text-uppercase text-muted mb-0">Open Tickets</h5>
-              <span class="h2 font-weight-bold mb-0">4</span>
+              <span class="h2 font-weight-bold mb-0">{{this.activeTickets}}</span>
             </div>
             <div class="col-auto">
               <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
@@ -39,7 +39,7 @@
           <div class="row">
             <div class="col">
               <h5 class="card-title text-uppercase text-muted mb-0">Pending Tickets</h5>
-              <span class="h2 font-weight-bold mb-0">12</span>
+              <span class="h2 font-weight-bold mb-0">{{this.pendingTickets}}</span>
             </div>
             <div class="col-auto">
               <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">

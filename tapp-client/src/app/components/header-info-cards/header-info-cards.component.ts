@@ -9,15 +9,38 @@ import { ServerService } from "src/app/server.service";
 export class HeaderInfoCardsComponent implements OnInit {
   constructor(private server: ServerService) {}
 
-  totalBowsers: any;
+  totalBowsers: number;
+  activeBowsers: number;
+  pendingTickets: number;
+  activeTickets: number;
 
   ngOnInit(): void {
-    this.getBowsersForTable();
+    this.getBowserCount();
+    this.getActiveBowsers();
+    this.getPendingTickets();
   }
 
-  getBowsersForTable() {
+  getBowserCount() {
     this.server.getBowsersCount().then((response: any[]) => {
-      console.log("Bowser Count: ", response);
+      this.totalBowsers =  response[0]["COUNT(*)"];
+    });
+  }
+
+  getActiveBowsers() {
+    this.server.getActiveBowserCount().then((response: any[]) => {
+      this.activeBowsers =  response[0]["COUNT(*)"];
+    });
+  }
+
+  getPendingTickets() {
+    this.server.getPendingTicketCount().then((response: any[]) => {
+      this.pendingTickets =  response[0]["COUNT(*)"];
+    });
+  }
+
+  geActiveTickets() {
+    this.server.getActiveTicketCount().then((response: any[]) => {
+      this.activeTickets =  response[0]["COUNT(*)"];
     });
   }
 }

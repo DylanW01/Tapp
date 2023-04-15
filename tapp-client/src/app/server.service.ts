@@ -49,4 +49,15 @@ export class ServerService {
     return this.request('GET', `${environment.serverUrl}/bowserscount`);
   }
 
+  getActiveBowserCount() {
+    return this.request('GET', `${environment.serverUrl}/activebowserscount`);
+  }
+
+  getPendingTicketCount() {
+    return this.request('GET', `${environment.serverUrl}/pendingticketcount`);
+  }
+
+  getActiveTicketCount() {
+    return this.request('GET', `${environment.serverUrl}/activeticketcount`);
+  }
 }
