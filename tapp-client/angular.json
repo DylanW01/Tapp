@@ -96,7 +96,7 @@
             "sslKey": "ssl/localhost.key",
             "sslCert": "ssl/localhost.crt",
             "ssl": true,
-            "hmr": true
+            "hmr": false
           },
           "configurations": {
             "production": {
