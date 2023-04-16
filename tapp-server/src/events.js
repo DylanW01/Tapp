@@ -19,8 +19,8 @@ function createRouter(db) {
     );
   });
 
+  // BOWSERS
   router.get('/bowsers', function (req, res, next) {
-    //const owner = req.user.email;
     db.query(
       'SELECT bowserId, lat, lon, size, createdOn, lastTopUp, status FROM bowsers',
       (error, results) => {
@@ -34,6 +34,22 @@ function createRouter(db) {
     );
   });
 
+  router.put('/updateBowsers', function (req, res, next) {
+    db.query(
+      'UPDATE bowsers SET lat=?, lon=?, size=?, lastTopUp=?, status=? WHERE id=?',
+      [req.body.lat, req.body.lon, req.body.size, req.body.lastTopUp, req.body.Status, req.body.Id],
+      (error) => {
+        if (error) {
+          res.status(500).json({status: 'error'});
+        } else {
+          res.status(200).json({status: 'ok'});
+        }
+      }
+    );
+  });
+  // END OF BOWSERS
+
+  // DASHBOARD INFO CARDS
   router.get('/bowserscount', function (req, res, next) {
     db.query(
       'SELECT COUNT(*) FROM bowsers',
@@ -103,21 +119,7 @@ function createRouter(db) {
       }
     );
   });
-
-  router.put('/updateBowsers', function (req, res, next) {
-    //const owner = req.user.email;
-    db.query(
-      'UPDATE bowsers SET lat=?, lon=?, size=?, lastTopUp=?, status=? WHERE id=?',
-      [req.body.lat, req.body.lon, req.body.size, req.body.lastTopUp, req.body.Status, req.body.Id],
-      (error) => {
-        if (error) {
-          res.status(500).json({status: 'error'});
-        } else {
-          res.status(200).json({status: 'ok'});
-        }
-      }
-    );
-  });
+  // END OF DASHBOARD INFO CARDS
 
   return router;
 }
