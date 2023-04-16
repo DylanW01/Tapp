@@ -4,6 +4,7 @@ import { GoogleMap, GoogleMapsModule } from "@angular/google-maps";
 import { ToastrService } from "ngx-toastr";
 import { NgxUiLoaderService } from "ngx-ui-loader";
 import { Observable, map, catchError, of } from "rxjs";
+import { ServerService } from "src/app/server.service";
 
 declare var google: any;
 
@@ -17,20 +18,8 @@ export class MapsComponent implements OnInit {
   timeout;
 
   // ---- MAP INIT ----
-  constructor(
-    httpClient: HttpClient,
-    private ngxLoader: NgxUiLoaderService,
-    private toastr: ToastrService
-  ) {
-    this.apiLoaded = httpClient
-      .jsonp(
-        "https://maps.googleapis.com/maps/api/js?key=AIzaSyASHU1WvCipdeZGJoIeI-TQkLKoPur3PDE",
-        "callback"
-      )
-      .pipe(
-        map(() => true),
-        catchError(() => of(false))
-      );
+  constructor(httpClient: HttpClient, private ngxLoader: NgxUiLoaderService, private toastr: ToastrService, private server: ServerService) {
+    this.apiLoaded = httpClient.jsonp("https://maps.googleapis.com/maps/api/js?key=AIzaSyASHU1WvCipdeZGJoIeI-TQkLKoPur3PDE", "callback").pipe(map(() => true),catchError(() => of(false)));
   }
 
   // ---- BOWSER MARKER ICONS ----
@@ -163,6 +152,28 @@ export class MapsComponent implements OnInit {
         "Cannot find location"
       );
     }
+    this.getBowsersForMap();
+  }
+
+  populateBowserMap(bowsers) {
+    bowsers.forEach((bowser) => {
+      if (bowser.status === "Active") {
+        this.bowsersPositions.push({
+          lat: bowser.lat,
+          lng: bowser.lon,
+        });
+      } else if (bowser.status === "Inactive") {
+        this.bowserOfflinePositions.push({
+          lat: bowser.lat,
+          lng: bowser.lon,
+        });
+      } else if (bowser.status === "Problematic") {
+        this.bowserSpannerPositions.push({
+          lat: bowser.lat,
+          lng: bowser.lon,
+        });
+      }
+    });
   }
 
   ngOnDestroy() {
@@ -178,5 +189,11 @@ export class MapsComponent implements OnInit {
   }
   addProblematicBowser(event) {
     this.bowserSpannerPositions.push(event.latLng.toJSON());
+  }
+
+  private getBowsersForMap() {
+    this.server.getBowsers().then((response: any[]) => {
+      this.populateBowserMap(response);
+    });
   }
 }

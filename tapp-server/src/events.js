@@ -90,6 +90,20 @@ function createRouter(db) {
     );
   });
 
+  router.get('/bowserdowncount', function (req, res, next) {
+    db.query(
+      'SELECT COUNT(*) FROM bowsers WHERE status = "Needs Attention"',
+      (error, results) => {
+        if (error) {
+          console.log(error);
+          res.status(500).json({status: 'error'});
+        } else {
+          res.status(200).json(results);
+        }
+      }
+    );
+  });
+
   router.put('/updateBowsers', function (req, res, next) {
     //const owner = req.user.email;
     db.query(

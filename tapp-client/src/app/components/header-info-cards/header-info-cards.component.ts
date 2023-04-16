@@ -13,12 +13,14 @@ export class HeaderInfoCardsComponent implements OnInit {
   activeBowsers: number;
   pendingTickets: number;
   activeTickets: number;
+  bowsersDown: number;
 
   ngOnInit(): void {
     this.getBowserCount();
     this.getActiveBowsers();
     this.getPendingTickets();
-    this.geActiveTickets();
+    this.getActiveTickets();
+    this.getUnavailableBowsers();
   }
 
   getBowserCount() {
@@ -39,9 +41,15 @@ export class HeaderInfoCardsComponent implements OnInit {
     });
   }
 
-  geActiveTickets() {
+  getActiveTickets() {
     this.server.getActiveTicketCount().then((response: any[]) => {
       this.activeTickets =  response[0]["COUNT(*)"];
+    });
+  }
+
+  getUnavailableBowsers() {
+    this.server.getBowserMaintenanceCount().then((response: any[]) => {
+      this.bowsersDown =  response[0]["COUNT(*)"];
     });
   }
 }

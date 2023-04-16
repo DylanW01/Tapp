@@ -60,4 +60,8 @@ export class ServerService {
   getActiveTicketCount() {
     return this.request('GET', `${environment.serverUrl}/activeticketcount`);
   }
+
+  getBowserMaintenanceCount() {
+    return this.request('GET', `${environment.serverUrl}/bowserdowncount`);
+  }
 }
