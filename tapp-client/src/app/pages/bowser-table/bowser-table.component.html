@@ -27,6 +27,7 @@
                 <th scope="col">Bowser ID</th>
                 <th scope="col">Container Size</th>
                 <th scope="col">Status</th>
+                <th scope="col">Current Capacity</th>
                 <th scope="col">Location</th>
                 <th scope="col"></th>
               </tr>
@@ -50,6 +51,16 @@
                     <i *ngIf="bowser.status == 'Problematic'" class="bg-danger"></i>
                     {{ bowser.status }}
                   </span>
+                </td>
+                <td>
+                  <div class="d-flex align-items-center">
+                    <span class="mr-2">{{bowser.capacityPercentage}}%</span>
+                    <div>
+                      <div class="progress">
+                        <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" [style.width.%]="bowser.capacityPercentage"></div>
+                      </div>
+                    </div>
+                  </div>
                 </td>
                 <td>
                   <a class="nav-link" href="https://maps.google.com/maps?q={{bowser.lat}},{{bowser.lon}}">

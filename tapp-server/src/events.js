@@ -22,7 +22,7 @@ function createRouter(db) {
   // BOWSERS
   router.get('/bowsers', function (req, res, next) {
     db.query(
-      'SELECT bowserId, lat, lon, size, createdOn, lastTopUp, status FROM bowsers',
+      'SELECT bowserId, lat, lon, size, createdOn, lastTopUp, status, capacityPercentage FROM bowsers',
       (error, results) => {
         if (error) {
           console.log(error);
