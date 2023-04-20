@@ -28,6 +28,7 @@
                 <th scope="col">Container Size</th>
                 <th scope="col">Status</th>
                 <th scope="col">Current Capacity</th>
+                <th scope="col">Last Topped Up</th>
                 <th scope="col">Location</th>
                 <th scope="col"></th>
               </tr>
@@ -61,6 +62,12 @@
                       </div>
                     </div>
                   </div>
+                </td>
+                <td *ngIf="bowser.lastTopUp">
+                  {{ bowser.lastTopUp | date: 'short' }}
+                </td>
+                <td *ngIf="!bowser.lastTopUp">
+                  N/A
                 </td>
                 <td>
                   <a class="nav-link" href="https://maps.google.com/maps?q={{bowser.lat}},{{bowser.lon}}">
