@@ -43,8 +43,6 @@ export class BowserTablesComponent implements OnInit {
       } else {
         this.toastr.warning("Bowser " + bowserId + " has not been deleted.");
       }
-    });
-
-    
+    });    
   }
 }
