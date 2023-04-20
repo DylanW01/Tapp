@@ -1,0 +1,41 @@
+<div class="modal-header">
+    <h4 class="modal-title">Create a new Bowser</h4>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+        <label class="form-label">Coordinates for map</label>
+        <span style="width: 100%;">
+          <input type="text" placeholder="Latitude" name="MapLatitude" id="MapLatitude" style="margin-bottom: 8px; width:50%;" pattern="^(\+|-)?(?:90(?:(?:\.0{1,6})?)|(?:[0-9]|[1-8][0-9])(?:(?:\.[0-9]{1,6})?))$">
+          <input type="text" placeholder="Longitude" name="MapLongitude" id="MapLongitude" pattern="^(\+|-)?(?:180(?:(?:\.0{1,6})?)|(?:[0-9]|[1-9][0-9]|1[0-7][0-9])(?:(?:\.[0-9]{1,6})?))$" style="margin-bottom: 8px; width:50%;">
+        </span>
+    </div>
+    <div class="row">
+        <!--<div id="map_canvas" style="width: 100%; height: 400px;"></div>-->
+    </div>
+    <div class="row">
+        <label class="form-label">Size</label>
+        <select style="width: 100%;" name="Size" class=form-select required>
+            <option value="" selected disabled>Please select</option>
+            <option value="Small">Small</option>
+            <option value="Medium">Medium</option>
+            <option value="Large">Large</option>
+        </select>
+    </div>
+    <div class="row">
+      <label class="form-label">Status</label>
+      <select style="width: 100%;" name="Size" class=form-select required>
+          <option value="" selected disabled>Please select</option>
+          <option value="Active">Active</option>
+          <option value="Problematic">Problematic</option>
+          <option value="Inactive">Inactive</option>
+      </select>
+  </div>
+  <div class="row">
+    <label for="customRange1" class="form-label">Capacity</label>
+    <input style="width: 100%;" type="range" min="0" max="100" step="5" class="form-range" id="customRange1">
+  </div>
+</div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
+    <button type="button" class="btn btn-primary" (click)="saveBowser()">Save</button>
+  </div>

@@ -7,6 +7,8 @@ import { RouterModule } from "@angular/router";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { HeaderInfoCardsComponent } from "./header-info-cards/header-info-cards.component";
 import { DeleteBowserModalComponent } from './delete-bowser-modal/delete-bowser-modal.component';
+import { EditBowserModalComponent } from './edit-bowser-modal/edit-bowser-modal.component';
+import { CreateBowserModalComponent } from './create-bowser-modal/create-bowser-modal.component';
 
 @NgModule({
   imports: [CommonModule, RouterModule, NgbModule],
@@ -16,6 +18,8 @@ import { DeleteBowserModalComponent } from './delete-bowser-modal/delete-bowser-
     SidebarComponent,
     HeaderInfoCardsComponent,
     DeleteBowserModalComponent,
+    EditBowserModalComponent,
+    CreateBowserModalComponent,
   ],
   exports: [
     FooterComponent,
