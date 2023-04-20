@@ -18,8 +18,6 @@ export class ServerService {
       map((authState: AuthState) => authState.accessToken?.accessToken ?? '')
     );
 
-    //token.subscribe(res => console.log("Token: ", res));
-
     const result = this.http.request(method, url, {
       body: data,
       responseType: 'json',
