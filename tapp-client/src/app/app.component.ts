@@ -11,7 +11,7 @@ import { filter, map, Observable } from 'rxjs';
   styleUrls: ["./app.component.scss"],
 })
 export class AppComponent {
-  title = "Tapp-Refactored";
+  title = "Tapp";
   public isAuthenticated$!: Observable<boolean>;
 
   constructor(private _router: Router, private _oktaStateService: OktaAuthStateService, @Inject(OKTA_AUTH) private _oktaAuth: OktaAuth) { }

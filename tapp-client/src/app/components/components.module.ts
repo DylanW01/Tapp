@@ -6,6 +6,7 @@ import { FooterComponent } from "./footer/footer.component";
 import { RouterModule } from "@angular/router";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { HeaderInfoCardsComponent } from "./header-info-cards/header-info-cards.component";
+import { DeleteBowserModalComponent } from './delete-bowser-modal/delete-bowser-modal.component';
 
 @NgModule({
   imports: [CommonModule, RouterModule, NgbModule],
@@ -14,6 +15,7 @@ import { HeaderInfoCardsComponent } from "./header-info-cards/header-info-cards.
     NavbarComponent,
     SidebarComponent,
     HeaderInfoCardsComponent,
+    DeleteBowserModalComponent,
   ],
   exports: [
     FooterComponent,

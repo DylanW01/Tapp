@@ -34,10 +34,40 @@ function createRouter(db) {
     );
   });
 
-  router.put('/updateBowsers', function (req, res, next) {
+  router.post('/bowsers', (req, res, next) => {
     db.query(
-      'UPDATE bowsers SET lat=?, lon=?, size=?, lastTopUp=?, status=? WHERE id=?',
-      [req.body.lat, req.body.lon, req.body.size, req.body.lastTopUp, req.body.Status, req.body.Id],
+      'INSERT INTO bowsers (lat, lon, size, status, capacityPercentage) VALUES (?,?,?,?,?)',
+      [req.body.lat, req.body.lon, req.body.size, req.body.status, capacityPercentage],
+      (error) => {
+        if (error) {
+          console.error(error);
+          res.status(500).json({status: 'error'});
+        } else {
+          res.status(200).json({status: 'ok'});
+        }
+      }
+    );
+  });
+
+  router.delete('/bowsers/:id', function (req, res, next) {
+    db.query(
+      'DELETE FROM bowsers WHERE bowserId=?',
+      [req.params.id],
+      (error, results) => {
+        if (error) {
+          console.log(error);
+          res.status(500).json({status: 'error'});
+        } else {
+          res.status(200).json(results);
+        }
+      }
+    );
+  });
+
+  router.put('/bowsers/:id', function (req, res, next) {
+    db.query(
+      'UPDATE bowsers SET lat=?, lon=?, size=?, lastTopUp=?, status=? WHERE bowserId=?',
+      [req.body.lat, req.body.lon, req.body.size, req.body.lastTopUp, req.body.Status, req.params.Id],
       (error) => {
         if (error) {
           res.status(500).json({status: 'error'});

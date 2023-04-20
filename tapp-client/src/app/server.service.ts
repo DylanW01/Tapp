@@ -31,18 +31,26 @@ export class ServerService {
     });
   }
 
+  // Bowsers
   getBowsers() {
     return this.request('GET', `${environment.serverUrl}/bowsers`);
   }
+  createBowser(bowser) {
+    //* Takes in "lat, lon, size, status, capacityPercentage"
+    return this.request('POST', `${environment.serverUrl}/bowsers`, bowser);
+  }
 
   updateBowser(bowser) {
-    return this.request('PUT', `${environment.serverUrl}/updateBowsers`, bowser);
+    //* Takes in "lat, lon, size, lastTopUp, status"
+    return this.request('PUT', `${environment.serverUrl}/bowsers${bowser.bowserId}`, bowser);
   }
 
-  deleteBowser(bowser) {
-    return this.request('DELETE', `${environment.serverUrl}/bowsers/${bowser}`);
+  deleteBowser(bowserId : number) {
+    return this.request('DELETE', `${environment.serverUrl}/bowsers/${bowserId}`);
   }
+  // End of Bowesrs
 
+  // Info Cards
   getBowsersCount() {
     return this.request('GET', `${environment.serverUrl}/bowserscount`);
   }
@@ -62,4 +70,5 @@ export class ServerService {
   getBowserMaintenanceCount() {
     return this.request('GET', `${environment.serverUrl}/bowserdowncount`);
   }
+  // End of Info Cards
 }
