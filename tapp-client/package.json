@@ -1,6 +1,6 @@
 {
   "name": "Tapp",
-  "version": "0.5.26",
+  "version": "0.6.78",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
