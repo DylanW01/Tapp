@@ -16,7 +16,7 @@ const FILTER_PAG_REGEX = /[^0-9]/g;
 })
 export class BowserTablesComponent implements OnInit {
   page = 1;
-  pageSize = 15;
+  pageSize = 20;
   bowsers: any[] = [];
   mappedArray = [];
   options: NgbModalOptions = {
