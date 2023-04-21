@@ -127,9 +127,9 @@ export class MapsComponent implements OnInit {
   // ------- END OF MAP SETUP -------
 
   ngOnInit() {
-    this.ngxLoader.startBackground();
+    this.ngxLoader.start();
     this.timeout = setTimeout(() => {
-      this.ngxLoader.stopBackground();
+      this.ngxLoader.stop();
       this.toastr.warning(
         "Please allow location access to use the maps feature",
         "Cannot find location"
@@ -142,11 +142,11 @@ export class MapsComponent implements OnInit {
           lng: position.coords.longitude,
         });
         this.center = {lat: position.coords.latitude, lng: position.coords.longitude};
-        this.ngxLoader.stopBackground();
+        this.ngxLoader.stop();
         clearTimeout(this.timeout);
       });
     } else {
-      this.ngxLoader.stopBackground();
+      this.ngxLoader.stop();
       this.toastr.warning(
         "Please allow location access to use the maps feature",
         "Cannot find location"
