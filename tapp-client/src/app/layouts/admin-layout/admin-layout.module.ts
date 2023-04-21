@@ -8,6 +8,7 @@ import { ClipboardModule } from "ngx-clipboard";
 import { AdminLayoutRoutes } from "./admin-layout.routing";
 import { DashboardComponent } from "../../pages/dashboard/dashboard.component";
 import { BowserTablesComponent } from "../../pages/bowser-table/bowser-table.component";
+import { TicketTablesComponent } from "../../pages/support-ticket-table/support-ticket-table.component";
 import { IconsComponent } from "../../pages/icons/icons.component";
 import { MapsComponent } from "../../pages/maps/maps.component";
 import { UserProfileComponent } from "../../pages/user-profile/user-profile.component";
@@ -25,6 +26,7 @@ import { AccountsTableComponent } from "../../pages/accounts-table/accounts-tabl
     IconsComponent,
     MapsComponent,
     BowserTablesComponent,
+    TicketTablesComponent,
     AccountsTableComponent,
   ],
   exports: [MapsComponent],

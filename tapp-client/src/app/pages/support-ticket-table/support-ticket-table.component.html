@@ -1,0 +1,87 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+      <app-header-info-cards></app-header-info-cards>
+    </div>
+  </div>
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <h3 class="mb-0">Support Tickets</h3>
+          <button class="btn btn-icon btn-3 btn-primary" type="button">
+            <span class="btn-inner--icon"
+              ><i class="fa-solid fa-plus"></i
+            ></span>
+            <span (click)="createBowser()" class="btn-inner--text">New Ticket</span>
+          </button>
+        </div>
+        <div class="table-responsive">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Ticket ID</th>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Type</th>
+                <th scope="col">Status</th>
+                <th scope="col">Priority</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let ticket of tickets | slice: (page-1) * pageSize : page * pageSize">
+                <th scope="row">
+                  <div class="media align-items-center">
+                    <div class="media-body">
+                      <span class="mb-0 text-sm">Ticket {{ ticket.requestId }}</span>
+                    </div>
+                  </div>
+                </th>
+                <td>
+                  {{ ticket.title }}
+                </td>
+                <td>
+                  {{ ticket.description }}
+                </td>
+                <td>
+                  {{ ticket.type }}
+                </td>
+                <td>
+                  <span class="badge badge-dot mr-4">
+                    <i *ngIf="ticket.status == 'Active'" class="bg-success"></i>
+                    <i *ngIf="ticket.status == 'Pending'" class="bg-light"></i>
+                    <i *ngIf="ticket.status == 'Problematic'" class="bg-danger"></i>
+                    {{ ticket.status }}
+                  </span>
+                </td>
+                <td>
+                  {{ticket.priority}}
+                </td>
+                <td class="text-right">
+                  <div ngbDropdown placement="bottom-right">
+                    <a class="btn btn-sm btn-icon-only text-light" ngbDropdownToggle><i class="fas fa-ellipsis-v"></i></a>
+                    <div ngbDropdownMenu class="dropdown-menu-right dropdown-menu-arrow">
+                      <a class="dropdown-item" (click)="editBowser(ticket)">Update Bowser</a>
+                      <a class="dropdown-item" (click)="deleteTicket(ticket)">Delete Ticket</a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-footer py-4 pagination justify-content-end mb-0">
+          <ngb-pagination
+          [(page)]="page"
+          [pageSize]="pageSize"
+          [collectionSize]="tickets.length"></ngb-pagination>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

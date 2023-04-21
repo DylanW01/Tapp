@@ -31,10 +31,23 @@ export class ServerService {
     });
   }
 
+  // Tickets
+
+  getTickets() {
+    return this.request('GET', `${environment.serverUrl}/tickets`);
+  }
+
+  deleteTicket(ticket) {
+    return this.request('DELETE', `${environment.serverUrl}/tickets/${ticket.requestId}`, ticket);
+  }
+
+  // End of Tickets
+
   // Bowsers
   getBowsers() {
     return this.request('GET', `${environment.serverUrl}/bowsers`);
   }
+  
   createBowser(bowser) {
     //* Takes in "lat, lon, size, status, capacityPercentage"
     return this.request('POST', `${environment.serverUrl}/bowsers`, bowser);
@@ -45,8 +58,8 @@ export class ServerService {
     return this.request('PUT', `${environment.serverUrl}/bowsers${bowser.bowserId}`, bowser);
   }
 
-  deleteBowser(bowserId : number) {
-    return this.request('DELETE', `${environment.serverUrl}/bowsers/${bowserId}`);
+  deleteBowser(bowser) {
+    return this.request('DELETE', `${environment.serverUrl}/bowsers/${bowser.bowserId}`, bowser);
   }
   // End of Bowesrs
 

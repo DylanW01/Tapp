@@ -19,10 +19,58 @@ function createRouter(db) {
     );
   });
 
+  // TICKETS
+
+  router.get('/tickets', function (req, res, next) {
+    db.query(
+      'SELECT requestId, title, description, type, status, lat, lon, priority FROM tickets WHERE deletedState=0',
+      (error, results) => {
+        if (error) {
+          console.log(error);
+          res.status(500).json({status: 'error'});
+        } else {
+          res.status(200).json(results);
+        }
+      }
+    );
+  });
+
+  router.delete('/tickets/:id', function (req, res, next) {
+    db.query(
+      'UPDATE tickets SET deletedState=1 WHERE requestId=?',
+      [req.params.id],
+      (error, results) => {
+        if (error) {
+          console.log(error);
+          res.status(500).json({status: 'error'});
+        } else {
+          const sgMail = require('@sendgrid/mail')
+          sgMail.setApiKey('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')
+          const msg = {
+            to: 'admin@tapp.dylanwarrell.com',
+            from: 'noreply@tapp.dylanwarrell.com',
+            template_id: 'd-c3ad14900a2a468b85092daccebab4e6',
+            dynamic_template_data: {
+              ticketId: req.params.id,
+              title: req.body.title || 'Not Provided',
+              description: req.body.description  || 'Not Provided',
+              type: req.body.type  || 'Not Provided',
+              priority: req.body.priority  || 'Not Provided',
+          },
+          }
+          sgMail.send(msg)
+          res.status(200).json(results);
+        }
+      }
+    );
+  });
+
+  // END OF TICKETS
+
   // BOWSERS
   router.get('/bowsers', function (req, res, next) {
     db.query(
-      'SELECT bowserId, lat, lon, size, createdOn, lastTopUp, status, capacityPercentage FROM bowsers',
+      'SELECT bowserId, lat, lon, size, createdOn, lastTopUp, status, capacityPercentage FROM bowsers WHERE deletedState=0',
       (error, results) => {
         if (error) {
           console.log(error);
@@ -51,13 +99,27 @@ function createRouter(db) {
 
   router.delete('/bowsers/:id', function (req, res, next) {
     db.query(
-      'DELETE FROM bowsers WHERE bowserId=?',
+      'UPDATE bowsers SET deletedState=1 WHERE bowserId=?',
       [req.params.id],
       (error, results) => {
         if (error) {
           console.log(error);
           res.status(500).json({status: 'error'});
         } else {
+          const sgMail = require('@sendgrid/mail')
+          sgMail.setApiKey('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')
+          const msg = {
+            to: 'admin@tapp.dylanwarrell.com',
+            from: 'noreply@tapp.dylanwarrell.com',
+            template_id: 'd-45c7b930ae71483eab2223b07fc9e293',
+            dynamic_template_data: {
+              bowserId: req.params.id,
+              lat: req.body.lat || 'Not Provided',
+              lon: req.body.lon  || 'Not Provided',
+              size: req.body.size  || 'Not Provided',
+          },
+          }
+          sgMail.send(msg)
           res.status(200).json(results);
         }
       }

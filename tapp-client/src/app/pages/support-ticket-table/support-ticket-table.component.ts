@@ -11,26 +11,26 @@ const FILTER_PAG_REGEX = /[^0-9]/g;
 
 @Component({
   selector: "bowser-table",
-  templateUrl: "./bowser-table.component.html",
-  styleUrls: ["./bowser-table.component.scss"],
+  templateUrl: "./support-ticket-table.component.html",
+  styleUrls: ["./support-ticket-table.component.scss"],
 })
-export class BowserTablesComponent implements OnInit {
+export class TicketTablesComponent implements OnInit {
   page = 1;
   pageSize = 20;
-  bowsers: any[] = [];
+  tickets: any[] = [];
   mappedArray = [];
   options: NgbModalOptions = {
     backdrop: 'static',  };
 
   ngOnInit() {
-    this.getBowsersForTable();    
+    this.getTicketsForTable();    
   }
 
   constructor(private server: ServerService, private toastr: ToastrService, private modalService: NgbModal) { }
 
-  private getBowsersForTable() {
-    this.server.getBowsers().then((response: any[]) => {
-      this.bowsers = response;
+  private getTicketsForTable() {
+    this.server.getTickets().then((response: any[]) => {
+      this.tickets = response;
     });
   }
 
@@ -42,7 +42,7 @@ export class BowserTablesComponent implements OnInit {
           this.toastr.success(
             "Bowser has been created."
           );
-          this.getBowsersForTable();
+          this.getTicketsForTable();
         });
       } else {
         this.toastr.warning("Bowser was not saved.");
@@ -50,20 +50,20 @@ export class BowserTablesComponent implements OnInit {
     }); 
   }
 
-  deleteBowser(bowser) {
+  deleteTicket(ticket) {
     const modalRef = this.modalService.open(DeleteBowserModalComponent);
-    modalRef.componentInstance.bowserId = bowser.bowserId;
-    modalRef.result.then((result) => {
-      if (result) {
-        this.server.deleteBowser(bowser).then(() => {
+ //   modalRef.componentInstance.bowserId = ticket.requestId;
+ //   modalRef.result.then((result) => {
+ //     if (result) {
+        this.server.deleteTicket(ticket).then(() => {
           this.toastr.success(
-            "Bowser " + bowser.bowserId + " has been deleted."
+            "Ticket " + ticket.requestId + " has been deleted."
           );
-          this.getBowsersForTable();
-        });
-      } else {
-        this.toastr.warning("Bowser " + bowser.bowserId + " has not been deleted.");
-      }
+          this.getTicketsForTable();
+ //       });
+ //     } else {
+ //       this.toastr.warning("Ticket " + ticket.requestId + " has not been deleted.");
+ //     }
     });    
   }
 
@@ -77,7 +77,7 @@ export class BowserTablesComponent implements OnInit {
           this.toastr.success(
             "Bowser " + bowser.bowserId + " updated successfully."
           );
-          this.getBowsersForTable();
+          this.getTicketsForTable();
         });
       } else {
         this.toastr.warning("Changes to bowser " + bowser.bowserId + " have been discarded.");

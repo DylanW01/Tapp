@@ -24,6 +24,12 @@ export const ROUTES: RouteInfo[] = [
     class: "",
   },
   {
+    path: "/tickets",
+    title: "Support Tickets",
+    icon: "fa-solid fa-headset text-teal",
+    class: "",
+  },
+  {
     path: "/maps",
     title: "Bowser Map",
     icon: "ni ni-pin-3 text-orange",
