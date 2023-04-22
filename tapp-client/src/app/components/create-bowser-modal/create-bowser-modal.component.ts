@@ -2,8 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ToastrService } from "ngx-toastr";
-import { Observable, catchError, map, of } from "rxjs";
-import { HttpClient } from "@angular/common/http";
 import { ServerService } from "src/app/server.service";
 import { NgxUiLoaderService } from "ngx-ui-loader";
 
@@ -15,24 +13,12 @@ import { NgxUiLoaderService } from "ngx-ui-loader";
 export class CreateBowserModalComponent implements OnInit {
   newBowser: FormGroup;
   currentCapacity: number;
-  apiLoaded: Observable<boolean>;
   timeout;
 
-  constructor(httpClient: HttpClient, public activeModal: NgbActiveModal, private toastr: ToastrService, private server: ServerService, private ngxLoader: NgxUiLoaderService) {
-    this.apiLoaded = httpClient.jsonp("https://maps.googleapis.com/maps/api/js?key=AIzaSyASHU1WvCipdeZGJoIeI-TQkLKoPur3PDE", "callback").pipe(
-      map(() => true),
-      catchError(() => of(false))
-    );
-  }
+  constructor(public activeModal: NgbActiveModal, private toastr: ToastrService, private server: ServerService, private ngxLoader: NgxUiLoaderService) {}
 
   // ---- BOWSER MARKER ICONS ----
   center: google.maps.LatLngLiteral = { lat: 51.8994, lng: -2.0783 };
-  userLocationIcon = {
-    url: "https://maps.google.com/mapfiles/kml/shapes/homegardenbusiness.png",
-    scaledSize: new google.maps.Size(35, 35),
-    origin: new google.maps.Point(0, 0),
-    anchor: new google.maps.Point(17.5, 17.5),
-  };
   bowserIcon = {
     url: "https://maps.google.com/mapfiles/kml/shapes/water.png",
     scaledSize: new google.maps.Size(35, 35),
@@ -53,10 +39,6 @@ export class CreateBowserModalComponent implements OnInit {
   };
 
   // ---- ICON OPTIONS ----
-  userMarkerOptions: google.maps.MarkerOptions = {
-    draggable: false,
-    icon: this.userLocationIcon,
-  };
   bowserMarkerOptions: google.maps.MarkerOptions = {
     draggable: false,
     icon: this.bowserIcon,
@@ -74,14 +56,13 @@ export class CreateBowserModalComponent implements OnInit {
   bowsersPositions: google.maps.LatLngLiteral[] = [];
   bowserSpannerPositions: google.maps.LatLngLiteral[] = [];
   bowserOfflinePositions: google.maps.LatLngLiteral[] = [];
-  userLocation: google.maps.LatLngLiteral[] = [];
+  newLocation: google.maps.LatLngLiteral[] = [];
 
   // ---- MAP OPTIONS ----
   options: google.maps.MapOptions = {
     zoom: 14,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     streetViewControl: false,
-    fullscreenControl: false,
     styles: [
       {
         featureType: "administrative",
@@ -133,17 +114,17 @@ export class CreateBowserModalComponent implements OnInit {
     this.newBowser = new FormGroup({
       lat: new FormControl(null, Validators.required),
       lon: new FormControl(null, Validators.required),
-      size: new FormControl(null, Validators.required),
-      status: new FormControl(null, Validators.required),
-      capacity: new FormControl(null, Validators.required),
+      size: new FormControl("", Validators.required),
+      status: new FormControl("", Validators.required),
+      capacity: new FormControl("50", Validators.required),
     });
     this.timeout = setTimeout(() => {
-      this.ngxLoader.stop();
+      this.ngxLoader.stopBackground();
       this.toastr.warning("Please allow location access to use the maps feature", "Cannot find location");
     }, 10000);
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
-        this.userLocation.push({
+        this.newLocation.push({
           lat: position.coords.latitude,
           lng: position.coords.longitude,
         });
@@ -156,7 +137,7 @@ export class CreateBowserModalComponent implements OnInit {
       });
     } else {
       this.ngxLoader.stopBackground();
-      this.toastr.warning("Please allow location access to use the maps feature", "Cannot find location");
+      this.toastr.error("Please allow location access to use the maps feature", "Cannot find location");
     }
     this.getBowsersForMap();
   }
@@ -201,5 +182,15 @@ export class CreateBowserModalComponent implements OnInit {
     this.server.getBowsers().then((response: any[]) => {
       this.populateBowserMap(response);
     });
+  }
+
+  move(event: google.maps.MapMouseEvent) {
+    this.newLocation = [];
+    this.newLocation.push({
+      lat: event.latLng.lat(),
+      lng: event.latLng.lng(),
+    });
+    this.newBowser.controls.lat.setValue(event.latLng.lat());
+    this.newBowser.controls.lon.setValue(event.latLng.lng());
   }
 }
