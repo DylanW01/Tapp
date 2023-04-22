@@ -1,16 +1,15 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { EditBowserModalComponent } from './edit-bowser-modal.component';
+import { EditBowserModalComponent } from "./edit-bowser-modal.component";
 
-describe('EditBowserModalComponent', () => {
+describe("EditBowserModalComponent", () => {
   let component: EditBowserModalComponent;
   let fixture: ComponentFixture<EditBowserModalComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EditBowserModalComponent ]
-    })
-    .compileComponents();
+      declarations: [EditBowserModalComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('EditBowserModalComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

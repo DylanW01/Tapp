@@ -1,6 +1,5 @@
 import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
-import { GoogleMap, GoogleMapsModule } from "@angular/google-maps";
 import { ToastrService } from "ngx-toastr";
 import { NgxUiLoaderService } from "ngx-ui-loader";
 import { Observable, map, catchError, of } from "rxjs";
@@ -20,7 +19,10 @@ export class MapsComponent implements OnInit {
 
   // ---- MAP INIT ----
   constructor(httpClient: HttpClient, private ngxLoader: NgxUiLoaderService, private toastr: ToastrService, private server: ServerService) {
-    this.apiLoaded = httpClient.jsonp("https://maps.googleapis.com/maps/api/js?key=AIzaSyASHU1WvCipdeZGJoIeI-TQkLKoPur3PDE", "callback").pipe(map(() => true),catchError(() => of(false)));
+    this.apiLoaded = httpClient.jsonp("https://maps.googleapis.com/maps/api/js?key=AIzaSyASHU1WvCipdeZGJoIeI-TQkLKoPur3PDE", "callback").pipe(
+      map(() => true),
+      catchError(() => of(false))
+    );
   }
 
   // ---- BOWSER MARKER ICONS ----
@@ -131,10 +133,7 @@ export class MapsComponent implements OnInit {
     this.ngxLoader.start();
     this.timeout = setTimeout(() => {
       this.ngxLoader.stop();
-      this.toastr.warning(
-        "Please allow location access to use the maps feature",
-        "Cannot find location"
-      );
+      this.toastr.warning("Please allow location access to use the maps feature", "Cannot find location");
     }, 10000);
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
@@ -142,16 +141,13 @@ export class MapsComponent implements OnInit {
           lat: position.coords.latitude,
           lng: position.coords.longitude,
         });
-        this.center = {lat: position.coords.latitude, lng: position.coords.longitude};
+        this.center = { lat: position.coords.latitude, lng: position.coords.longitude };
         this.ngxLoader.stop();
         clearTimeout(this.timeout);
       });
     } else {
       this.ngxLoader.stop();
-      this.toastr.warning(
-        "Please allow location access to use the maps feature",
-        "Cannot find location"
-      );
+      this.toastr.warning("Please allow location access to use the maps feature", "Cannot find location");
     }
     this.getBowsersForMap();
     this.autoRefresh();

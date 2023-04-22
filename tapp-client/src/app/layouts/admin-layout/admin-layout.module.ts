@@ -16,29 +16,10 @@ import { TablesComponent } from "../../pages/tables/tables.component";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { ComponentsModule } from "../../components/components.module";
 import { AccountsTableComponent } from "../../pages/accounts-table/accounts-table.component";
-// import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
-  declarations: [
-    DashboardComponent,
-    UserProfileComponent,
-    TablesComponent,
-    IconsComponent,
-    MapsComponent,
-    BowserTablesComponent,
-    TicketTablesComponent,
-    AccountsTableComponent,
-  ],
+  declarations: [DashboardComponent, UserProfileComponent, TablesComponent, IconsComponent, MapsComponent, BowserTablesComponent, TicketTablesComponent, AccountsTableComponent],
   exports: [MapsComponent],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(AdminLayoutRoutes),
-    FormsModule,
-    HttpClientModule,
-    NgbModule,
-    ClipboardModule,
-    GoogleMapsModule,
-    ComponentsModule,
-  ],
+  imports: [CommonModule, RouterModule.forChild(AdminLayoutRoutes), FormsModule, HttpClientModule, NgbModule, ClipboardModule, ComponentsModule, GoogleMapsModule],
 })
 export class AdminLayoutModule {}

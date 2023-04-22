@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbPaginationModule } from "@ng-bootstrap/ng-bootstrap";
 import { ServerService } from "src/app/server.service";
 import { ToastrService } from "ngx-toastr";
-import { NgbActiveModal, NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
-import { DeleteBowserModalComponent } from '../../components/delete-bowser-modal/delete-bowser-modal.component';
+import { NgbActiveModal, NgbModal, NgbModalOptions } from "@ng-bootstrap/ng-bootstrap";
+import { DeleteBowserModalComponent } from "../../components/delete-bowser-modal/delete-bowser-modal.component";
 import { EditBowserModalComponent } from "src/app/components/edit-bowser-modal/edit-bowser-modal.component";
 import { CreateBowserModalComponent } from "src/app/components/create-bowser-modal/create-bowser-modal.component";
 
@@ -20,13 +20,14 @@ export class TicketTablesComponent implements OnInit {
   tickets: any[] = [];
   mappedArray = [];
   options: NgbModalOptions = {
-    backdrop: 'static',  };
+    backdrop: "static",
+  };
 
   ngOnInit() {
-    this.getTicketsForTable();    
+    this.getTicketsForTable();
   }
 
-  constructor(private server: ServerService, private toastr: ToastrService, private modalService: NgbModal) { }
+  constructor(private server: ServerService, private toastr: ToastrService, private modalService: NgbModal) {}
 
   private getTicketsForTable() {
     this.server.getTickets().then((response: any[]) => {
@@ -39,49 +40,43 @@ export class TicketTablesComponent implements OnInit {
     modalRef.result.then((result) => {
       if (result) {
         this.server.createBowser(result).then(() => {
-          this.toastr.success(
-            "Bowser has been created."
-          );
+          this.toastr.success("Bowser has been created.");
           this.getTicketsForTable();
         });
       } else {
         this.toastr.warning("Bowser was not saved.");
       }
-    }); 
+    });
   }
 
   deleteTicket(ticket) {
     const modalRef = this.modalService.open(DeleteBowserModalComponent);
- //   modalRef.componentInstance.bowserId = ticket.requestId;
- //   modalRef.result.then((result) => {
- //     if (result) {
-        this.server.deleteTicket(ticket).then(() => {
-          this.toastr.success(
-            "Ticket " + ticket.requestId + " has been deleted."
-          );
-          this.getTicketsForTable();
- //       });
- //     } else {
- //       this.toastr.warning("Ticket " + ticket.requestId + " has not been deleted.");
- //     }
-    });    
+    //   modalRef.componentInstance.bowserId = ticket.requestId;
+    //   modalRef.result.then((result) => {
+    //     if (result) {
+    this.server.deleteTicket(ticket).then(() => {
+      this.toastr.success("Ticket " + ticket.requestId + " has been deleted.");
+      this.getTicketsForTable();
+      //       });
+      //     } else {
+      //       this.toastr.warning("Ticket " + ticket.requestId + " has not been deleted.");
+      //     }
+    });
   }
 
   editBowser(bowser) {
     const modalRef = this.modalService.open(EditBowserModalComponent, this.options);
     modalRef.componentInstance.bowser = bowser;
     modalRef.result.then((bowser) => {
-      console.log(bowser)
+      console.log(bowser);
       if (bowser) {
         this.server.updateBowser(bowser).then(() => {
-          this.toastr.success(
-            "Bowser " + bowser.bowserId + " updated successfully."
-          );
+          this.toastr.success("Bowser " + bowser.bowserId + " updated successfully.");
           this.getTicketsForTable();
         });
       } else {
         this.toastr.warning("Changes to bowser " + bowser.bowserId + " have been discarded.");
       }
-    });    
-  }  
+    });
+  }
 }

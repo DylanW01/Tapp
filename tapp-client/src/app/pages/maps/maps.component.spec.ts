@@ -1,9 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-import {
-  HttpClientTestingModule,
-  HttpTestingController,
-} from "@angular/common/http/testing";
+import { HttpClientTestingModule, HttpTestingController } from "@angular/common/http/testing";
 import { MapsComponent } from "./maps.component";
 import { Component, OnInit } from "@angular/core";
 import { GoogleMap, GoogleMapsModule } from "@angular/google-maps";

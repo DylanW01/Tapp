@@ -1,10 +1,11 @@
 import { Component, OnInit } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
-import { ServerService } from "src/app/server.service";
-import { GoogleMap, GoogleMapsModule } from "@angular/google-maps";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { ToastrService } from "ngx-toastr";
 import { Observable, catchError, map, of } from "rxjs";
-import { FormGroup, FormControl, Validators } from '@angular/forms'
+import { HttpClient } from "@angular/common/http";
+import { ServerService } from "src/app/server.service";
+import { NgxUiLoaderService } from "ngx-ui-loader";
 
 @Component({
   selector: "app-create-bowser-modal",
@@ -12,17 +13,16 @@ import { FormGroup, FormControl, Validators } from '@angular/forms'
   styleUrls: ["./create-bowser-modal.component.scss"],
 })
 export class CreateBowserModalComponent implements OnInit {
-  bowser: any;
-  apiLoaded: Observable<boolean>;
   newBowser: FormGroup;
   currentCapacity: number;
+  apiLoaded: Observable<boolean>;
+  timeout;
 
-  constructor(
-    httpClient: HttpClient,
-    public activeModal: NgbActiveModal,
-    private server: ServerService
-  ) {
-    this.apiLoaded = httpClient.jsonp("https://maps.googleapis.com/maps/api/js?key=AIzaSyASHU1WvCipdeZGJoIeI-TQkLKoPur3PDE", "callback").pipe(map(() => true),catchError(() => of(false)));
+  constructor(httpClient: HttpClient, public activeModal: NgbActiveModal, private toastr: ToastrService, private server: ServerService, private ngxLoader: NgxUiLoaderService) {
+    this.apiLoaded = httpClient.jsonp("https://maps.googleapis.com/maps/api/js?key=AIzaSyASHU1WvCipdeZGJoIeI-TQkLKoPur3PDE", "callback").pipe(
+      map(() => true),
+      catchError(() => of(false))
+    );
   }
 
   // ---- BOWSER MARKER ICONS ----
@@ -82,7 +82,6 @@ export class CreateBowserModalComponent implements OnInit {
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     streetViewControl: false,
     fullscreenControl: false,
-    mapTypeControl: false,
     styles: [
       {
         featureType: "administrative",
@@ -130,24 +129,77 @@ export class CreateBowserModalComponent implements OnInit {
   // ------- END OF MAP SETUP -------
 
   ngOnInit() {
+    this.ngxLoader.startBackground();
     this.newBowser = new FormGroup({
-      lat: new FormControl(''),
-      lon: new FormControl(''),
-      size: new FormControl(''),
-      status: new FormControl(''),
-      capacity: new FormControl('')
-    })
-  }
-
-  onSubmit() {
-    console.log(this.newBowser.value);
+      lat: new FormControl(null, Validators.required),
+      lon: new FormControl(null, Validators.required),
+      size: new FormControl(null, Validators.required),
+      status: new FormControl(null, Validators.required),
+      capacity: new FormControl(null, Validators.required),
+    });
+    this.timeout = setTimeout(() => {
+      this.ngxLoader.stop();
+      this.toastr.warning("Please allow location access to use the maps feature", "Cannot find location");
+    }, 10000);
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.userLocation.push({
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        });
+        this.center = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        };
+        this.ngxLoader.stopBackground();
+        clearTimeout(this.timeout);
+      });
+    } else {
+      this.ngxLoader.stopBackground();
+      this.toastr.warning("Please allow location access to use the maps feature", "Cannot find location");
+    }
+    this.getBowsersForMap();
   }
 
   saveBowser() {
-    this.activeModal.close(this.bowser);
+    if (this.newBowser.valid) {
+      this.activeModal.close(this.newBowser.value);
+    } else {
+      this.toastr.error("Check all fields are valid and try again", "Bowser not added");
+    }
   }
 
   cancel() {
-    this.activeModal.close(false);
+    this.activeModal.close();
+  }
+
+  populateBowserMap(bowsers) {
+    this.bowsersPositions = [];
+    this.bowserOfflinePositions = [];
+    this.bowserSpannerPositions = [];
+    bowsers.forEach((bowser) => {
+      if (bowser.status === "Active") {
+        this.bowsersPositions.push({
+          lat: bowser.lat,
+          lng: bowser.lon,
+        });
+      } else if (bowser.status === "Inactive") {
+        this.bowserOfflinePositions.push({
+          lat: bowser.lat,
+          lng: bowser.lon,
+        });
+      } else if (bowser.status === "Problematic") {
+        this.bowserSpannerPositions.push({
+          lat: bowser.lat,
+          lng: bowser.lon,
+        });
+      }
+    });
+  }
+
+  private getBowsersForMap() {
+    this.server.getBowsers().then((response: any[]) => {
+      this.populateBowserMap(response);
+    });
   }
 }

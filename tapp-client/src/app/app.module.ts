@@ -3,8 +3,8 @@ import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule, HttpClient } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
-import { OktaAuthModule, OKTA_CONFIG } from '@okta/okta-angular';
-import { OktaAuth } from '@okta/okta-auth-js';
+import { OktaAuthModule, OKTA_CONFIG } from "@okta/okta-angular";
+import { OktaAuth } from "@okta/okta-auth-js";
 import { AppComponent } from "./app.component";
 import { AdminLayoutComponent } from "./layouts/admin-layout/admin-layout.component";
 import { AuthLayoutComponent } from "./layouts/auth-layout/auth-layout.component";
@@ -14,15 +14,7 @@ import { ToastrModule } from "ngx-toastr";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { ComponentsModule } from "./components/components.module";
-import {
-  NgxUiLoaderModule,
-  NgxUiLoaderConfig,
-  SPINNER,
-  POSITION,
-  PB_DIRECTION,
-  NgxUiLoaderRouterModule,
-  NgxUiLoaderHttpModule,
-} from "ngx-ui-loader";
+import { NgxUiLoaderModule, NgxUiLoaderConfig, SPINNER, POSITION, PB_DIRECTION, NgxUiLoaderRouterModule, NgxUiLoaderHttpModule } from "ngx-ui-loader";
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   bgsColor: "$default",
@@ -41,9 +33,9 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
 };
 
 const oktaAuth = new OktaAuth({
-  issuer: 'https://dev-88138568.okta.com/oauth2/default',
-  clientId: '0oa8d8o93uPFQw7415d7',
-  redirectUri: window.location.origin + '/login/callback'
+  issuer: "https://dev-88138568.okta.com/oauth2/default",
+  clientId: "0oa8d8o93uPFQw7415d7",
+  redirectUri: window.location.origin + "/login/callback",
 });
 
 @NgModule({
@@ -62,7 +54,7 @@ const oktaAuth = new OktaAuth({
     AppRoutingModule,
     NgxUiLoaderModule,
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
-    NgxUiLoaderHttpModule.forRoot({ delay: 100, maxTime: 10000}),
+    NgxUiLoaderHttpModule.forRoot({ delay: 100, maxTime: 10000 }),
     NgxUiLoaderRouterModule.forRoot({ showForeground: false }),
     OktaAuthModule,
   ],

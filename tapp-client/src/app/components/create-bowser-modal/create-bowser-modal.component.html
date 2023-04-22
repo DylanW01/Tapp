@@ -1,45 +1,48 @@
 <div class="modal-header">
-    <h4 class="modal-title">Create a new Bowser</h4>
-  </div>
-  <form [formGroup]="newBowser" (ngSubmit)="onSubmit()">
-  <div class="modal-body">
-    <div class="row">
-        <label class="form-label">Coordinates for map</label>
-        <span style="width: 100%;">
-          <input formControlName="lat" type="text" placeholder="Latitude" style="margin-bottom: 8px; width:50%;" pattern="^(\+|-)?(?:90(?:(?:\.0{1,6})?)|(?:[0-9]|[1-8][0-9])(?:(?:\.[0-9]{1,6})?))$">
-          <input formControlName="lon" type="text" placeholder="Longitude" pattern="^(\+|-)?(?:180(?:(?:\.0{1,6})?)|(?:[0-9]|[1-9][0-9]|1[0-7][0-9])(?:(?:\.[0-9]{1,6})?))$" style="margin-bottom: 8px; width:50%;">
-        </span>
-    </div>
-    <div class="row">
-        
-        <!--<div id="map_canvas" style="width: 100%; height: 400px;"></div>-->
-    </div>
-    <div class="row">
-        <label class="form-label">Size</label>
-        <select formControlName="size" style="width: 100%;" name="Size" class=form-select required>
-            <option value="" selected disabled>Please select</option>
-            <option value="Small">Small</option>
-            <option value="Medium">Medium</option>
-            <option value="Large">Large</option>
-        </select>
-    </div>
-    <div class="row">
-      <label class="form-label">Status</label>
-      <select formControlName="status" style="width: 100%;" class=form-select required>
-          <option value="" selected disabled>Please select</option>
-          <option value="Active">Active</option>
-          <option value="Problematic">Problematic</option>
-          <option value="Inactive">Inactive</option>
-      </select>
-  </div>
-  <div class="row">
-    <label for="capacity" class="form-label">Capacity - {{capacity.value}}%</label>
-    <input #capacity formControlName="capacity" style="width: 100%;" type="range" min="0" max="100" step="5" class="form-range">
-  </div>
+	<h4 class="modal-title">Create a new Bowser</h4>
 </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
-    <button type="button" class="btn btn-primary" (click)="saveBowser()">Save</button>
-    <button type="button" class="btn btn-primary"  type="submit">LOG RESULTS</button>
-  </div>
+<form [formGroup]="newBowser" (ngSubmit)="saveBowser()">
+	<div class="modal-body">
+		<div class="row">
+			<label class="form-label">Location</label>
+			<span style="width: 100%">
+				<input formControlName="lat" type="text" placeholder="Latitude" style="margin-bottom: 8px; width: 50%" pattern="^(\+|-)?(?:90(?:(?:\.0{1,6})?)|(?:[0-9]|[1-8][0-9])(?:(?:\.[0-9]{1,6})?))$" />
+				<input formControlName="lon" type="text" placeholder="Longitude" pattern="^(\+|-)?(?:180(?:(?:\.0{1,6})?)|(?:[0-9]|[1-9][0-9]|1[0-7][0-9])(?:(?:\.[0-9]{1,6})?))$" style="margin-bottom: 8px; width: 50%" />
+			</span>
+		</div>
+		<div style="margin-right: -15px; margin-left: -15px">
+			<google-map width="100%" height="400px" [options]="options" [center]="center">
+				<map-marker *ngFor="let bowserPosition of bowsersPositions" [position]="bowserPosition" [options]="bowserMarkerOptions"> </map-marker>
+				<map-marker *ngFor="let userLocation of userLocation" [position]="userLocation" [options]="userMarkerOptions"> </map-marker>
+				<map-marker *ngFor="let issueBowser of bowserSpannerPositions" [position]="issueBowser" [options]="bowserSpannerMarkerOptions"> </map-marker>
+				<map-marker *ngFor="let offlineBowser of bowserOfflinePositions" [position]="offlineBowser" [options]="bowserOfflineMarkerOptions"> </map-marker>
+			</google-map>
+		</div>
+		<div class="row">
+			<label class="form-label">Size</label>
+			<select formControlName="size" style="width: 100%" name="Size" class="form-select" required>
+				<option value="" selected disabled>Please select</option>
+				<option value="Small">Small</option>
+				<option value="Medium">Medium</option>
+				<option value="Large">Large</option>
+			</select>
+		</div>
+		<div class="row">
+			<label class="form-label">Status</label>
+			<select formControlName="status" style="width: 100%" class="form-select" required>
+				<option value="" selected disabled>Please select</option>
+				<option value="Active">Active</option>
+				<option value="Problematic">Problematic</option>
+				<option value="Inactive">Inactive</option>
+			</select>
+		</div>
+		<div class="row">
+			<label for="capacity" class="form-label">Capacity - {{ capacity.value }}%</label>
+			<input #capacity formControlName="capacity" style="width: 100%" type="range" min="0" max="100" step="5" class="form-range" />
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
+		<button type="button" class="btn btn-primary" (click)="saveBowser()">Save</button>
+	</div>
 </form>

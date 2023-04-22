@@ -6,27 +6,15 @@ import { FooterComponent } from "./footer/footer.component";
 import { RouterModule } from "@angular/router";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { HeaderInfoCardsComponent } from "./header-info-cards/header-info-cards.component";
-import { DeleteBowserModalComponent } from './delete-bowser-modal/delete-bowser-modal.component';
-import { EditBowserModalComponent } from './edit-bowser-modal/edit-bowser-modal.component';
-import { CreateBowserModalComponent } from './create-bowser-modal/create-bowser-modal.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { DeleteBowserModalComponent } from "./delete-bowser-modal/delete-bowser-modal.component";
+import { EditBowserModalComponent } from "./edit-bowser-modal/edit-bowser-modal.component";
+import { CreateBowserModalComponent } from "./create-bowser-modal/create-bowser-modal.component";
+import { ReactiveFormsModule } from "@angular/forms";
+import { GoogleMapsModule } from "@angular/google-maps";
 
 @NgModule({
-  imports: [CommonModule, RouterModule, NgbModule, ReactiveFormsModule],
-  declarations: [
-    FooterComponent,
-    NavbarComponent,
-    SidebarComponent,
-    HeaderInfoCardsComponent,
-    DeleteBowserModalComponent,
-    EditBowserModalComponent,
-    CreateBowserModalComponent,
-  ],
-  exports: [
-    FooterComponent,
-    NavbarComponent,
-    SidebarComponent,
-    HeaderInfoCardsComponent,
-  ],
+  declarations: [FooterComponent, NavbarComponent, SidebarComponent, HeaderInfoCardsComponent, DeleteBowserModalComponent, EditBowserModalComponent, CreateBowserModalComponent],
+  exports: [FooterComponent, NavbarComponent, SidebarComponent, HeaderInfoCardsComponent, CreateBowserModalComponent],
+  imports: [CommonModule, RouterModule, NgbModule, ReactiveFormsModule, GoogleMapsModule],
 })
 export class ComponentsModule {}

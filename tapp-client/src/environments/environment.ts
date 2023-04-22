@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   hmr: false,
-  serverUrl: 'http://localhost:8080',
+  serverUrl: "http://localhost:8080",
   SENDGRID_API_KEY: "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'",
   appVersion: require("../../package.json").version + "-dev",
 };

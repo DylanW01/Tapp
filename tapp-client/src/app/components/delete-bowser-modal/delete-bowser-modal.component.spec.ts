@@ -1,16 +1,15 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { DeleteBowserModalComponent } from './delete-bowser-modal.component';
+import { DeleteBowserModalComponent } from "./delete-bowser-modal.component";
 
-describe('DeleteBowserModalComponent', () => {
+describe("DeleteBowserModalComponent", () => {
   let component: DeleteBowserModalComponent;
   let fixture: ComponentFixture<DeleteBowserModalComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DeleteBowserModalComponent ]
-    })
-    .compileComponents();
+      declarations: [DeleteBowserModalComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('DeleteBowserModalComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { BrowserModule } from "@angular/platform-browser";
 import { Routes, RouterModule } from "@angular/router";
-import { OktaCallbackComponent } from '@okta/okta-angular';
+import { OktaCallbackComponent } from "@okta/okta-angular";
 import { AdminLayoutComponent } from "./layouts/admin-layout/admin-layout.component";
 import { AuthLayoutComponent } from "./layouts/auth-layout/auth-layout.component";
 
@@ -18,10 +18,7 @@ const routes: Routes = [
     children: [
       {
         path: "",
-        loadChildren: () =>
-          import("src/app/layouts/admin-layout/admin-layout.module").then(
-            (m) => m.AdminLayoutModule
-          ),
+        loadChildren: () => import("src/app/layouts/admin-layout/admin-layout.module").then((m) => m.AdminLayoutModule),
       },
     ],
   },
@@ -31,10 +28,7 @@ const routes: Routes = [
     children: [
       {
         path: "",
-        loadChildren: () =>
-          import("src/app/layouts/auth-layout/auth-layout.module").then(
-            (m) => m.AuthLayoutModule
-          ),
+        loadChildren: () => import("src/app/layouts/auth-layout/auth-layout.module").then((m) => m.AuthLayoutModule),
       },
     ],
   },
@@ -42,17 +36,11 @@ const routes: Routes = [
     path: "**",
     redirectTo: "dashboard",
   },
-  { path: 'login/callback',
-    component: OktaCallbackComponent
-  },
+  { path: "login/callback", component: OktaCallbackComponent },
 ];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    BrowserModule,
-    RouterModule.forRoot(routes),
-  ],
+  imports: [CommonModule, BrowserModule, RouterModule.forRoot(routes)],
   exports: [],
 })
 export class AppRoutingModule {}

@@ -37,31 +37,31 @@ export class HeaderInfoCardsComponent implements OnInit {
 
   getBowserCount() {
     this.server.getBowsersCount().then((response: any[]) => {
-      this.totalBowsers =  response[0]["COUNT(*)"];
+      this.totalBowsers = response[0]["COUNT(*)"];
     });
   }
 
   getActiveBowsers() {
     this.server.getActiveBowserCount().then((response: any[]) => {
-      this.activeBowsers =  response[0]["COUNT(*)"];
+      this.activeBowsers = response[0]["COUNT(*)"];
     });
   }
 
   getPendingTickets() {
     this.server.getPendingTicketCount().then((response: any[]) => {
-      this.pendingTickets =  response[0]["COUNT(*)"];
+      this.pendingTickets = response[0]["COUNT(*)"];
     });
   }
 
   getActiveTickets() {
     this.server.getActiveTicketCount().then((response: any[]) => {
-      this.activeTickets =  response[0]["COUNT(*)"];
+      this.activeTickets = response[0]["COUNT(*)"];
     });
   }
 
   getUnavailableBowsers() {
     this.server.getBowserMaintenanceCount().then((response: any[]) => {
-      this.bowsersDown =  response[0]["COUNT(*)"];
+      this.bowsersDown = response[0]["COUNT(*)"];
     });
   }
 }

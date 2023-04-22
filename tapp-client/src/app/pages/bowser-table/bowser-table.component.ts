@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbPaginationModule } from "@ng-bootstrap/ng-bootstrap";
 import { ServerService } from "src/app/server.service";
 import { ToastrService } from "ngx-toastr";
-import { NgbActiveModal, NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
-import { DeleteBowserModalComponent } from '../../components/delete-bowser-modal/delete-bowser-modal.component';
+import { NgbActiveModal, NgbModal, NgbModalOptions } from "@ng-bootstrap/ng-bootstrap";
+import { DeleteBowserModalComponent } from "../../components/delete-bowser-modal/delete-bowser-modal.component";
 import { EditBowserModalComponent } from "src/app/components/edit-bowser-modal/edit-bowser-modal.component";
 import { CreateBowserModalComponent } from "src/app/components/create-bowser-modal/create-bowser-modal.component";
 
@@ -20,16 +20,16 @@ export class BowserTablesComponent implements OnInit {
   bowsers: any[] = [];
   mappedArray = [];
   options: NgbModalOptions = {
-    backdrop: 'static',
+    backdrop: "static",
   };
-interval: NodeJS.Timer;
+  interval: NodeJS.Timer;
 
   ngOnInit() {
-    this.getBowsersForTable();   
-    this.autoRefresh(); 
+    this.getBowsersForTable();
+    this.autoRefresh();
   }
 
-  constructor(private server: ServerService, private toastr: ToastrService, private modalService: NgbModal) { }
+  constructor(private server: ServerService, private toastr: ToastrService, private modalService: NgbModal) {}
 
   autoRefresh() {
     this.interval = setInterval(() => {
@@ -48,15 +48,13 @@ interval: NodeJS.Timer;
     modalRef.result.then((result) => {
       if (result) {
         this.server.createBowser(result).then(() => {
-          this.toastr.success(
-            "Bowser has been created."
-          );
+          this.toastr.success("Bowser has been created.");
           this.getBowsersForTable();
         });
       } else {
-        this.toastr.warning("Bowser was not saved.");
+        this.toastr.warning("Operation cancelled", "Bowser was not saved");
       }
-    }); 
+    });
   }
 
   deleteBowser(bowser) {
@@ -65,32 +63,28 @@ interval: NodeJS.Timer;
     modalRef.result.then((result) => {
       if (result) {
         this.server.deleteBowser(bowser).then(() => {
-          this.toastr.success(
-            "Bowser " + bowser.bowserId + " has been deleted."
-          );
+          this.toastr.success("Bowser " + bowser.bowserId + " has been deleted.");
           this.getBowsersForTable();
         });
       } else {
         this.toastr.warning("Bowser " + bowser.bowserId + " has not been deleted.");
       }
-    });    
+    });
   }
 
   editBowser(bowser) {
     const modalRef = this.modalService.open(EditBowserModalComponent, this.options);
     modalRef.componentInstance.bowser = bowser;
     modalRef.result.then((bowser) => {
-      console.log(bowser)
+      console.log(bowser);
       if (bowser) {
         this.server.updateBowser(bowser).then(() => {
-          this.toastr.success(
-            "Bowser " + bowser.bowserId + " updated successfully."
-          );
+          this.toastr.success("Bowser " + bowser.bowserId + " updated successfully.");
           this.getBowsersForTable();
         });
       } else {
         this.toastr.warning("Changes to bowser " + bowser.bowserId + " have been discarded.");
       }
-    });    
-  }  
+    });
+  }
 }

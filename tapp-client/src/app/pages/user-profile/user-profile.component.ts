@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { OktaAuthStateService } from "@okta/okta-angular";
-import { AuthState, OktaAuth  } from "@okta/okta-auth-js";
+import { AuthState, OktaAuth } from "@okta/okta-auth-js";
 import { filter, map, Observable } from "rxjs";
 
 @Component({
@@ -18,7 +18,7 @@ export class UserProfileComponent implements OnInit {
   public updated_at$!: Observable<number>;
   public locale$!: Observable<string>;
 
-  constructor(private _oktaAuthStateService: OktaAuthStateService) { }
+  constructor(private _oktaAuthStateService: OktaAuthStateService) {}
 
   public ngOnInit(): void {
     this.isAuthenticated$ = this._oktaAuthStateService.authState$.pipe(
@@ -27,11 +27,11 @@ export class UserProfileComponent implements OnInit {
     );
     this.name$ = this._oktaAuthStateService.authState$.pipe(
       filter((authState: AuthState) => !!authState && !!authState.isAuthenticated),
-      map((authState: AuthState) => authState.idToken?.claims.name ?? '')
+      map((authState: AuthState) => authState.idToken?.claims.name ?? "")
     );
     this.email$ = this._oktaAuthStateService.authState$.pipe(
       filter((authState: AuthState) => !!authState && !!authState.isAuthenticated),
-      map((authState: AuthState) => authState.idToken?.claims.email ?? '')
+      map((authState: AuthState) => authState.idToken?.claims.email ?? "")
     );
     this.email_verified$ = this._oktaAuthStateService.authState$.pipe(
       filter((authState: AuthState) => !!authState && !!authState.isAuthenticated),
@@ -39,11 +39,11 @@ export class UserProfileComponent implements OnInit {
     );
     this.family_name$ = this._oktaAuthStateService.authState$.pipe(
       filter((authState: AuthState) => !!authState && !!authState.isAuthenticated),
-      map((authState: AuthState) => authState.idToken?.claims.family_name ?? '')
+      map((authState: AuthState) => authState.idToken?.claims.family_name ?? "")
     );
     this.given_name$ = this._oktaAuthStateService.authState$.pipe(
       filter((authState: AuthState) => !!authState && !!authState.isAuthenticated),
-      map((authState: AuthState) => authState.idToken?.claims.given_name ?? '')
+      map((authState: AuthState) => authState.idToken?.claims.given_name ?? "")
     );
   }
 }

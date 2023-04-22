@@ -1,12 +1,8 @@
 import { Component, OnInit, ElementRef, Inject } from "@angular/core";
 import { ROUTES } from "../sidebar/sidebar.component";
-import { AuthState, OktaAuth } from '@okta/okta-auth-js';
-import { OktaAuthStateService, OKTA_AUTH } from '@okta/okta-angular';
-import {
-  Location,
-  LocationStrategy,
-  PathLocationStrategy,
-} from "@angular/common";
+import { AuthState, OktaAuth } from "@okta/okta-auth-js";
+import { OktaAuthStateService, OKTA_AUTH } from "@okta/okta-angular";
+import { Location, LocationStrategy, PathLocationStrategy } from "@angular/common";
 import { Router } from "@angular/router";
 import { filter, map, Observable } from "rxjs";
 
@@ -21,13 +17,7 @@ export class NavbarComponent implements OnInit {
   public focus;
   public listTitles: any[];
   public location: Location;
-  constructor(
-    location: Location,
-    private element: ElementRef,
-    private router: Router,
-    @Inject(OKTA_AUTH) public oktaAuth: OktaAuth,
-    private authStateService: OktaAuthStateService,
-  ) {
+  constructor(location: Location, private element: ElementRef, private router: Router, @Inject(OKTA_AUTH) public oktaAuth: OktaAuth, private authStateService: OktaAuthStateService) {
     this.location = location;
   }
 
@@ -39,7 +29,7 @@ export class NavbarComponent implements OnInit {
     );
     this.name$ = this.authStateService.authState$.pipe(
       filter((authState: AuthState) => !!authState && !!authState.isAuthenticated),
-      map((authState: AuthState) => authState.idToken?.claims.name ?? '')
+      map((authState: AuthState) => authState.idToken?.claims.name ?? "")
     );
   }
 

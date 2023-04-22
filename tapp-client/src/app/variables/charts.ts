@@ -42,11 +42,9 @@ Chart.elements.Rectangle.prototype.draw = function () {
     var halfStroke = borderWidth / 2;
     // Adjust borderWidth when bar top position is near vm.base(zero).
     var borderLeft = left + (borderSkipped !== "left" ? halfStroke * signX : 0);
-    var borderRight =
-      right + (borderSkipped !== "right" ? -halfStroke * signX : 0);
+    var borderRight = right + (borderSkipped !== "right" ? -halfStroke * signX : 0);
     var borderTop = top + (borderSkipped !== "top" ? halfStroke * signY : 0);
-    var borderBottom =
-      bottom + (borderSkipped !== "bottom" ? -halfStroke * signY : 0);
+    var borderBottom = bottom + (borderSkipped !== "bottom" ? -halfStroke * signY : 0);
     // not become a vertical line?
     if (borderLeft !== borderRight) {
       top = borderTop;
@@ -221,10 +219,7 @@ export function chartOptions() {
             var bgColor = data.datasets[0].backgroundColor[index];
 
             content += '<span class="chart-legend-item">';
-            content +=
-              '<i class="chart-legend-indicator" style="background-color: ' +
-              bgColor +
-              '"></i>';
+            content += '<i class="chart-legend-indicator" style="background-color: ' + bgColor + '"></i>';
             content += label;
             content += "</span>";
           });

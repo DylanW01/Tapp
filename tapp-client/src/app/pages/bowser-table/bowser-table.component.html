@@ -13,11 +13,11 @@
       <div class="card shadow">
         <div class="card-header border-0">
           <h3 class="mb-0">Bowser details</h3>
-          <button class="btn btn-icon btn-3 btn-primary" type="button">
+          <button (click)="createBowser()" class="btn btn-icon btn-3 btn-primary" type="button">
             <span class="btn-inner--icon"
               ><i class="fa-solid fa-plus"></i
             ></span>
-            <span (click)="createBowser()" class="btn-inner--text">New Bowser</span>
+            <span class="btn-inner--text">New Bowser</span>
           </button>
         </div>
         <div class="table-responsive">

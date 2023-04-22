@@ -18,8 +18,6 @@ export const AdminLayoutRoutes: Routes = [
   { path: "tables", component: TablesComponent },
   { path: "icons", component: IconsComponent },
   { path: "maps", component: MapsComponent },
-  { path: "user-accounts", component: AccountsTableComponent, canActivate: [OktaAuthGuard]  },
-  { path: 'login/callback',
-    component: OktaCallbackComponent
-  },
+  { path: "user-accounts", component: AccountsTableComponent, canActivate: [OktaAuthGuard] },
+  { path: "login/callback", component: OktaCallbackComponent },
 ];
