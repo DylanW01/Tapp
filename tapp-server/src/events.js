@@ -200,7 +200,7 @@ function createRouter(db) {
 
   router.get('/bowserdowncount', function (req, res, next) {
     db.query(
-      'SELECT COUNT(*) FROM bowsers WHERE status = "Needs Attention"',
+      'SELECT COUNT(*) FROM bowsers WHERE status = "Problematic" OR status = "Down" OR status = "Out of Service" OR status = "Maintenance" OR status = "Needs Attention"',
       (error, results) => {
         if (error) {
           console.log(error);

@@ -9,9 +9,10 @@ import { HeaderInfoCardsComponent } from "./header-info-cards/header-info-cards.
 import { DeleteBowserModalComponent } from './delete-bowser-modal/delete-bowser-modal.component';
 import { EditBowserModalComponent } from './edit-bowser-modal/edit-bowser-modal.component';
 import { CreateBowserModalComponent } from './create-bowser-modal/create-bowser-modal.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  imports: [CommonModule, RouterModule, NgbModule],
+  imports: [CommonModule, RouterModule, NgbModule, ReactiveFormsModule],
   declarations: [
     FooterComponent,
     NavbarComponent,

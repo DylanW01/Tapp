@@ -4,6 +4,7 @@ import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 import { ServerService } from "src/app/server.service";
 import { GoogleMap, GoogleMapsModule } from "@angular/google-maps";
 import { Observable, catchError, map, of } from "rxjs";
+import { FormGroup, FormControl, Validators } from '@angular/forms'
 
 @Component({
   selector: "app-create-bowser-modal",
@@ -13,6 +14,8 @@ import { Observable, catchError, map, of } from "rxjs";
 export class CreateBowserModalComponent implements OnInit {
   bowser: any;
   apiLoaded: Observable<boolean>;
+  newBowser: FormGroup;
+  currentCapacity: number;
 
   constructor(
     httpClient: HttpClient,
@@ -127,7 +130,17 @@ export class CreateBowserModalComponent implements OnInit {
   // ------- END OF MAP SETUP -------
 
   ngOnInit() {
+    this.newBowser = new FormGroup({
+      lat: new FormControl(''),
+      lon: new FormControl(''),
+      size: new FormControl(''),
+      status: new FormControl(''),
+      capacity: new FormControl('')
+    })
+  }
 
+  onSubmit() {
+    console.log(this.newBowser.value);
   }
 
   saveBowser() {
