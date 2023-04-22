@@ -85,12 +85,25 @@ function createRouter(db) {
   router.post('/bowsers', (req, res, next) => {
     db.query(
       'INSERT INTO bowsers (lat, lon, size, status, capacityPercentage) VALUES (?,?,?,?,?)',
-      [req.body.lat, req.body.lon, req.body.size, req.body.status, capacityPercentage],
+      [req.body.lat, req.body.lon, req.body.size, req.body.status, req.body.capacity],
       (error) => {
         if (error) {
           console.error(error);
           res.status(500).json({status: 'error'});
         } else {
+          const sgMail = require('@sendgrid/mail')
+          sgMail.setApiKey('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')
+          const msg = {
+            to: 'admin@tapp.dylanwarrell.com',
+            from: 'noreply@tapp.dylanwarrell.com',
+            template_id: 'd-8d76ef3d65a9447eb2e8b0b866bb1eb2',
+            dynamic_template_data: {
+              lat: req.body.lat || 'Not Provided',
+              lon: req.body.lon  || 'Not Provided',
+              size: req.body.size  || 'Not Provided',
+          },
+          }
+          sgMail.send(msg)
           res.status(200).json({status: 'ok'});
         }
       }
