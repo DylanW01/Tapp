@@ -20,13 +20,22 @@ export class BowserTablesComponent implements OnInit {
   bowsers: any[] = [];
   mappedArray = [];
   options: NgbModalOptions = {
-    backdrop: 'static',  };
+    backdrop: 'static',
+  };
+interval: NodeJS.Timer;
 
   ngOnInit() {
-    this.getBowsersForTable();    
+    this.getBowsersForTable();   
+    this.autoRefresh(); 
   }
 
   constructor(private server: ServerService, private toastr: ToastrService, private modalService: NgbModal) { }
+
+  autoRefresh() {
+    this.interval = setInterval(() => {
+      this.getBowsersForTable();
+    }, 30000);
+  }
 
   private getBowsersForTable() {
     this.server.getBowsers().then((response: any[]) => {
