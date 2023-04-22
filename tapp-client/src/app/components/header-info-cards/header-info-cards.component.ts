@@ -7,6 +7,7 @@ import { ServerService } from "src/app/server.service";
   styleUrls: ["./header-info-cards.component.scss"],
 })
 export class HeaderInfoCardsComponent implements OnInit {
+  interval: NodeJS.Timer;
   constructor(private server: ServerService) {}
 
   totalBowsers: number;
@@ -21,6 +22,17 @@ export class HeaderInfoCardsComponent implements OnInit {
     this.getPendingTickets();
     this.getActiveTickets();
     this.getUnavailableBowsers();
+    this.autoRefresh();
+  }
+
+  autoRefresh() {
+    this.interval = setInterval(() => {
+      this.getBowserCount();
+      this.getActiveBowsers();
+      this.getPendingTickets();
+      this.getActiveTickets();
+      this.getUnavailableBowsers();
+    }, 60000);
   }
 
   getBowserCount() {

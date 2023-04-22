@@ -16,6 +16,7 @@ declare var google: any;
 export class MapsComponent implements OnInit {
   apiLoaded: Observable<boolean>;
   timeout;
+  interval: NodeJS.Timer;
 
   // ---- MAP INIT ----
   constructor(httpClient: HttpClient, private ngxLoader: NgxUiLoaderService, private toastr: ToastrService, private server: ServerService) {
@@ -153,9 +154,19 @@ export class MapsComponent implements OnInit {
       );
     }
     this.getBowsersForMap();
+    this.autoRefresh();
+  }
+
+  autoRefresh() {
+    this.interval = setInterval(() => {
+      this.getBowsersForMap();
+    }, 30000);
   }
 
   populateBowserMap(bowsers) {
+    this.bowsersPositions = [];
+    this.bowserOfflinePositions = [];
+    this.bowserSpannerPositions = [];
     bowsers.forEach((bowser) => {
       if (bowser.status === "Active") {
         this.bowsersPositions.push({
