@@ -8,6 +8,10 @@ export const environment = {
   serverUrl: "http://localhost:8080",
   SENDGRID_API_KEY: "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'",
   appVersion: require("../../package.json").version + "-dev",
+  adsense: {
+    adClient: "ca-pub-2353499176736986",
+    show: true,
+  },
 };
 
 /*

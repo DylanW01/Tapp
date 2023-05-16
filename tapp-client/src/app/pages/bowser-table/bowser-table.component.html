@@ -14,9 +14,7 @@
         <div class="card-header border-0">
           <h3 class="mb-0">Bowser details</h3>
           <button (click)="createBowser()" class="btn btn-icon btn-3 btn-primary" type="button">
-            <span class="btn-inner--icon"
-              ><i class="fa-solid fa-plus"></i
-            ></span>
+            <span class="btn-inner--icon"><i class="fa-solid fa-plus"></i></span>
             <span class="btn-inner--text">New Bowser</span>
           </button>
         </div>
@@ -30,11 +28,12 @@
                 <th scope="col">Current Capacity</th>
                 <th scope="col">Last Topped Up</th>
                 <th scope="col">Location</th>
+                <th scope="col">Created On</th>
                 <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let bowser of bowsers | slice: (page-1) * pageSize : page * pageSize">
+              <tr *ngFor="let bowser of bowsers | slice : (page - 1) * pageSize : page * pageSize">
                 <th scope="row">
                   <div class="media align-items-center">
                     <div class="media-body">
@@ -55,7 +54,7 @@
                 </td>
                 <td>
                   <div class="d-flex align-items-center">
-                    <span class="mr-2">{{bowser.capacityPercentage}}%</span>
+                    <span class="mr-2">{{ bowser.capacityPercentage }}%</span>
                     <div>
                       <div class="progress">
                         <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" [style.width.%]="bowser.capacityPercentage"></div>
@@ -64,16 +63,18 @@
                   </div>
                 </td>
                 <td *ngIf="bowser.lastTopUp">
-                  {{ bowser.lastTopUp | date: 'longDate' }}
+                  {{ bowser.lastTopUp | date : "longDate" }}
                 </td>
-                <td *ngIf="!bowser.lastTopUp">
-                  N/A
-                </td>
+                <td *ngIf="!bowser.lastTopUp">N/A</td>
                 <td>
-                  <a class="nav-link" target="_blank" href="https://maps.google.com/maps?q={{bowser.lat}},{{bowser.lon}}">
-                    <span>{{bowser.lat}}, {{bowser.lon}}</span>
+                  <a class="nav-link" target="_blank" href="https://maps.google.com/maps?q={{ bowser.lat }},{{ bowser.lon }}">
+                    <span>{{ bowser.lat }}, {{ bowser.lon }}</span>
                   </a>
                 </td>
+                <td *ngIf="bowser.createdOn">
+                  {{ bowser.createdOn | date : "short" }}
+                </td>
+                <td *ngIf="!bowser.createdOn">N/A</td>
                 <td class="text-right">
                   <div ngbDropdown placement="bottom-right">
                     <a class="btn btn-sm btn-icon-only text-light" ngbDropdownToggle><i class="fas fa-ellipsis-v"></i></a>
@@ -88,10 +89,7 @@
           </table>
         </div>
         <div class="card-footer py-4 pagination justify-content-end mb-0">
-          <ngb-pagination
-          [(page)]="page"
-          [pageSize]="pageSize"
-          [collectionSize]="bowsers.length"></ngb-pagination>
+          <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="bowsers.length"></ngb-pagination>
         </div>
       </div>
     </div>

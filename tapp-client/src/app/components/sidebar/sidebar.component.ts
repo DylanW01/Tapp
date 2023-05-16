@@ -3,6 +3,7 @@ import { Router, RouterLink } from "@angular/router";
 import { OktaAuthStateService, OKTA_AUTH } from "@okta/okta-angular";
 import { AuthState, OktaAuth } from "@okta/okta-auth-js";
 import { Observable, filter, map } from "rxjs";
+import { environment } from "src/environments/environment";
 
 declare interface RouteInfo {
   path: string;
@@ -52,8 +53,11 @@ export class SidebarComponent implements OnInit {
   public menuItems: any[];
   public isCollapsed = true;
   public isAuthenticated$!: Observable<boolean>;
+  banner: Banner;
 
-  constructor(private router: Router, @Inject(OKTA_AUTH) public oktaAuth: OktaAuth, private authStateService: OktaAuthStateService) {}
+  constructor(private router: Router, @Inject(OKTA_AUTH) public oktaAuth: OktaAuth, private authStateService: OktaAuthStateService) {
+    // this.banner = new Banner(environment.adsense.adClient, 4807925119, "auto", true);
+  }
 
   ngOnInit() {
     this.menuItems = ROUTES.filter((menuItem) => menuItem);
@@ -64,6 +68,7 @@ export class SidebarComponent implements OnInit {
       filter((s: AuthState) => !!s),
       map((s: AuthState) => s.isAuthenticated ?? false)
     );
+    this.banner = new Banner(environment.adsense.adClient, 4807925119, "auto", true);
   }
 
   async login() {
