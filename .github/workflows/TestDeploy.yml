@@ -22,14 +22,11 @@ jobs:
       - name: Install dependencies for Server
         run: npm install --prefix ./tapp-server/
 
-      - name: Build
-        run: ng build --prefix ./tapp-server/
-
       - name: Deploy to test server
         uses: s0/git-publish-subdir-action@develop
         env:
           REPO: self
           BRANCH: testDist # The branch name where you want to push the assets
-          FOLDER: dist/ # The directory where your assets are generated
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub will automatically add this - you don't need to bother getting a token
+          FOLDER: tapp-client/dist/ # The directory where your assets are generated
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           MESSAGE: "Build: ({sha}) {msg}" # The commit message
