@@ -14,9 +14,7 @@ export class AdvertComponent implements AfterViewInit {
   ngAfterViewInit() {
     setTimeout(() => {
       try {
-        (window["adsbygoogle"] = window["adsbygoogle"] || []).push({
-          overlays: { bottom: true },
-        });
+        (window["adsbygoogle"] = window["adsbygoogle"] || []).push({});
       } catch (e) {
         console.error(e);
       }

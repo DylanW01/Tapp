@@ -53,11 +53,8 @@ export class SidebarComponent implements OnInit {
   public menuItems: any[];
   public isCollapsed = true;
   public isAuthenticated$!: Observable<boolean>;
-  banner: Banner;
 
-  constructor(private router: Router, @Inject(OKTA_AUTH) public oktaAuth: OktaAuth, private authStateService: OktaAuthStateService) {
-    //this.banner = new Banner("ca-pub-2353499176736986", 4807925119, "auto", true);
-  }
+  constructor(private router: Router, @Inject(OKTA_AUTH) public oktaAuth: OktaAuth, private authStateService: OktaAuthStateService) {}
 
   ngOnInit() {
     this.menuItems = ROUTES.filter((menuItem) => menuItem);

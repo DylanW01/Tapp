@@ -3,6 +3,7 @@
     <div class="header-body">
       <!-- Card stats -->
       <app-header-info-cards></app-header-info-cards>
+      <app-advert [data]="4925143483"></app-advert>
     </div>
   </div>
 </div>
@@ -18,14 +19,14 @@
             </div>
             <div class="col">
               <ul class="nav nav-pills justify-content-end">
-                <li class="nav-item mr-2 mr-md-0" data-toggle="chart" data-target="#chart-sales"  (click)="data=datasets[0];updateOptions()">
-                  <a href="javascript:void(0)" class="nav-link py-2 px-3" [ngClass]="{'active':clicked===true}" data-toggle="tab" (click)="clicked=true;clicked1=false">
+                <li class="nav-item mr-2 mr-md-0" data-toggle="chart" data-target="#chart-sales" (click)="data = datasets[0]; updateOptions()">
+                  <a href="javascript:void(0)" class="nav-link py-2 px-3" [ngClass]="{ active: clicked === true }" data-toggle="tab" (click)="clicked = true; clicked1 = false">
                     <span class="d-none d-md-block">Month</span>
                     <span class="d-md-none">M</span>
                   </a>
                 </li>
-                <li class="nav-item" data-toggle="chart" data-target="#chart-sales"  (click)="data=datasets[1];updateOptions()">
-                  <a href="javascript:void(0)" class="nav-link py-2 px-3" [ngClass]="{'active':clicked1===true}" data-toggle="tab" (click)="clicked=false;clicked1=true">
+                <li class="nav-item" data-toggle="chart" data-target="#chart-sales" (click)="data = datasets[1]; updateOptions()">
+                  <a href="javascript:void(0)" class="nav-link py-2 px-3" [ngClass]="{ active: clicked1 === true }" data-toggle="tab" (click)="clicked = false; clicked1 = true">
                     <span class="d-none d-md-block">Week</span>
                     <span class="d-md-none">W</span>
                   </a>
@@ -88,74 +89,34 @@
             </thead>
             <tbody>
               <tr>
-                <th scope="row">
-                  /argon/
-                </th>
-                <td>
-                  4,569
-                </td>
-                <td>
-                  340
-                </td>
-                <td>
-                  <i class="fas fa-arrow-up text-success mr-3"></i> 46,53%
-                </td>
+                <th scope="row">/argon/</th>
+                <td>4,569</td>
+                <td>340</td>
+                <td><i class="fas fa-arrow-up text-success mr-3"></i> 46,53%</td>
               </tr>
               <tr>
-                <th scope="row">
-                  /argon/index.html
-                </th>
-                <td>
-                  3,985
-                </td>
-                <td>
-                  319
-                </td>
-                <td>
-                  <i class="fas fa-arrow-down text-warning mr-3"></i> 46,53%
-                </td>
+                <th scope="row">/argon/index.html</th>
+                <td>3,985</td>
+                <td>319</td>
+                <td><i class="fas fa-arrow-down text-warning mr-3"></i> 46,53%</td>
               </tr>
               <tr>
-                <th scope="row">
-                  /argon/charts.html
-                </th>
-                <td>
-                  3,513
-                </td>
-                <td>
-                  294
-                </td>
-                <td>
-                  <i class="fas fa-arrow-down text-warning mr-3"></i> 36,49%
-                </td>
+                <th scope="row">/argon/charts.html</th>
+                <td>3,513</td>
+                <td>294</td>
+                <td><i class="fas fa-arrow-down text-warning mr-3"></i> 36,49%</td>
               </tr>
               <tr>
-                <th scope="row">
-                  /argon/tables.html
-                </th>
-                <td>
-                  2,050
-                </td>
-                <td>
-                  147
-                </td>
-                <td>
-                  <i class="fas fa-arrow-up text-success mr-3"></i> 50,87%
-                </td>
+                <th scope="row">/argon/tables.html</th>
+                <td>2,050</td>
+                <td>147</td>
+                <td><i class="fas fa-arrow-up text-success mr-3"></i> 50,87%</td>
               </tr>
               <tr>
-                <th scope="row">
-                  /argon/profile.html
-                </th>
-                <td>
-                  1,795
-                </td>
-                <td>
-                  190
-                </td>
-                <td>
-                  <i class="fas fa-arrow-down text-danger mr-3"></i> 46,53%
-                </td>
+                <th scope="row">/argon/profile.html</th>
+                <td>1,795</td>
+                <td>190</td>
+                <td><i class="fas fa-arrow-down text-danger mr-3"></i> 46,53%</td>
               </tr>
             </tbody>
           </table>
@@ -186,90 +147,70 @@
             </thead>
             <tbody>
               <tr>
-                <th scope="row">
-                  Facebook
-                </th>
-                <td>
-                  1,480
-                </td>
+                <th scope="row">Facebook</th>
+                <td>1,480</td>
                 <td>
                   <div class="d-flex align-items-center">
                     <span class="mr-2">60%</span>
                     <div>
                       <div class="progress">
-                        <div class="progress-bar bg-gradient-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
+                        <div class="progress-bar bg-gradient-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%"></div>
                       </div>
                     </div>
                   </div>
                 </td>
               </tr>
               <tr>
-                <th scope="row">
-                  Facebook
-                </th>
-                <td>
-                  5,480
-                </td>
+                <th scope="row">Facebook</th>
+                <td>5,480</td>
                 <td>
                   <div class="d-flex align-items-center">
                     <span class="mr-2">70%</span>
                     <div>
                       <div class="progress">
-                        <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;"></div>
+                        <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%"></div>
                       </div>
                     </div>
                   </div>
                 </td>
               </tr>
               <tr>
-                <th scope="row">
-                  Google
-                </th>
-                <td>
-                  4,807
-                </td>
+                <th scope="row">Google</th>
+                <td>4,807</td>
                 <td>
                   <div class="d-flex align-items-center">
                     <span class="mr-2">80%</span>
                     <div>
                       <div class="progress">
-                        <div class="progress-bar bg-gradient-primary" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;"></div>
+                        <div class="progress-bar bg-gradient-primary" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%"></div>
                       </div>
                     </div>
                   </div>
                 </td>
               </tr>
               <tr>
-                <th scope="row">
-                  Instagram
-                </th>
-                <td>
-                  3,678
-                </td>
+                <th scope="row">Instagram</th>
+                <td>3,678</td>
                 <td>
                   <div class="d-flex align-items-center">
                     <span class="mr-2">75%</span>
                     <div>
                       <div class="progress">
-                        <div class="progress-bar bg-gradient-info" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%;"></div>
+                        <div class="progress-bar bg-gradient-info" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
                       </div>
                     </div>
                   </div>
                 </td>
               </tr>
               <tr>
-                <th scope="row">
-                  twitter
-                </th>
-                <td>
-                  2,645
-                </td>
+                <th scope="row">twitter</th>
+                <td>2,645</td>
                 <td>
                   <div class="d-flex align-items-center">
                     <span class="mr-2">30%</span>
                     <div>
                       <div class="progress">
-                        <div class="progress-bar bg-gradient-warning" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%;"></div>
+                        <div class="progress-bar bg-gradient-warning" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%"></div>
                       </div>
                     </div>
                   </div>

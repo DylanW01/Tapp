@@ -11,11 +11,11 @@ import { EditBowserModalComponent } from "./edit-bowser-modal/edit-bowser-modal.
 import { CreateBowserModalComponent } from "./create-bowser-modal/create-bowser-modal.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { GoogleMapsModule } from "@angular/google-maps";
-import { AdvertComponent } from './advert/advert.component';
+import { AdvertComponent } from "./advert/advert.component";
 
 @NgModule({
   declarations: [FooterComponent, NavbarComponent, SidebarComponent, HeaderInfoCardsComponent, DeleteBowserModalComponent, EditBowserModalComponent, CreateBowserModalComponent, AdvertComponent],
-  exports: [FooterComponent, NavbarComponent, SidebarComponent, HeaderInfoCardsComponent, CreateBowserModalComponent],
+  exports: [FooterComponent, NavbarComponent, SidebarComponent, HeaderInfoCardsComponent, CreateBowserModalComponent, AdvertComponent],
   imports: [CommonModule, RouterModule, NgbModule, ReactiveFormsModule, GoogleMapsModule],
 })
 export class ComponentsModule {}
