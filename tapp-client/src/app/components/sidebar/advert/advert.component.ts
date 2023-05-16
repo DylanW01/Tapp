@@ -7,7 +7,7 @@ import { environment } from "src/environments/environment";
   styleUrls: ["./advert.component.scss"],
 })
 export class AdvertComponent implements AfterViewInit {
-  @Input() data;
+  @Input() banner: Banner;
   showAd = environment.adsense.show;
   constructor() {}
 
@@ -20,6 +20,6 @@ export class AdvertComponent implements AfterViewInit {
       } catch (e) {
         console.error(e);
       }
-    }, 2000);
+    }, 0);
   }
 }

@@ -56,7 +56,7 @@ export class SidebarComponent implements OnInit {
   banner: Banner;
 
   constructor(private router: Router, @Inject(OKTA_AUTH) public oktaAuth: OktaAuth, private authStateService: OktaAuthStateService) {
-    // this.banner = new Banner(environment.adsense.adClient, 4807925119, "auto", true);
+    //this.banner = new Banner("ca-pub-2353499176736986", 4807925119, "auto", true);
   }
 
   ngOnInit() {
@@ -68,7 +68,6 @@ export class SidebarComponent implements OnInit {
       filter((s: AuthState) => !!s),
       map((s: AuthState) => s.isAuthenticated ?? false)
     );
-    this.banner = new Banner(environment.adsense.adClient, 4807925119, "auto", true);
   }
 
   async login() {

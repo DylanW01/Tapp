@@ -163,7 +163,9 @@ function createRouter(db) {
           sgMail.setApiKey('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')
           const msg = {
             to: 'admin@tapp.dylanwarrell.com',
-            from: 'noreply@tapp.dylanwarrell.com',
+            from: { "email": "noreply@tapp.dylanwarrell.com", 
+                    "name": "Tapp Notifications" 
+                  },
             template_id: 'd-45c7b930ae71483eab2223b07fc9e293',
             dynamic_template_data: {
               bowserId: req.params.id,
