@@ -13,23 +13,17 @@ jobs:
       - name: Git Checkout
         uses: actions/checkout@v2
 
-      - name: Switch to front end directory
-        run: cd tapp-client
-
-      - name: Install all dependencies
+      - name: Install dependencies for Client
         run: npm install --prefix ./tapp-client/
 
       - name: Build for test
-        run: npm run build-test 
+        run: npm run build-test --prefix ./tapp-client/
 
-      - name: Switch to back end directory
-        run: cd ../tapp-server
-
-      - name: Install all dependencies
-        run: npm install
+      - name: Install dependencies for Server
+        run: npm install --prefix ./tapp-server/
 
       - name: Build
-        run: npm run build 
+        run: npm run build --prefix ./tapp-server/
 
       - name: Deploy to test server
         uses: s0/git-publish-subdir-action@develop
