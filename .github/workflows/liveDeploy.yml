@@ -13,11 +13,23 @@ jobs:
       - name: Git Checkout
         uses: actions/checkout@v2
 
+      - name: Switch to front end directory
+        run: cd timeline-client
+
       - name: Install all dependencies
         run: npm install
 
       - name: Build for production
-        run: npm run build-live # The build command of your project
+        run: npm run build-lve 
+
+      - name: Switch to back end directory
+        run: cd ../timeline-server
+
+      - name: Install all dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
 
       - name: Deploy to production server
         uses: s0/git-publish-subdir-action@develop
