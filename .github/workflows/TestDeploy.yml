@@ -17,7 +17,7 @@ jobs:
         run: cd tapp-client
 
       - name: Install all dependencies
-        run: npm install
+        run: npm install --prefix ./tapp-client/
 
       - name: Build for test
         run: npm run build-test 
