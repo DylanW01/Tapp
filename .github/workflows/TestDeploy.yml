@@ -23,7 +23,7 @@ jobs:
         run: npm install --prefix ./tapp-server/
 
       - name: Build
-        run: npm run build --prefix ./tapp-server/
+        run: ng build --prefix ./tapp-server/
 
       - name: Deploy to test server
         uses: s0/git-publish-subdir-action@develop
