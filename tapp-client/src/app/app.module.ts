@@ -3,7 +3,6 @@ import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule, HttpClient } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
-import { OktaAuth } from "@okta/okta-auth-js";
 import { AppComponent } from "./app.component";
 import { AdminLayoutComponent } from "./layouts/admin-layout/admin-layout.component";
 import { AuthLayoutComponent } from "./layouts/auth-layout/auth-layout.component";
@@ -31,12 +30,6 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   overlayColor: "rgba(40, 40, 40, 0.8)",
   pbColor: "$default",
 };
-
-const oktaAuth = new OktaAuth({
-  issuer: "https://dev-88138568.okta.com/oauth2/default",
-  clientId: "0oa8d8o93uPFQw7415d7",
-  redirectUri: window.location.origin + "/login/callback",
-});
 
 @NgModule({
   imports: [

@@ -1,7 +1,6 @@
 import { Component, Inject, OnInit } from "@angular/core";
 import { RouterModule, Router } from "@angular/router";
 import { NgxUiLoaderService } from "ngx-ui-loader";
-import { AuthState, OktaAuth } from "@okta/okta-auth-js";
 import { filter, map, Observable } from "rxjs";
 
 @Component({

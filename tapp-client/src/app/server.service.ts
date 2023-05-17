@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { AccessToken, AuthState, OktaAuth } from "@okta/okta-auth-js";
 import { environment } from "../environments/environment";
 import { filter, map, take, tap } from "rxjs";
 
