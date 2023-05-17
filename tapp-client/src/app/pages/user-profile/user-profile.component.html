@@ -1,11 +1,11 @@
-<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 600px; background-image: url(assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 600px; background-image: url(assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top">
   <!-- Mask -->
   <span class="mask bg-gradient-danger opacity-8"></span>
   <!-- Header container -->
   <div class="container-fluid d-flex align-items-center">
     <div class="row">
-      <div class="col-lg-7 col-md-10">
-        <h1 class="display-2 text-white">Hello {{ name$ | async }}</h1>
+      <div *ngIf="auth.user$ | async as user" class="col-lg-7 col-md-10">
+        <h1 class="display-2 text-white">Hello {{ user.name.split(" ", 1) }}</h1>
         <p class="text-white mt-0 mb-5">This is your profile page. You can see the progress you've made with your work and manage your projects or assigned tasks</p>
         <a href="https://login.tapp.dylanwarrell.com/enduser/settings" target="_blank" class="btn btn-info">Edit profile</a>
       </div>
@@ -20,8 +20,8 @@
           <div class="col-lg-3 order-lg-2">
             <div class="card-profile-image">
               <a href="javascript:void(0)">
-                <img *ngIf="(isAuthenticated$ | async)" src="assets/img/theme/1667090458369 (1).jpg" class="rounded-circle">
-                <img *ngIf="!(isAuthenticated$ | async)" src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541" class="rounded-circle">
+                <img *ngIf="auth.user$ | async as user" src="{{ user.picture }}" class="rounded-circle" />
+                <img *ngIf="!(auth.isAuthenticated$ | async)" src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541" class="rounded-circle" />
               </a>
             </div>
           </div>
@@ -48,19 +48,13 @@
               </div>
             </div>
           </div>
-          <div class="text-center">
+          <div *ngIf="auth.user$ | async as user" class="text-center">
             <h3>
-              {{ name$ | async }}<span class="font-weight-light">, 21</span>
+              {{ user.name }}<span class="font-weight-light">, {{ user.name }}</span>
             </h3>
-            <div class="h5 font-weight-300">
-              <i class="ni location_pin mr-2"></i>{{ locale$ | async }}
-            </div>
-            <div class="h5 mt-4">
-              <i class="ni business_briefcase-24 mr-2"></i>Undergraduate Developer - 360Insights
-            </div>
-            <div>
-              <i class="ni education_hat mr-2"></i>University of Gloucestershire
-            </div>
+            <div class="h5 font-weight-300"><i class="ni location_pin mr-2"></i>{{ user.locale }}</div>
+            <div class="h5 mt-4"><i class="ni business_briefcase-24 mr-2"></i>Undergraduate Developer - 360Insights</div>
+            <div><i class="ni education_hat mr-2"></i>University of Gloucestershire</div>
           </div>
         </div>
       </div>
@@ -77,47 +71,48 @@
             </div>
           </div>
         </div>
-        <div class="card-body">
+        <div class="card-body" *ngIf="auth.user$ | async as user">
           <h6 class="heading-small text-muted mb-4">User information</h6>
           <div class="pl-lg-4">
             <div class="row">
               <div class="col-lg-6">
                 <div class="form-group">
-                  <label class="form-control-label" for="input-username">Username</label>
-                  <input readonly value="{{ name$ | async }}" type="text" id="input-username" class="form-control form-control-alternative" placeholder="Username">
+                  <label class="form-control-label" for="input-username">User ID</label>
+                  <input readonly value="{{ user.sub }}" type="text" id="input-username" class="form-control form-control-alternative" placeholder="Username" />
                 </div>
               </div>
               <div class="col-lg-6">
                 <div class="form-group">
-                  <label class="form-control-label" for="input-email">Email address</label>
-                  <input readonly value="{{ email$ | async }}" type="email" id="input-email" class="form-control form-control-alternative">
+                  <label class="form-control-label" for="input-email">Name</label>
+                  <input readonly value="{{ user.name }}" type="email" id="input-email" class="form-control form-control-alternative" />
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="col-lg-6">
                 <div class="form-group">
-                  <label class="form-control-label" for="input-first-name">First name</label>
-                  <input readonly value="{{ given_name$ | async }}" type="text" id="input-first-name" class="form-control form-control-alternative" placeholder="First name">
+                  <label class="form-control-label" for="input-first-name">Email address</label>
+                  <input readonly value="{{ user.email }}" type="text" id="input-first-name" class="form-control form-control-alternative" placeholder="First name" />
                 </div>
               </div>
               <div class="col-lg-6">
                 <div class="form-group">
                   <label class="form-control-label" for="input-last-name">Last name</label>
-                  <input readonly value="{{ family_name$ | async }}" type="text" id="input-last-name" class="form-control form-control-alternative" placeholder="Last name">
+                  <input readonly value="{{ user.updated_at }}" type="text" id="input-last-name" class="form-control form-control-alternative" placeholder="Last name" />
                 </div>
               </div>
             </div>
           </div>
+          <!-- 
           <hr class="my-4" />
-          <!-- Description -->
+          
           <h6 class="heading-small text-muted mb-4">About me</h6>
           <div class="pl-lg-4">
             <div class="form-group">
               <label>About Me</label>
               <textarea readonly rows="4" class="form-control form-control-alternative" placeholder="A few words about you ..."></textarea>
             </div>
-          </div>
+          </div>-->
         </div>
       </div>
     </div>

@@ -14,8 +14,8 @@
         <a class="nav-link" role="button" ngbDropdownToggle>
           <div class="media align-items-center">
             <span class="avatar avatar-sm rounded-circle">
-              <img *ngIf="isAuthenticated$ | async" alt="Profile Image" src="../../../assets/img/theme/1667090458369 (1).jpg" />
-              <img *ngIf="!(isAuthenticated$ | async)" alt="Image placeholder" src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541" />
+              <img *ngIf="auth.user$ | async as user" alt="Profile Image" src="{{ user.picture }}" />
+              <img *ngIf="!(auth.user$ | async)" alt="Image placeholder" src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541" />
             </span>
           </div>
         </a>
@@ -40,11 +40,11 @@
             <span>Support</span>
           </a>
           <div class="dropdown-divider"></div>
-          <a *ngIf="isAuthenticated$ | async" (click)="logout()" class="dropdown-item">
+          <a *ngIf="auth.isAuthenticated$ | async" (click)="logout()" class="dropdown-item">
             <i class="ni ni-user-run"></i>
             <span>Logout</span>
           </a>
-          <a *ngIf="!(isAuthenticated$ | async)" (click)="login()" class="dropdown-item">
+          <a *ngIf="!(auth.isAuthenticated$ | async)" (click)="login()" class="dropdown-item">
             <i class="ni ni-user-run"></i>
             <span>Login</span>
           </a>

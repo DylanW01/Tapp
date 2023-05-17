@@ -1,8 +1,7 @@
 import { Component, Inject, OnInit } from "@angular/core";
 import { Router, RouterLink } from "@angular/router";
-import { OktaAuthStateService, OKTA_AUTH } from "@okta/okta-angular";
-import { AuthState, OktaAuth } from "@okta/okta-auth-js";
 import { Observable, filter, map } from "rxjs";
+import { AuthService } from "@auth0/auth0-angular";
 import { environment } from "src/environments/environment";
 
 declare interface RouteInfo {
@@ -54,24 +53,20 @@ export class SidebarComponent implements OnInit {
   public isCollapsed = true;
   public isAuthenticated$!: Observable<boolean>;
 
-  constructor(private router: Router, @Inject(OKTA_AUTH) public oktaAuth: OktaAuth, private authStateService: OktaAuthStateService) {}
+  constructor(private router: Router, public auth: AuthService) {}
 
   ngOnInit() {
     this.menuItems = ROUTES.filter((menuItem) => menuItem);
     this.router.events.subscribe((event) => {
       this.isCollapsed = true;
     });
-    this.isAuthenticated$ = this.authStateService.authState$.pipe(
-      filter((s: AuthState) => !!s),
-      map((s: AuthState) => s.isAuthenticated ?? false)
-    );
   }
 
   async login() {
-    await this.oktaAuth.signInWithRedirect();
+    this.auth.loginWithRedirect();
   }
 
   async logout() {
-    await this.oktaAuth.signOut();
+    this.auth.logout({ logoutParams: { returnTo: document.location.origin } });
   }
 }

@@ -3,7 +3,6 @@ import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule, HttpClient } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
-import { OktaAuthModule, OKTA_CONFIG } from "@okta/okta-angular";
 import { OktaAuth } from "@okta/okta-auth-js";
 import { AppComponent } from "./app.component";
 import { AdminLayoutComponent } from "./layouts/admin-layout/admin-layout.component";
@@ -11,6 +10,7 @@ import { AuthLayoutComponent } from "./layouts/auth-layout/auth-layout.component
 import { CommonModule } from "@angular/common";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { ToastrModule } from "ngx-toastr";
+import { AuthModule } from "@auth0/auth0-angular";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { ComponentsModule } from "./components/components.module";
@@ -56,10 +56,10 @@ const oktaAuth = new OktaAuth({
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
     NgxUiLoaderHttpModule.forRoot({ delay: 100, maxTime: 10000 }),
     NgxUiLoaderRouterModule.forRoot({ showForeground: false }),
-    OktaAuthModule,
+    AuthModule.forRoot({ domain: "tapp.uk.auth0.com", clientId: "YtDD0pvA2wPHiquxaLI7JpPoJtOhGS4S", authorizationParams: { redirect_uri: window.location.origin } }),
   ],
   declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent],
-  providers: [HttpClient, { provide: OKTA_CONFIG, useValue: { oktaAuth } }],
+  providers: [HttpClient],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

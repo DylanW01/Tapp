@@ -1,10 +1,9 @@
 import { Component, OnInit, ElementRef, Inject } from "@angular/core";
 import { ROUTES } from "../sidebar/sidebar.component";
-import { AuthState, OktaAuth } from "@okta/okta-auth-js";
-import { OktaAuthStateService, OKTA_AUTH } from "@okta/okta-angular";
 import { Location, LocationStrategy, PathLocationStrategy } from "@angular/common";
 import { Router } from "@angular/router";
 import { filter, map, Observable } from "rxjs";
+import { AuthService } from "@auth0/auth0-angular";
 
 @Component({
   selector: "app-navbar",
@@ -17,20 +16,12 @@ export class NavbarComponent implements OnInit {
   public focus;
   public listTitles: any[];
   public location: Location;
-  constructor(location: Location, private element: ElementRef, private router: Router, @Inject(OKTA_AUTH) public oktaAuth: OktaAuth, private authStateService: OktaAuthStateService) {
+  constructor(location: Location, private element: ElementRef, private router: Router, public auth: AuthService) {
     this.location = location;
   }
 
   public ngOnInit(): void {
     this.listTitles = ROUTES.filter((listTitle) => listTitle);
-    this.isAuthenticated$ = this.authStateService.authState$.pipe(
-      filter((s: AuthState) => !!s),
-      map((s: AuthState) => s.isAuthenticated ?? false)
-    );
-    this.name$ = this.authStateService.authState$.pipe(
-      filter((authState: AuthState) => !!authState && !!authState.isAuthenticated),
-      map((authState: AuthState) => authState.idToken?.claims.name ?? "")
-    );
   }
 
   getTitle() {
@@ -48,10 +39,10 @@ export class NavbarComponent implements OnInit {
   }
 
   async login() {
-    await this.oktaAuth.signInWithRedirect();
+    this.auth.loginWithRedirect();
   }
 
   async logout() {
-    await this.oktaAuth.signOut();
+    this.auth.logout({ logoutParams: { returnTo: document.location.origin } });
   }
 }

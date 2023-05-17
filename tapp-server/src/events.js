@@ -108,7 +108,7 @@ function createRouter(db) {
               group_id: 21373,
             },
           }
-          sgMail.send(msg)
+          sgMail.sendMultiple(msg)
           res.status(200).json({status: 'ok'});
         }
       }
@@ -127,7 +127,7 @@ function createRouter(db) {
           const sgMail = require('@sendgrid/mail')
           sgMail.setApiKey('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')
           const msg = {
-            to: 'd.warrell@outlook.com',
+            to: ['d.warrell@outlook.com'],
             from: { "email": "noreply@tapp.dylanwarrell.com", 
                     "name": "Tapp Notifications" 
                   },
@@ -144,7 +144,7 @@ function createRouter(db) {
               group_id: 21374,
             },
           }
-          sgMail.send(msg)
+          sgMail.sendMultiple(msg)
           res.status(200).json(results);
         }
       }
@@ -180,7 +180,7 @@ function createRouter(db) {
               group_id: 21375,
             },
           }
-          sgMail.send(msg)
+          sgMail.sendMultiple(msg)
           res.status(200).json({status: 'ok'});
         }
       }
