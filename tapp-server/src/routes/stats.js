@@ -14,6 +14,7 @@ function createRouter(db) {
         }
       }
     );
+    db.end();
   });
 
   router.get('/activebowserscount', function (req, res, next) {
@@ -28,6 +29,7 @@ function createRouter(db) {
         }
       }
     );
+    db.end();
   });
 
   router.get('/pendingticketcount', function (req, res, next) {
@@ -42,6 +44,7 @@ function createRouter(db) {
         }
       }
     );
+    db.end();
   });
 
   router.get('/activeticketcount', function (req, res, next) {
@@ -56,6 +59,7 @@ function createRouter(db) {
         }
       }
     );
+    db.end();
   });
 
   router.get('/bowserdowncount', function (req, res, next) {
@@ -70,6 +74,7 @@ function createRouter(db) {
         }
       }
     );
+    db.end();
   });
 
   return router;

@@ -14,6 +14,7 @@ function createRouter(db) {
         }
       }
     );
+    db.end();
   });
 
   router.get('/bowsers/:id', function (req, res, next) {
@@ -29,6 +30,7 @@ function createRouter(db) {
         }
       }
     );
+    db.end();
   });
 
   router.post('/bowsers', (req, res, next) => {
@@ -62,6 +64,7 @@ function createRouter(db) {
         }
       }
     );
+    db.end();
   });
 
   router.delete('/bowsers/:id', function (req, res, next) {
@@ -98,6 +101,7 @@ function createRouter(db) {
         }
       }
     );
+    db.end();
   });
 
   router.put('/bowsers/:id', function (req, res, next) {
@@ -134,6 +138,7 @@ function createRouter(db) {
         }
       }
     );
+    db.end();
   });
 
   return router;

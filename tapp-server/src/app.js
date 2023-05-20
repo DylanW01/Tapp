@@ -19,7 +19,7 @@ const tappDb = mysql.createConnection({
 });
 //tappDb.connect();
 
-const port = process.env.PORT || 1000;
+const port = process.env.PORT || 8080;
 
 const app = express()
   .use(cors())
@@ -45,8 +45,12 @@ const swaggerDefinition = {
   host: 'tapp-server.onrender.com',
   servers: [
     {
-      url: "https://tapp-server.onrender.com:443",
+      url: "http://localhost:8080",
       description: "Development server"
+    },
+    {
+      url: "https://tapp-server.onrender.com:443",
+      description: "Production server"
     }
   ]
 };

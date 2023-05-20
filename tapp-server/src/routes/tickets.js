@@ -15,6 +15,7 @@ function createRouter(db) {
         }
       }
     );
+    db.end();
   });
 
   // Get ticket by ID
@@ -31,6 +32,7 @@ function createRouter(db) {
         }
       }
     );
+    db.end();
   });
 
   // Soft delete ticket by ID
@@ -70,6 +72,7 @@ function createRouter(db) {
         }
       }
     );
+    db.end();
   });
 
   // Update ticket by ID
@@ -108,6 +111,7 @@ function createRouter(db) {
         }
       }
     );
+    db.end();
   });
 
   // Create new ticket
@@ -147,6 +151,7 @@ function createRouter(db) {
         }
       }
     );
+    db.end();
   });
 
   return router;
