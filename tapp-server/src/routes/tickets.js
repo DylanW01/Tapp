@@ -44,7 +44,7 @@ function createRouter(db) {
           res.status(500).json({status: 'error'});
         } else {
           const sgMail = require('@sendgrid/mail')
-          sgMail.setApiKey('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')
+          sgMail.setApiKey('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')
           const msg = {
             to: ['d.warrell@outlook.com'],
             from: { "email": "noreply@tapp.dylanwarrell.com", 
@@ -82,7 +82,7 @@ function createRouter(db) {
           res.status(500).json();
         } else {
           const sgMail = require('@sendgrid/mail')
-          sgMail.setApiKey('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')
+          sgMail.setApiKey('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')
           const msg = {
             to: ['d.warrell@outlook.com'],
             from: { "email": "noreply@tapp.dylanwarrell.com", 
@@ -121,7 +121,7 @@ function createRouter(db) {
           res.status(500).json({status: 'error'});
         } else {
           const sgMail = require('@sendgrid/mail')
-          sgMail.setApiKey('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')
+          sgMail.setApiKey('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')
           const msg = {
             to: ['d.warrell@outlook.com'],
             from: { "email": "noreply@tapp.dylanwarrell.com", 
