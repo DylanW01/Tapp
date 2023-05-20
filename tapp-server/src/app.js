@@ -57,7 +57,7 @@ const swaggerDefinition = {
       description: "Development server"
     },
     {
-      url: "https://https://tappapi.dylanwarrell.com:443",
+      url: "https://tappapi.dylanwarrell.com:443",
       description: "Production server"
     }
   ]
