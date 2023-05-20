@@ -44,7 +44,7 @@ const swaggerDefinition = {
   },
   servers: [
     {
-      url: "https://tapp-server.onrender.com:443",
+      url: "https://tapp-server.onrender.com",
       description: "Development server"
     }
   ]
