@@ -27,9 +27,7 @@
 ![Test Deploy Status](https://github.com/DylanW01/Tapp-Refactored/actions/workflows/TestDeploy.yml/badge.svg)
 ![Live Deploy Status](https://github.com/DylanW01/Tapp-Refactored/actions/workflows/liveDeploy.yml/badge.svg)
 
-</div> 
-
-
+</div>
 
 <!-- TABLE OF CONTENTS -->
 <details>
@@ -50,18 +48,18 @@
   </ol>
 </details>
 
-
-
 <!-- ABOUT THE PROJECT -->
+
 ## About The Project
 
-<img src="https://i.ibb.co/mDwL4JB/2023-02-13-09-23-20-Tapp-Refactored.png" alt="Preview of the Tapp dashboard" border="0">
+<img src="https://i.ibb.co/MPypD4s/Screenshot-2023-05-20-194720.png" alt="Preview of the Tapp dashboard" border="0">
 
 TODO: Write a description of the application here & update screenshot
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
+
 ## Getting Started
 
 To get Tapp Refactored running locally on your machine for development use, the following steps must be completed to install the nessessary dependencies.
@@ -71,9 +69,11 @@ To get Tapp Refactored running locally on your machine for development use, the 
 You need to install the Angular CLI to install/run Tapp locally and perform a variety of ongoing development tasks such as testing, bundling, and deployment.
 
 To install the Angular CLI, open a terminal window and run the following command:
-  ```sh
-  npm install -g @angular/cli
-  ```
+
+```sh
+npm install -g @angular/cli
+```
+
 If this fails, ensure you have Node.js installed which can be downloaded from https://nodejs.org/en/download/
 
 ### Installation
@@ -90,15 +90,16 @@ After npm is installed on your local machine, open the repo folder and run the f
    ```sh
    npm start
    ```
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
+   <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Documentation
+
 The documentation for the Dashboard template is available [this website](https://demos.creative-tim.com/argon-dashboard-angular/#/documentation/tutorial).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- CONTRIBUTING -->
+
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
@@ -114,17 +115,16 @@ Don't forget to give the project a star! Thanks again!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 <!-- LICENSE -->
+
 ## License
 
 Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
 <!-- CONTACT -->
+
 ## Contact
 
 Dylan Warrell - [Email](mailto:admin@tapp.dylanwarrell.com)

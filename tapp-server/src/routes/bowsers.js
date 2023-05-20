@@ -103,7 +103,7 @@ function createRouter(db) {
   router.put('/bowsers/:id', function (req, res, next) {
     db.query({
       sql: 'UPDATE bowsers SET lat=?, lon=?, size=?, lastTopUp=?, status=?, capacityPercentage=? WHERE bowserId=?',
-      values: [req.body.lat, req.body.lon, req.body.size, req.body.lastTopUp, req.body.Status, req.body.capacityPercentage, req.params.id]},
+      values: [req.body.lat, req.body.lon, req.body.size, req.body.lastTopUp, req.body.status, req.body.capacityPercentage, req.params.id]},
       function (error) {
         if (error) {
           res.status(500).json({status: 'error'});
@@ -115,7 +115,7 @@ function createRouter(db) {
             from: { "email": "noreply@tapp.dylanwarrell.com", 
                     "name": "Tapp Notifications" 
                   },
-            template_id: 'd-45c7b930ae71483eab2223b07fc9e293',
+            template_id: 'd-2714ea99c189424abb590804a7347fc4',
             dynamic_template_data: {
               bowserId: req.params.id,
               lastTopUp: req.body.lastTopUp  || 'Not Provided',
