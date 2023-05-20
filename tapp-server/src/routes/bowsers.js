@@ -18,7 +18,7 @@ function createRouter(db) {
 
   router.get('/bowsers/:id', function (req, res, next) {
     db.query(
-      'SELECT bowserId, lat, lon, size, createdOn, lastTopUp, status, capacityPercentage FROM bowsers WHERE bowserId deletedState=0',
+      'SELECT bowserId, lat, lon, size, createdOn, lastTopUp, status, capacityPercentage FROM bowsers WHERE bowserId=? deletedState=0',
       [req.params.id],
       (error, results) => {
         if (error) {
