@@ -15,7 +15,6 @@ function createRouter(db) {
         }
       }
     );
-    db.end();
   });
 
   router.get('/bowsers/:id', function (req, res, next) {

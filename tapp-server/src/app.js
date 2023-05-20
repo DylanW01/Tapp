@@ -65,5 +65,6 @@ app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.listen(port, () => {
   console.log(`Express server listening on port ${port}`);
   console.log(`UI available at http://localhost:${port}/swagger`);
+  console.log(`UI available at https://tapp-server.onrender.com/swagger/`);
   //open(`http://localhost:${port}/swagger`);
 });
