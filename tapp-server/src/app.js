@@ -6,7 +6,6 @@ const bowsers = require('./routes/bowsers');
 const tickets = require('./routes/tickets');
 const stats = require('./routes/stats');
 const bearerToken = require('express-bearer-token');
-//const oktaAuth = require('./auth');
 const swaggerJSDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 const open = require('open');
@@ -25,7 +24,6 @@ const app = express()
   .use(cors())
   .use(bodyParser.json())
   //.use(bearerToken())
-  //.use(oktaAuth)
   .use(bowsers(tappDb))
   .use(stats(tappDb))
   .use(tickets(tappDb));
@@ -35,7 +33,7 @@ const swaggerDefinition = {
   openapi: '3.0.0',
   info: {
     title: 'Tapp API',
-    description: 'API to manage water bowsers and support tickets.',
+    description: 'API to manage water bowsers, support tickets and user accounts.',
     version: '1.0.0',
     contact: {
       email: "admin@tapp.dylanwarrell.com"
