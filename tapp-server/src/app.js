@@ -17,7 +17,7 @@ const tappDb = mysql.createConnection({
   password : '26GXroYQ]9buy$%E',
   database : 'u539298194_Tapp'
 });
-tappDb.connect();
+//tappDb.connect();
 
 const port = process.env.PORT || 1000;
 
