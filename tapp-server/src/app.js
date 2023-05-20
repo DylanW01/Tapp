@@ -12,7 +12,7 @@ const swaggerUi = require('swagger-ui-express');
 const helmet = require('helmet');
 
 const tappDb = mysql.createConnection({
-  host     : 'localhost',
+  host     : 'srv710.hstgr.io',
   user     : 'u539298194_admin',
   password : '26GXroYQ]9buy$%E',
   database : 'u539298194_Tapp'
