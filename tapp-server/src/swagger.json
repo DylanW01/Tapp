@@ -1,0 +1,17 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Tapp API",
+    "description": "API to manage water bowsers and support tickets.",
+    "contact": {
+      "email": "admin@tapp.dylanwarrell.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080",
+      "description": "Development server"
+    }
+  ]
+}

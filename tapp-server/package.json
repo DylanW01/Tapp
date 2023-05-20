@@ -2,18 +2,19 @@
   "name": "tapp-server",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.js",
+  "main": "src/app.js",
   "scripts": {
+    "run server": "node src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Holger Schmitz",
-  "license": "Apache 2.0",
   "dependencies": {
     "@okta/jwt-verifier": "^2.1.0",
     "@sendgrid/mail": "^7.7.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-bearer-token": "^2.4.0",
-    "mysql": "^2.18.1"
+    "mysql": "^2.18.1",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^4.6.3"
   }
 }

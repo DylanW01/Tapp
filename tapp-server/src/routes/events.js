@@ -1,5 +1,4 @@
 const express = require('express');
-
 function createRouter(db) {
   const router = express.Router();
 
@@ -21,6 +20,13 @@ function createRouter(db) {
 
   // TICKETS
 
+/**
+ * @swagger
+ * /events:
+ *   get:
+ *     summary: Retrieve a list of JSONPlaceholder users
+ *     description: Retrieve a list of users from JSONPlaceholder. Can be used to populate a list of fake users when prototyping or testing an API.
+*/
   router.get('/tickets', function (req, res, next) {
     db.query(
       'SELECT requestId, title, description, type, status, lat, lon, priority FROM tickets WHERE deletedState=0',
@@ -85,6 +91,7 @@ function createRouter(db) {
   router.post('/bowsers', (req, res, next) => {
     db.query(
       'INSERT INTO bowsers (lat, lon, size, status, capacityPercentage) VALUES (?,?,?,?,?)',
+      console.log(req.body),
       [req.body.lat, req.body.lon, req.body.size, req.body.status, req.body.capacity],
       (error) => {
         if (error) {
