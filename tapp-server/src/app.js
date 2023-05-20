@@ -11,11 +11,19 @@ const swaggerUi = require('swagger-ui-express');
 //const open = require('open');
 const helmet = require('helmet');
 
-const tappDb = mysql.createConnection({
+/*const tappDb = mysql.createConnection({
   host     : 'srv710.hstgr.io',
   user     : 'u539298194_admin',
   password : '26GXroYQ]9buy$%E',
   database : 'u539298194_Tapp'
+});*/
+
+var tappDb  = mysql.createPool({
+  connectionLimit : 10,
+  host            : 'srv710.hstgr.io',
+  user            : 'u539298194_admin',
+  password        : '26GXroYQ]9buy$%E',
+  database        : 'u539298194_Tapp'
 });
 //tappDb.connect();
 
