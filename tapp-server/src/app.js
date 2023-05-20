@@ -19,7 +19,7 @@ const tappDb = mysql.createConnection({
 });
 tappDb.connect();
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 1000;
 
 const app = express()
   .use(cors())
@@ -44,16 +44,8 @@ const swaggerDefinition = {
   },
   servers: [
     {
-      url: "http://localhost:8080",
+      url: "http://localhost:1000",
       description: "Development server"
-    },
-    {
-      url: "http://localhost:8080",
-      description: "Test server"
-    },
-    {
-      url: "http://localhost:8080",
-      description: "Production server"
     }
   ]
 };
