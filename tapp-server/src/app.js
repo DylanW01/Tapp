@@ -8,16 +8,9 @@ const stats = require('./routes/stats');
 const bearerToken = require('express-bearer-token');
 const swaggerJSDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
-//const open = require('open');
 const helmet = require('helmet');
 
-/*const tappDb = mysql.createConnection({
-  host     : 'srv710.hstgr.io',
-  user     : 'u539298194_admin',
-  password : '26GXroYQ]9buy$%E',
-  database : 'u539298194_Tapp'
-});*/
-
+// Database connection - Change to local credentials for development
 var tappDb  = mysql.createPool({
   connectionLimit : 10,
   host            : 'srv710.hstgr.io',
@@ -25,7 +18,14 @@ var tappDb  = mysql.createPool({
   password        : '26GXroYQ]9buy$%E',
   database        : 'u539298194_Tapp'
 });
-//tappDb.connect();
+
+var tappDb  = mysql.createPool({
+  connectionLimit : 10,
+  host            : 'localhost',
+  user            : 'u539298194_admin',
+  password        : '26GXroYQ]9buy$%E',
+  database        : 'u539298194_Tapp'
+});
 
 const port = process.env.PORT || 8080;
 
@@ -57,7 +57,7 @@ const swaggerDefinition = {
       description: "Development server"
     },
     {
-      url: "https://tapp-server.onrender.com:443",
+      url: "https://https://tappapi.dylanwarrell.com:443",
       description: "Production server"
     }
   ]
@@ -78,6 +78,4 @@ app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.listen(port, () => {
   console.log(`Express server listening on port ${port}`);
   console.log(`UI available at http://localhost:${port}/swagger`);
-  console.log(`UI available at https://tapp-server.onrender.com/swagger/`);
-  //open(`http://localhost:${port}/swagger`);
 });
