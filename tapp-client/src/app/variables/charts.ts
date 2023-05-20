@@ -299,7 +299,8 @@ export const chartExample1 = {
           ticks: {
             callback: function (value) {
               if (!(value % 10)) {
-                return "$" + value + "k";
+                //return "$" + value + "k";
+                return value;
               }
             },
           },
@@ -308,11 +309,11 @@ export const chartExample1 = {
     },
   },
   data: {
-    labels: ["May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    labels: ["Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May", "Jun"],
     datasets: [
       {
-        label: "Performance",
-        data: [0, 20, 10, 30, 15, 40, 20, 60, 60],
+        label: "Number of bowsers",
+        data: [7, 12, 19, 27, 33, 44, 50, 62, 69],
       },
     ],
   },
