@@ -2,9 +2,11 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
-const events = require('./routes/events');
+const bowsers = require('./routes/bowsers');
+const tickets = require('./routes/tickets');
+const stats = require('./routes/stats');
 const bearerToken = require('express-bearer-token');
-const oktaAuth = require('./auth');
+//const oktaAuth = require('./auth');
 const swaggerJSDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 const open = require('open');
@@ -15,8 +17,8 @@ const tappDb = mysql.createConnection({
   password : '26GXroYQ]9buy$%E',
   database : 'u539298194_Tapp'
 });
-
 tappDb.connect();
+
 const port = process.env.PORT || 8080;
 
 const app = express()
@@ -24,15 +26,33 @@ const app = express()
   .use(bodyParser.json())
   //.use(bearerToken())
   //.use(oktaAuth)
-  .use(events(tappDb));
+  .use(bowsers(tappDb))
+  .use(stats(tappDb))
+  .use(tickets(tappDb));
 
 //Swagger setup
-swaggerDefinition = require('./swagger.json');
+const swaggerDefinition = {
+  openapi: '3.0.0',
+  info: {
+    title: 'Tapp API',
+    description: 'API to manage water bowsers and support tickets.',
+    version: '1.0.0',
+    contact: {
+      email: "admin@tapp.dylanwarrell.com"
+    }
+  },
+  servers: [
+    {
+      url: "http://localhost:8080",
+      description: "Development server"
+    }
+  ]
+};
 
 const options = {
   swaggerDefinition,
   // Paths to files containing OpenAPI definitions
-  apis: ['./src/routes*.js'],
+  apis: ['src/swaggerConfig/*.js'],
 };
 
 const swaggerSpec = swaggerJSDoc(options);
