@@ -8,7 +8,7 @@ const stats = require('./routes/stats');
 const bearerToken = require('express-bearer-token');
 const swaggerJSDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
-const open = require('open');
+//const open = require('open');
 const helmet = require('helmet');
 
 const tappDb = mysql.createConnection({
