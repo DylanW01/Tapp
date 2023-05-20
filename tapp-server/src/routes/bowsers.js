@@ -3,7 +3,6 @@ function createRouter(db) {
   const router = express.Router();
 
   router.get('/bowsers', function (req, res, next) {
-    db.connect();
     db.query(
       'SELECT bowserId, lat, lon, size, createdOn, lastTopUp, status, capacityPercentage FROM bowsers WHERE deletedState=0',
       (error, results) => {
@@ -15,7 +14,6 @@ function createRouter(db) {
         }
       }
     );
-    db.end();
   });
 
   router.get('/bowsers/:id', function (req, res, next) {

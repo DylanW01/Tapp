@@ -17,13 +17,13 @@ const tappDb = mysql.createConnection({
   password : '26GXroYQ]9buy$%E',
   database : 'u539298194_Tapp'
 });
-//tappDb.connect();
+tappDb.connect();
 
 const port = process.env.PORT || 1000;
 
 const app = express()
   .use(cors())
-  .use(helmet()) // https://expressjs.com/en/advanced/best-practice-security.html#use-helmet
+ // .use(helmet()) // https://expressjs.com/en/advanced/best-practice-security.html#use-helmet
   .use(bodyParser.json())
   //.use(bearerToken())
   .use(bowsers(tappDb))
@@ -42,9 +42,10 @@ const swaggerDefinition = {
       email: "admin@tapp.dylanwarrell.com"
     }
   },
+  host: 'tapp-server.onrender.com',
   servers: [
     {
-      url: "https://tapp-server.onrender.com",
+      url: "https://tapp-server.onrender.com:443",
       description: "Development server"
     }
   ]
