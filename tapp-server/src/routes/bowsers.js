@@ -18,7 +18,7 @@ function createRouter(db) {
 
   router.get('/bowsers/:id', function (req, res, next) {
     db.query(
-      'SELECT bowserId, lat, lon, size, createdOn, lastTopUp, status, capacityPercentage FROM bowsers WHERE bowserId=? AND deletedState=0',
+      'SELECT bowserId, lat, lon, size, createdOn, lastTopUp, status, capacityPercentage FROM bowsers WHERE bowserId deletedState=0',
       [req.params.id],
       (error, results) => {
         if (error) {
@@ -32,11 +32,10 @@ function createRouter(db) {
   });
 
   router.post('/bowsers', (req, res, next) => {
-    db.query(
-      'INSERT INTO bowsers (lat, lon, size, status, capacityPercentage) VALUES (?,?,?,?,?)',
-      console.log(req.body.lat),
-      [req.body.lat, req.body.lon, req.body.size, req.body.status, req.body.capacity],
-      (error) => {
+    db.query({
+      sql: 'INSERT INTO bowsers (lat, lon, size, status, capacityPercentage) VALUES (?,?,?,?,?)',
+      values: [req.body.lat, req.body.lon, req.body.size, req.body.status, req.body.capacity],},
+      function (error) {
         if (error) {
           console.error(error);
           res.status(500).json({status: 'error'});
@@ -102,17 +101,17 @@ function createRouter(db) {
   });
 
   router.put('/bowsers/:id', function (req, res, next) {
-    db.query(
-      'UPDATE bowsers SET lat=?, lon=?, size=?, lastTopUp=?, status=?, capacityPercentage=? WHERE bowserId=?',
-      [req.body.lat, req.body.lon, req.body.size, req.body.lastTopUp, req.body.Status, req.body.capacityPercentage, req.params.Id],
-      (error) => {
+    db.query({
+      sql: 'UPDATE bowsers SET lat=?, lon=?, size=?, lastTopUp=?, status=?, capacityPercentage=? WHERE bowserId=?',
+      values: [req.body.lat, req.body.lon, req.body.size, req.body.lastTopUp, req.body.Status, req.body.capacityPercentage, req.params.id]},
+      function (error) {
         if (error) {
           res.status(500).json({status: 'error'});
         } else {
           const sgMail = require('@sendgrid/mail')
           sgMail.setApiKey('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')
           const msg = {
-            to: 'admin@tapp.dylanwarrell.com',
+            to: ['d.warrell@outlook.com'],
             from: { "email": "noreply@tapp.dylanwarrell.com", 
                     "name": "Tapp Notifications" 
                   },

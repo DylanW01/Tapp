@@ -9,6 +9,7 @@ const bearerToken = require('express-bearer-token');
 const swaggerJSDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 const open = require('open');
+const helmet = require('helmet');
 
 const tappDb = mysql.createConnection({
   host     : 'localhost',
@@ -22,10 +23,12 @@ const port = process.env.PORT || 8080;
 
 const app = express()
   .use(cors())
+  .use(helmet()) // https://expressjs.com/en/advanced/best-practice-security.html#use-helmet
   .use(bodyParser.json())
   //.use(bearerToken())
   .use(bowsers(tappDb))
   .use(stats(tappDb))
+  .use(express.json())
   .use(tickets(tappDb));
 
 //Swagger setup
