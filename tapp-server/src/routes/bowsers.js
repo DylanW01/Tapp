@@ -16,10 +16,25 @@ function createRouter(db) {
     );
   });
 
+  router.get('/bowsers/:id', function (req, res, next) {
+    db.query(
+      'SELECT bowserId, lat, lon, size, createdOn, lastTopUp, status, capacityPercentage FROM bowsers WHERE bowserId=? AND deletedState=0',
+      [req.params.id],
+      (error, results) => {
+        if (error) {
+          console.log(error);
+          res.status(500).json({status: 'error'});
+        } else {
+          res.status(200).json(results);
+        }
+      }
+    );
+  });
+
   router.post('/bowsers', (req, res, next) => {
     db.query(
       'INSERT INTO bowsers (lat, lon, size, status, capacityPercentage) VALUES (?,?,?,?,?)',
-      console.log(req.body),
+      console.log(req.body.lat),
       [req.body.lat, req.body.lon, req.body.size, req.body.status, req.body.capacity],
       (error) => {
         if (error) {

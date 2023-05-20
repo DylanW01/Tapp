@@ -16,6 +16,21 @@ function createRouter(db) {
     );
   });
 
+  router.get('/tickets/:id', function (req, res, next) {
+    db.query(
+      'SELECT requestId, title, description, type, status, lat, lon, priority FROM tickets WHERE requestId=? AND deletedState=0',
+      [req.params.id],
+      (error, results) => {
+        if (error) {
+          console.log(error);
+          res.status(500).json({status: 'error'});
+        } else {
+          res.status(200).json(results);
+        }
+      }
+    );
+  });
+
   router.delete('/tickets/:id', function (req, res, next) {
     db.query(
       'UPDATE tickets SET deletedState=1 WHERE requestId=?',
