@@ -15,7 +15,7 @@ var tappDb  = mysql.createPool({
   connectionLimit : 10,
   host            : 'srv710.hstgr.io',
   user            : 'u539298194_admin',
-  password        : '26GXroYQ]9buy$%E',
+  password        : '31$Dc8F4yvcRUMJGS&ZH',
   database        : 'u539298194_Tapp'
 });
 
@@ -23,7 +23,7 @@ var tappDb  = mysql.createPool({
   connectionLimit : 10,
   host            : 'localhost',
   user            : 'u539298194_admin',
-  password        : '26GXroYQ]9buy$%E',
+  password        : '31$Dc8F4yvcRUMJGS&ZH',
   database        : 'u539298194_Tapp'
 });*/
 
