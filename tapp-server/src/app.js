@@ -19,13 +19,13 @@ var tappDb  = mysql.createPool({
   database        : 'u539298194_Tapp'
 });
 
-var tappDb  = mysql.createPool({
+/*var tappDb  = mysql.createPool({
   connectionLimit : 10,
   host            : 'localhost',
   user            : 'u539298194_admin',
   password        : '26GXroYQ]9buy$%E',
   database        : 'u539298194_Tapp'
-});
+});*/
 
 const port = process.env.PORT || 8080;
 
