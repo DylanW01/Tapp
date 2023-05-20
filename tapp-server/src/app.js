@@ -53,13 +53,14 @@ const swaggerDefinition = {
   host: 'tapp-server.onrender.com',
   servers: [
     {
-      url: "http://localhost:8080",
-      description: "Development server"
-    },
-    {
       url: "https://tappapi.dylanwarrell.com:443",
       description: "Production server"
+    },
+    {
+      url: "http://localhost:8080",
+      description: "Development server"
     }
+    
   ]
 };
 
