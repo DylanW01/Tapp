@@ -4,7 +4,7 @@ function createRouter(db) {
 
   router.get('/bowserscount', function (req, res, next) {
     db.query(
-      'SELECT COUNT(*) FROM bowsers',
+      'SELECT COUNT(*) FROM bowsers WHERE deletedState=0',
       (error, results) => {
         if (error) {
           console.log(error);
