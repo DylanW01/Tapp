@@ -3,7 +3,6 @@ function createRouter(db) {
   const router = express.Router();
 
   router.get('/bowsers', function (req, res, next) {
-    db.connect();
     db.query(
       'SELECT bowserId, lat, lon, size, createdOn, lastTopUp, status, capacityPercentage FROM bowsers WHERE deletedState=0',
       (error, results) => {
@@ -15,11 +14,9 @@ function createRouter(db) {
         }
       }
     );
-    db.end();
   });
 
   router.get('/bowsers/:id', function (req, res, next) {
-    db.connect();
     db.query(
       'SELECT bowserId, lat, lon, size, createdOn, lastTopUp, status, capacityPercentage FROM bowsers WHERE bowserId deletedState=0',
       [req.params.id],
@@ -32,11 +29,9 @@ function createRouter(db) {
         }
       }
     );
-    db.end();
   });
 
   router.post('/bowsers', (req, res, next) => {
-    db.connect();
     db.query({
       sql: 'INSERT INTO bowsers (lat, lon, size, status, capacityPercentage) VALUES (?,?,?,?,?)',
       values: [req.body.lat, req.body.lon, req.body.size, req.body.status, req.body.capacity],},
@@ -67,11 +62,9 @@ function createRouter(db) {
         }
       }
     );
-    db.end();
   });
 
   router.delete('/bowsers/:id', function (req, res, next) {
-    db.connect();
     db.query(
       'UPDATE bowsers SET deletedState=1 WHERE bowserId=?',
       [req.params.id],
@@ -105,11 +98,9 @@ function createRouter(db) {
         }
       }
     );
-    db.end();
   });
 
   router.put('/bowsers/:id', function (req, res, next) {
-    db.connect();
     db.query({
       sql: 'UPDATE bowsers SET lat=?, lon=?, size=?, lastTopUp=?, status=?, capacityPercentage=? WHERE bowserId=?',
       values: [req.body.lat, req.body.lon, req.body.size, req.body.lastTopUp, req.body.status, req.body.capacityPercentage, req.params.id]},
@@ -143,7 +134,6 @@ function createRouter(db) {
         }
       }
     );
-    db.end();
   });
 
   return router;

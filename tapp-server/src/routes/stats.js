@@ -3,7 +3,6 @@ function createRouter(db) {
   const router = express.Router();
 
   router.get('/bowserscount', function (req, res, next) {
-    db.connect();
     db.query(
       'SELECT COUNT(*) FROM bowsers',
       (error, results) => {
@@ -15,11 +14,9 @@ function createRouter(db) {
         }
       }
     );
-    db.end();
   });
 
   router.get('/activebowserscount', function (req, res, next) {
-    db.connect();
     db.query(
       'SELECT COUNT(*) FROM bowsers WHERE status = "Active"',
       (error, results) => {
@@ -31,11 +28,9 @@ function createRouter(db) {
         }
       }
     );
-    db.end();
   });
 
   router.get('/pendingticketcount', function (req, res, next) {
-    db.connect();
     db.query(
       'SELECT COUNT(*) FROM tickets WHERE status = "Pending"',
       (error, results) => {
@@ -47,11 +42,9 @@ function createRouter(db) {
         }
       }
     );
-    db.end();
   });
 
   router.get('/activeticketcount', function (req, res, next) {
-    db.connect();
     db.query(
       'SELECT COUNT(*) FROM tickets WHERE status = "In Progress"',
       (error, results) => {
@@ -63,11 +56,9 @@ function createRouter(db) {
         }
       }
     );
-    db.end();
   });
 
   router.get('/bowserdowncount', function (req, res, next) {
-    db.connect();
     db.query(
       'SELECT COUNT(*) FROM bowsers WHERE status = "Problematic" OR status = "Down" OR status = "Out of Service" OR status = "Maintenance" OR status = "Needs Attention"',
       (error, results) => {
@@ -79,7 +70,6 @@ function createRouter(db) {
         }
       }
     );
-    db.end();
   });
 
   return router;

@@ -4,7 +4,6 @@ function createRouter(db) {
 
   // Get all tickets
   router.get('/tickets', function (req, res, next) {
-    db.connect();
     db.query(
       'SELECT requestId, title, description, type, status, lat, lon, priority FROM tickets WHERE deletedState=0',
       (error, results) => {
@@ -16,12 +15,10 @@ function createRouter(db) {
         }
       }
     );
-    db.end();
   });
 
   // Get ticket by ID
   router.get('/tickets/:id', function (req, res, next) {
-    db.connect();
     db.query(
       'SELECT requestId, title, description, type, status, lat, lon, priority FROM tickets WHERE requestId=? AND deletedState=0',
       [req.params.id],
@@ -34,12 +31,10 @@ function createRouter(db) {
         }
       }
     );
-    db.end();
   });
 
   // Soft delete ticket by ID
   router.delete('/tickets/:id', function (req, res, next) {
-    db.connect();
     db.query(
       'UPDATE tickets SET deletedState=1 WHERE requestId=?',
       [req.params.id],
@@ -75,12 +70,10 @@ function createRouter(db) {
         }
       }
     );
-    db.end();
   });
 
   // Update ticket by ID
   router.put('/tickets/:id', function (req, res, next) {
-    db.connect();
     db.query({
       sql: 'UPDATE tickets SET title=?, description=?, type=?, status=?, lat=?, lon=?, priority=? WHERE requestId=?',
       values: [req.body.title, req.body.description, req.body.type, req.body.status, req.body.lat, req.body.lon, req.body.priority, req.params.id]},
@@ -115,12 +108,10 @@ function createRouter(db) {
         }
       }
     );
-    db.end();
   });
 
   // Create new ticket
   router.post('/tickets', (req, res, next) => {
-    db.connect();
     db.query({
       sql: 'INSERT INTO tickets (title, description, type, status, lat, lon, priority) VALUES (?,?,?,?,?,?,?)',
       values: [req.body.title, req.body.description, req.body.type, req.body.status, req.body.lat, req.body.lng, req.body.priority],},
@@ -156,7 +147,6 @@ function createRouter(db) {
         }
       }
     );
-    db.end();
   });
 
   return router;
