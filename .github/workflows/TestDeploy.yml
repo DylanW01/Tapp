@@ -3,7 +3,7 @@ name: Deploy to Test
 
 on:
   push:
-    branches: [ "build" ]
+    branches: ["build"]
 
 jobs:
   build:
@@ -18,9 +18,6 @@ jobs:
 
       - name: Build for test
         run: npm run build-test --prefix ./tapp-client/
-
-      - name: Install dependencies for Server
-        run: npm install --prefix ./tapp-server/
 
       - name: Deploy to test server
         uses: s0/git-publish-subdir-action@develop
