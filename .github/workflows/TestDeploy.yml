@@ -13,17 +13,20 @@ jobs:
       - name: Git Checkout
         uses: actions/checkout@v2
 
-      - name: Install all dependencies
-        run: npm install
+      - name: Install dependencies for Client
+        run: npm install --prefix ./tapp-client/
 
       - name: Build for test
-        run: npm run build-test # The build command of your project
+        run: npm run build-test --prefix ./tapp-client/
+
+      - name: Install dependencies for Server
+        run: npm install --prefix ./tapp-server/
 
       - name: Deploy to test server
         uses: s0/git-publish-subdir-action@develop
         env:
           REPO: self
           BRANCH: testDist # The branch name where you want to push the assets
-          FOLDER: dist/ # The directory where your assets are generated
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub will automatically add this - you don't need to bother getting a token
+          FOLDER: tapp-client/dist/ # The directory where your assets are generated
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           MESSAGE: "Build: ({sha}) {msg}" # The commit message

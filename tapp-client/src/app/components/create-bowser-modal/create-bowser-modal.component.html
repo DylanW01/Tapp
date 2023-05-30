@@ -1,0 +1,41 @@
+<div class="modal-header">
+  <h4 class="modal-title">Create a new Bowser</h4>
+</div>
+<form [formGroup]="newBowser" (ngSubmit)="saveBowser()">
+  <div class="modal-body">
+    <div style="margin-right: -15px; margin-left: -15px">
+      <google-map (mapClick)="move($event)" width="100%" height="400px" [options]="options" [center]="center">
+        <map-marker *ngFor="let bowserPosition of bowsersPositions" [position]="bowserPosition" [options]="bowserMarkerOptions"> </map-marker>
+        <map-marker *ngFor="let issueBowser of bowserSpannerPositions" [position]="issueBowser" [options]="bowserSpannerMarkerOptions"> </map-marker>
+        <map-marker *ngFor="let offlineBowser of bowserOfflinePositions" [position]="offlineBowser" [options]="bowserOfflineMarkerOptions"> </map-marker>
+        <map-marker *ngFor="let newLocation of newLocation" [position]="newLocation"> </map-marker>
+      </google-map>
+    </div>
+    <div class="row">
+      <label class="form-label">Size</label>
+      <select formControlName="size" style="width: 100%" name="Size" class="form-select" required>
+        <option value="" selected disabled hidden>Please select</option>
+        <option value="Small">Small</option>
+        <option value="Medium">Medium</option>
+        <option value="Large">Large</option>
+      </select>
+    </div>
+    <div class="row">
+      <label class="form-label">Status</label>
+      <select formControlName="status" style="width: 100%" class="form-select" required>
+        <option value="" selected disabled hidden>Please select</option>
+        <option value="Active">Active</option>
+        <option value="Problematic">Problematic</option>
+        <option value="Inactive">Inactive</option>
+      </select>
+    </div>
+    <div class="row">
+      <label for="capacity" class="form-label">Capacity - {{ capacity.value }}%</label>
+      <input #capacity formControlName="capacity" style="width: 100%" type="range" min="0" max="100" step="5" class="form-range" />
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
+    <button type="button" class="btn btn-primary" (click)="saveBowser()">Save</button>
+  </div>
+</form>
