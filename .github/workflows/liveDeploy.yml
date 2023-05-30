@@ -3,7 +3,7 @@ name: Deploy to Live
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   build:
@@ -13,23 +13,11 @@ jobs:
       - name: Git Checkout
         uses: actions/checkout@v2
 
-      - name: Switch to front end directory
-        run: cd timeline-client
-
-      - name: Install all dependencies
-        run: npm install
+      - name: Install dependencies for Client
+        run: npm install --prefix ./tapp-client/
 
       - name: Build for production
-        run: npm run build-lve 
-
-      - name: Switch to back end directory
-        run: cd ../timeline-server
-
-      - name: Install all dependencies
-        run: npm install
-
-      - name: Build
-        run: npm run build
+        run: npm run build-live --prefix ./tapp-client/
 
       - name: Deploy to production server
         uses: s0/git-publish-subdir-action@develop
