@@ -9,23 +9,15 @@ const bearerToken = require('express-bearer-token');
 const swaggerJSDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 const helmet = require('helmet');
+require('dotenv').config();
 
-// Database connection - Change to local credentials for development
 var tappDb  = mysql.createPool({
   connectionLimit : 10,
-  host            : 'srv710.hstgr.io',
-  user            : 'u539298194_admin',
-  password        : '31$Dc8F4yvcRUMJGS&ZH',
-  database        : 'u539298194_Tapp'
+  host       : process.env.DBHOST,
+  user       : process.env.DBUSER,
+  password   : process.env.DBPASS,
+  database   : process.env.DBNAME
 });
-
-/*var tappDb  = mysql.createPool({
-  connectionLimit : 10,
-  host            : 'localhost',
-  user            : 'u539298194_admin',
-  password        : '31$Dc8F4yvcRUMJGS&ZH',
-  database        : 'u539298194_Tapp'
-});*/
 
 const port = process.env.PORT || 8080;
 
