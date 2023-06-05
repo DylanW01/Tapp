@@ -13,6 +13,8 @@ import { AuthModule } from "@auth0/auth0-angular";
 import { environment as env } from "../environments/environment";
 import { AppRoutingModule } from "./app-routing.module";
 import { ComponentsModule } from "./components/components.module";
+import { HTTP_INTERCEPTORS } from "@angular/common/http";
+import { AuthHttpInterceptor } from "@auth0/auth0-angular";
 import { NgxUiLoaderModule, NgxUiLoaderConfig, SPINNER, POSITION, PB_DIRECTION, NgxUiLoaderRouterModule, NgxUiLoaderHttpModule } from "ngx-ui-loader";
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
@@ -49,10 +51,10 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
     NgxUiLoaderHttpModule.forRoot({ delay: 100, maxTime: 10000 }),
     NgxUiLoaderRouterModule.forRoot({ showForeground: false }),
-    AuthModule.forRoot({ domain: "tapp.uk.auth0.com", clientId: "YtDD0pvA2wPHiquxaLI7JpPoJtOhGS4S", authorizationParams: { redirect_uri: window.location.origin } }),
+    AuthModule.forRoot({ domain: "tapp.uk.auth0.com", clientId: "YtDD0pvA2wPHiquxaLI7JpPoJtOhGS4S", authorizationParams: { redirect_uri: window.location.origin }, httpInterceptor: { allowedList: [`${env.serverUrl}/tickets`] } }),
   ],
   declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent],
-  providers: [HttpClient],
+  providers: [HttpClient, { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
