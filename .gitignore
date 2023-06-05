@@ -41,4 +41,4 @@ Thumbs.db
 
 # SSL Files
 tapp-client/ssl/*
-tapp-server/.env
+*.env
