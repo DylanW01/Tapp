@@ -49,7 +49,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
     NgxUiLoaderHttpModule.forRoot({ delay: 100, maxTime: 10000 }),
     NgxUiLoaderRouterModule.forRoot({ showForeground: false }),
-    AuthModule.forRoot({ ...env.auth }),
+    AuthModule.forRoot({ domain: "tapp.uk.auth0.com", clientId: "YtDD0pvA2wPHiquxaLI7JpPoJtOhGS4S", authorizationParams: { redirect_uri: window.location.origin } }),
   ],
   declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent],
   providers: [HttpClient],

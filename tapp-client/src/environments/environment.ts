@@ -7,11 +7,6 @@ export const environment = {
   hmr: false,
   serverUrl: "http://localhost:8080",
   appVersion: require("../../package.json").version + "-dev",
-  auth: {
-    domain: "tapp.uk.auth0.com",
-    clientId: "YtDD0pvA2wPHiquxaLI7JpPoJtOhGS4S",
-    redirectUri: window.location.origin,
-  },
 };
 
 /*

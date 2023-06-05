@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "../environments/environment";
 import { filter, map, take, tap } from "rxjs";
+import { createAuth0Client } from "@auth0/auth0-spa-js";
 
 @Injectable({
   providedIn: "root",
