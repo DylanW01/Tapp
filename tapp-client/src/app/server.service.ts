@@ -60,6 +60,18 @@ export class ServerService {
   }
   // End of Bowesrs
 
+  // Users
+
+  createUser(user: User) {
+    return this.request("POST", `${environment.serverUrl}/users`, user);
+  }
+
+  getAdminUsers() {
+    return this.request("GET", `${environment.serverUrl}/users/role/admin`);
+  }
+
+  // End of Users
+
   // Info Cards
   getBowsersCount() {
     return this.request("GET", `${environment.serverUrl}/bowserscount`);

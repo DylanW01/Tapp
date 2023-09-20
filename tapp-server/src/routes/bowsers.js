@@ -64,6 +64,8 @@ function createRouter(db) {
     );
   });
 
+ // const checkBowserDeleteScopes = requiredScopes('delete:bowsers');
+
   router.delete('/bowsers/:id', function (req, res, next) {
     db.query(
       'UPDATE bowsers SET deletedState=1 WHERE bowserId=?',

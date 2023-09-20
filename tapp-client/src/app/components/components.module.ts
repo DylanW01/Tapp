@@ -12,10 +12,11 @@ import { CreateBowserModalComponent } from "../pages/bowser-table/components/cre
 import { DeleteBowserModalComponent } from "../pages/bowser-table/components/delete-bowser-modal/delete-bowser-modal.component";
 import { EditBowserModalComponent } from "../pages/bowser-table/components/edit-bowser-modal/edit-bowser-modal.component";
 import { CreateTicketModalComponent } from "../pages/support-ticket-table/components/create-ticket-modal/create-ticket-modal.component";
+import { CreateUserModalComponent } from "../pages/accounts-table/components/create-user-modal/create-user-modal.component";
 
 @NgModule({
-  declarations: [FooterComponent, NavbarComponent, SidebarComponent, HeaderInfoCardsComponent, DeleteBowserModalComponent, EditBowserModalComponent, CreateBowserModalComponent, CreateTicketModalComponent],
-  exports: [FooterComponent, NavbarComponent, SidebarComponent, HeaderInfoCardsComponent, CreateBowserModalComponent, CreateTicketModalComponent],
+  declarations: [FooterComponent, NavbarComponent, SidebarComponent, HeaderInfoCardsComponent, DeleteBowserModalComponent, EditBowserModalComponent, CreateBowserModalComponent, CreateTicketModalComponent, CreateUserModalComponent],
+  exports: [FooterComponent, NavbarComponent, SidebarComponent, HeaderInfoCardsComponent, CreateBowserModalComponent, CreateTicketModalComponent, CreateUserModalComponent],
   imports: [CommonModule, RouterModule, NgbModule, ReactiveFormsModule, GoogleMapsModule],
 })
 export class ComponentsModule {}

@@ -1,0 +1,47 @@
+<div class="modal-header">
+  <h4 class="modal-title">Create a new Bowser</h4>
+</div>
+<form [formGroup]="newUser" (ngSubmit)="saveUser()">
+  <div class="modal-body">
+    <div class="row">
+      <label class="form-label">Email</label>
+      <input type="email" formControlName="email" required />
+    </div>
+    <div class="row">
+      <label class="form-label">Given Name</label>
+      <input type="text" formControlName="given_name" required />
+    </div>
+    <div class="row">
+      <label class="form-label">Family Name</label>
+      <input type="text" formControlName="family_name" required />
+    </div>
+    <div class="row">
+      <label class="form-label">name</label>
+      <input type="text" formControlName="name" required />
+    </div>
+    <div class="row">
+      <label class="form-label">Image URL</label>
+      <input type="string" formControlName="picture" required />
+    </div>
+    <div class="row">
+      <label class="form-label">Password</label>
+      <input type="password" formControlName="password" required />
+    </div>
+    <div class="row">
+      <label class="form-label">Blocked</label>
+      <input type="checkbox" formControlName="blocked" />
+    </div>
+    <div class="row">
+      <label class="form-label">Email Verified</label>
+      <input type="checkbox" formControlName="email_verified" />
+    </div>
+    <div class="row">
+      <label class="form-label">Verify Email</label>
+      <input type="checkbox" formControlName="verify_email" />
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
+    <button type="button" class="btn btn-primary" (click)="saveUser()">Save</button>
+  </div>
+</form>
