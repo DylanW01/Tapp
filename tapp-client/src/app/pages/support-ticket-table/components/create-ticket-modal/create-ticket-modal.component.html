@@ -1,0 +1,25 @@
+<div class="modal-header">
+  <h4 class="modal-title">Create a new support ticket</h4>
+</div>
+<form [formGroup]="newTicket" (ngSubmit)="saveTicket()">
+  <div class="modal-body">
+    <div class="row">
+      <label class="form-label">Type</label>
+      <select formControlName="type" style="width: 100%" name="type" class="form-select" required>
+        <option value="" selected disabled hidden>Please select</option>
+        <option value="Refil">Refil</option>
+        <option value="Damage">Damage</option>
+        <option value="Vandalism">Vandalism</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+    <div class="row">
+      <label class="form-label">Description</label>
+      <textarea formControlName="description" style="width: 100%" name="description" required> </textarea>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
+    <button type="button" class="btn btn-primary" (click)="saveTicket()">Save</button>
+  </div>
+</form>

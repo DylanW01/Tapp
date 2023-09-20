@@ -3,9 +3,9 @@ import { NgbPaginationModule } from "@ng-bootstrap/ng-bootstrap";
 import { ServerService } from "src/app/server.service";
 import { ToastrService } from "ngx-toastr";
 import { NgbActiveModal, NgbModal, NgbModalOptions } from "@ng-bootstrap/ng-bootstrap";
-import { DeleteBowserModalComponent } from "../../components/delete-bowser-modal/delete-bowser-modal.component";
-import { EditBowserModalComponent } from "src/app/components/edit-bowser-modal/edit-bowser-modal.component";
-import { CreateBowserModalComponent } from "src/app/components/create-bowser-modal/create-bowser-modal.component";
+import { DeleteBowserModalComponent } from "../bowser-table/components/delete-bowser-modal/delete-bowser-modal.component";
+import { EditBowserModalComponent } from "../bowser-table/components/edit-bowser-modal/edit-bowser-modal.component";
+import { CreateTicketModalComponent } from "./components/create-ticket-modal/create-ticket-modal.component";
 
 const FILTER_PAG_REGEX = /[^0-9]/g;
 
@@ -35,16 +35,16 @@ export class TicketTablesComponent implements OnInit {
     });
   }
 
-  createBowser() {
-    const modalRef = this.modalService.open(CreateBowserModalComponent);
+  createTicket() {
+    const modalRef = this.modalService.open(CreateTicketModalComponent);
     modalRef.result.then((result) => {
       if (result) {
         this.server.createBowser(result).then(() => {
-          this.toastr.success("Bowser has been created.");
+          this.toastr.success("Ticket has been created.");
           this.getTicketsForTable();
         });
       } else {
-        this.toastr.warning("Bowser was not saved.");
+        this.toastr.warning("Ticket was not saved.");
       }
     });
   }

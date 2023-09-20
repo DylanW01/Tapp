@@ -3,9 +3,9 @@ import { NgbPaginationModule } from "@ng-bootstrap/ng-bootstrap";
 import { ServerService } from "src/app/server.service";
 import { ToastrService } from "ngx-toastr";
 import { NgbActiveModal, NgbModal, NgbModalOptions } from "@ng-bootstrap/ng-bootstrap";
-import { DeleteBowserModalComponent } from "../../components/delete-bowser-modal/delete-bowser-modal.component";
-import { EditBowserModalComponent } from "src/app/components/edit-bowser-modal/edit-bowser-modal.component";
-import { CreateBowserModalComponent } from "src/app/components/create-bowser-modal/create-bowser-modal.component";
+import { CreateBowserModalComponent } from "./components/create-bowser-modal/create-bowser-modal.component";
+import { DeleteBowserModalComponent } from "./components/delete-bowser-modal/delete-bowser-modal.component";
+import { EditBowserModalComponent } from "./components/edit-bowser-modal/edit-bowser-modal.component";
 
 const FILTER_PAG_REGEX = /[^0-9]/g;
 

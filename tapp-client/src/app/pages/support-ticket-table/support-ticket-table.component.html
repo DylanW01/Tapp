@@ -14,10 +14,8 @@
         <div class="card-header border-0">
           <h3 class="mb-0">Support Tickets</h3>
           <button class="btn btn-icon btn-3 btn-primary" type="button">
-            <span class="btn-inner--icon"
-              ><i class="fa-solid fa-plus"></i
-            ></span>
-            <span (click)="createBowser()" class="btn-inner--text">New Ticket</span>
+            <span class="btn-inner--icon"><i class="fa-solid fa-plus"></i></span>
+            <span (click)="createTicket()" class="btn-inner--text">New Ticket</span>
           </button>
         </div>
         <div class="table-responsive">
@@ -34,7 +32,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let ticket of tickets | slice: (page-1) * pageSize : page * pageSize">
+              <tr *ngFor="let ticket of tickets | slice : (page - 1) * pageSize : page * pageSize">
                 <th scope="row">
                   <div class="media align-items-center">
                     <div class="media-body">
@@ -60,7 +58,7 @@
                   </span>
                 </td>
                 <td>
-                  {{ticket.priority}}
+                  {{ ticket.priority }}
                 </td>
                 <td class="text-right">
                   <div ngbDropdown placement="bottom-right">
@@ -76,10 +74,7 @@
           </table>
         </div>
         <div class="card-footer py-4 pagination justify-content-end mb-0">
-          <ngb-pagination
-          [(page)]="page"
-          [pageSize]="pageSize"
-          [collectionSize]="tickets.length"></ngb-pagination>
+          <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="tickets.length"></ngb-pagination>
         </div>
       </div>
     </div>

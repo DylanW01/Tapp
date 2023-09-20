@@ -30,6 +30,10 @@ export class ServerService {
     return this.request("GET", `${environment.serverUrl}/tickets`);
   }
 
+  createTicket(ticket) {
+    //return this.request("POST", `${environment.serverUrl}/tickets`, ticket);
+  }
+
   deleteTicket(ticket) {
     return this.request("DELETE", `${environment.serverUrl}/tickets/${ticket.requestId}`, ticket);
   }
