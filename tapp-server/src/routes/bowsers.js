@@ -41,7 +41,7 @@ function createRouter(db) {
           res.status(500).json({status: 'error'});
         } else {
           const sgMail = require('@sendgrid/mail')
-          sgMail.setApiKey('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')
+          sgMail.setApiKey(process.env.SENDGRIDAPI)
           const msg = {
             to: 'd.warrell@outlook.com',
             from: { "email": "noreply@tapp.dylanwarrell.com", 
@@ -74,7 +74,7 @@ function createRouter(db) {
           res.status(500).json({status: 'error'});
         } else {
           const sgMail = require('@sendgrid/mail')
-          sgMail.setApiKey('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')
+          sgMail.setApiKey(process.env.SENDGRIDAPI)
           const msg = {
             to: ['d.warrell@outlook.com'],
             from: { "email": "noreply@tapp.dylanwarrell.com", 
@@ -109,7 +109,7 @@ function createRouter(db) {
           res.status(500).json({status: 'error'});
         } else {
           const sgMail = require('@sendgrid/mail')
-          sgMail.setApiKey('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')
+          sgMail.setApiKey(process.env.SENDGRIDAPI)
           const msg = {
             to: ['d.warrell@outlook.com'],
             from: { "email": "noreply@tapp.dylanwarrell.com", 
