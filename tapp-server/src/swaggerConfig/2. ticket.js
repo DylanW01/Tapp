@@ -110,8 +110,8 @@
  *       404:
  *         description: The ticket was not found
  *   put:
- *     security:
- *       - Tapp: []
+ *    security:
+ *     - Tapp: []
  *    summary: Update the ticket by the id
  *    tags: [Support Tickets]
  *    parameters:
