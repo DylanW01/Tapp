@@ -28,6 +28,11 @@ const app = express()
   //.use(bearerToken())
   // .use(helmet()) // https://expressjs.com/en/advanced/best-practice-security.html#use-helmet
 
+  const checkJwt = auth({
+    audience: 'tapp',
+    issuerBaseURL: `https://tapp.uk.auth0.com`,
+    tokenSigningAlg: 'RS256'
+  });
 
 //#region Swagger setup
 const swaggerDefinition = {
@@ -54,6 +59,15 @@ const swaggerDefinition = {
   ]
 };
 
+const swaggerOptions = {
+  swaggerOptions: {
+     oauth: {
+        clientId: "YtDD0pvA2wPHiquxaLI7JpPoJtOhGS4S",
+        clientSecret: process.env.TAPP_API_CLIENT_SECRET
+     },
+  },
+};
+
 const options = {
   swaggerDefinition,
   // Paths to files containing OpenAPI definitions
@@ -62,11 +76,11 @@ const options = {
 
 const swaggerSpec = swaggerJSDoc(options);
 
-app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerSpec, swaggerOptions));
 //#endregion
 
   //#region Bowsers
-  app.get('/bowsers', function (req, res, next) {
+  app.get('/bowsers', checkJwt, function (req, res, next) {
     tappDb.query(
       'SELECT bowserId, lat, lon, size, createdOn, lastTopUp, status, capacityPercentage FROM bowsers WHERE deletedState=0',
       (error, results) => {
@@ -80,7 +94,7 @@ app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
     );
   });
 
-  app.get('/bowsers/:id', function (req, res, next) {
+  app.get('/bowsers/:id', checkJwt, function (req, res, next) {
     tappDb.query(
       'SELECT bowserId, lat, lon, size, createdOn, lastTopUp, status, capacityPercentage FROM bowsers WHERE bowserId=? AND deletedState=0',
       [req.params.id],
@@ -95,7 +109,7 @@ app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
     );
   });
 
-  app.post('/bowsers', (req, res, next) => {
+  app.post('/bowsers', checkJwt, (req, res, next) => {
     tappDb.query({
       sql: 'INSERT INTO bowsers (lat, lon, size, status, capacityPercentage) VALUES (?,?,?,?,?)',
       values: [req.body.lat, req.body.lon, req.body.size, req.body.status, req.body.capacity],},
@@ -130,7 +144,7 @@ app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
  // const checkBowserDeleteScopes = requiredScopes('delete:bowsers');
 
-  app.delete('/bowsers/:id', function (req, res, next) {
+  app.delete('/bowsers/:id', checkJwt, function (req, res, next) {
     tappDb.query(
       'UPDATE bowsers SET deletedState=1 WHERE bowserId=?',
       [req.params.id],
@@ -361,7 +375,7 @@ app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
     const auth0ManagementApi = { method: 'POST',
       url: 'https://tapp.uk.auth0.com/oauth/token',
       headers: { 'content-type': 'application/json' },
-      body: '{"client_id":"5pYyzRbCvntlRjP9UwTTHG83sN6dy67W","client_secret":"'+process.env.AUTHO_API_CLIENT_SECRET+'","audience":"https://tapp.uk.auth0.com/api/v2/","grant_type":"client_credentials"}' };
+      body: '{"client_id":"5pYyzRbCvntlRjP9UwTTHG83sN6dy67W","client_secret":"'+process.env.TAPP_SERVER_AUTH0_API_CLIENT_SECRET+'","audience":"https://tapp.uk.auth0.com/api/v2/","grant_type":"client_credentials"}' };
     
     request(auth0ManagementApi, function (error, response, body) {
       if (error) {
@@ -414,7 +428,7 @@ app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
     const auth0ManagementApi = { method: 'POST',
       url: 'https://tapp.uk.auth0.com/oauth/token',
       headers: { 'content-type': 'application/json' },
-      body: '{"client_id":"5pYyzRbCvntlRjP9UwTTHG83sN6dy67W","client_secret":"'+process.env.AUTHO_API_CLIENT_SECRET+'","audience":"https://tapp.uk.auth0.com/api/v2/","grant_type":"client_credentials"}' };
+      body: '{"client_id":"5pYyzRbCvntlRjP9UwTTHG83sN6dy67W","client_secret":"'+process.env.TAPP_SERVER_AUTH0_API_CLIENT_SECRET+'","audience":"https://tapp.uk.auth0.com/api/v2/","grant_type":"client_credentials"}' };
     
     request(auth0ManagementApi, function (error, response, body) {
       if (error) {
@@ -451,7 +465,7 @@ app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
     const auth0ManagementApi = { method: 'POST',
       url: 'https://tapp.uk.auth0.com/oauth/token',
       headers: { 'content-type': 'application/json' },
-      body: '{"client_id":"5pYyzRbCvntlRjP9UwTTHG83sN6dy67W","client_secret":"'+process.env.AUTHO_API_CLIENT_SECRET+'","audience":"https://tapp.uk.auth0.com/api/v2/","grant_type":"client_credentials"}' };
+      body: '{"client_id":"5pYyzRbCvntlRjP9UwTTHG83sN6dy67W","client_secret":"'+process.env.TAPP_SERVER_AUTH0_API_CLIENT_SECRET+'","audience":"https://tapp.uk.auth0.com/api/v2/","grant_type":"client_credentials"}' };
     
     request(auth0ManagementApi, function (error, response, body) {
       if (error) {

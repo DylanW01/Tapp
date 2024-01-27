@@ -57,6 +57,8 @@
  *   description: Bowser management
  * /bowsers:
  *   get:
+ *     security:
+ *       - Tapp: []
  *     summary: Lists all the bowsers
  *     tags: [Water Bowsers]
  *     responses:
@@ -69,6 +71,8 @@
  *               items:
  *                 $ref: '#/components/schemas/Bowsers'
  *   post:
+ *     security:
+ *       - Tapp: []
  *     summary: Create a new bowser
  *     tags: [Water Bowsers]
  *     requestBody:
@@ -88,6 +92,8 @@
  *         description: Internal server error
  * /bowsers/{id}:
  *   get:
+ *     security:
+ *       - Tapp: []
  *     summary: Get the bowser by id
  *     tags: [Water Bowsers]
  *     parameters:
@@ -107,33 +113,37 @@
  *       404:
  *         description: The bowser was not found
  *   put:
- *    summary: Update the bowser by the id
- *    tags: [Water Bowsers]
- *    parameters:
- *      - in: path
- *        name: id
- *        schema:
- *          type: string
- *        required: true
- *        description: The bowser id
- *    requestBody:
- *      required: true
- *      content:
- *        application/json:
- *          schema:
- *            $ref: '#/components/schemas/Bowsers'
- *    responses:
- *      200:
- *        description: The bowser was updated
- *        content:
- *          application/json:
- *            schema:
- *              $ref: '#/components/schemas/Bowsers'
- *      404:
- *        description: The bowser was not found
- *      500:
- *        description: Some error happened
+ *     security:
+ *       - Tapp: []
+ *     summary: Update the bowser by the id
+ *     tags: [Water Bowsers]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The bowser id
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Bowsers'
+ *     responses:
+ *       200:
+ *         description: The bowser was updated
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Bowsers'
+ *       404:
+ *         description: The bowser was not found
+ *       500:
+ *         description: Some error happened
  *   delete:
+ *     security:
+ *       - Tapp: []
  *     summary: Soft delete the bowser by id
  *     tags: [Water Bowsers]
  *     parameters:

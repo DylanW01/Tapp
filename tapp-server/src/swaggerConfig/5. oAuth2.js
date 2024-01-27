@@ -5,17 +5,17 @@
  *     Tapp:
  *       type: oauth2
  *       flows:
+ *         implicit:
+ *          authorizationUrl: https://tapp.uk.auth0.com/authorize?audience=tapp
+ *          scopes:
+ *            update:users: Can update any user
+ *            update:current-user: Can update own user
+ *            read:users: Can read users
  *         authorizationCode:
- *           authorizationUrl: https://tapp.uk.auth0.com/oauth/authorize
+ *           authorizationUrl: https://tapp.uk.auth0.com/authorize?audience=tapp
  *           tokenUrl: https://tapp.uk.auth0.com/oauth/token
  *           scopes:
- *             update:users: update any user
- *             read:users: read user accounts
- *             update:current-user: update current user
- *         oAuth2Implicit:
- *          authorizationUrl: https://tapp.uk.auth0.com/oauth/authorize
- *         scopes:
- *           update:users: update any user
- *           read:users: read user accounts
- *           update:current-user: update current user
+ *             update:users: Can update any user
+ *             update:current-user: Can update own user
+ *             read:users: Can read users
  * */

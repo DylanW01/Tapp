@@ -51,7 +51,43 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
     NgxUiLoaderHttpModule.forRoot({ delay: 100, maxTime: 10000 }),
     NgxUiLoaderRouterModule.forRoot({ showForeground: false }),
-    AuthModule.forRoot({ domain: "tapp.uk.auth0.com", clientId: "YtDD0pvA2wPHiquxaLI7JpPoJtOhGS4S", authorizationParams: { redirect_uri: window.location.origin }, httpInterceptor: { allowedList: [`${env.serverUrl}/tickets`] } }),
+    AuthModule.forRoot({
+      domain: "tapp.uk.auth0.com",
+      clientId: "YtDD0pvA2wPHiquxaLI7JpPoJtOhGS4S",
+      authorizationParams: {
+        audience: "tapp",
+        scope: "openid profile read:users update:current-user update:users",
+        redirect_uri: window.location.origin,
+      },
+      httpInterceptor: {
+        allowedList: [
+          {
+            // Match any request that starts 'https://tapp.uk.auth0.com/api/v2/' (note the asterisk)
+            uri: "https://tapp.uk.auth0.com/api/v2/*",
+            tokenOptions: {
+              authorizationParams: {
+                // The attached token should target this audience
+                audience: "https://tapp.uk.auth0.com/api/v2/",
+                // The attached token should have these scopes
+                scope: "read:current_user",
+              },
+            },
+          },
+          {
+            // Match any request that starts 'http://localhost:8080' (note the asterisk)
+            uri: "http://localhost:8080/*",
+            tokenOptions: {
+              authorizationParams: {
+                // The attached token should target this audience
+                audience: "tapp",
+                scope: "read:users update:current-user update:users",
+              },
+            },
+          },
+          `${env.serverUrl}/tickets`,
+        ],
+      },
+    }),
   ],
   declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent],
   providers: [HttpClient, { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true }],
