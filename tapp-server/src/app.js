@@ -8,6 +8,8 @@ require('dotenv').config();
 const request = require("request");
 const { auth, requiredScopes } = require('express-oauth2-jwt-bearer');
 const axios = require('axios');
+const appVersion = require("../package.json").version;
+
 
 //#region DB Setup - Create connection to database - Uses .env file for credentials
 var tappDb  = mysql.createPool({
@@ -40,7 +42,7 @@ const swaggerDefinition = {
   info: {
     title: 'Tapp API',
     description: 'API to manage water bowsers, support tickets and user accounts.',
-    version: '1.0.0',
+    version: appVersion,
     contact: {
       email: "admin@tapp.dylanwarrell.com"
     }

@@ -1,12 +1,14 @@
 {
   "name": "tapp-server",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "src/app.js",
   "scripts": {
     "run dev server": "nodemon src/app.js",
     "run server": "node src/app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "version-patch": "npm --no-git-tag-version version patch",
+    "version-minor": "npm version minor",
+    "version-major": "npm version major"
   },
   "dependencies": {
     "@sendgrid/mail": "^7.7.0",
