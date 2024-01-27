@@ -17,51 +17,20 @@ export class HeaderInfoCardsComponent implements OnInit {
   bowsersDown: number;
 
   ngOnInit(): void {
-    this.getBowserCount();
-    this.getActiveBowsers();
-    this.getPendingTickets();
-    this.getActiveTickets();
-    this.getUnavailableBowsers();
-    this.autoRefresh();
-  }
-
-  autoRefresh() {
+    this.getStats();
     this.interval = setInterval(() => {
-      this.getBowserCount();
-      this.getActiveBowsers();
-      this.getPendingTickets();
-      this.getActiveTickets();
-      this.getUnavailableBowsers();
+      this.getStats();
     }, 60000);
   }
 
-  getBowserCount() {
-    this.server.getBowsersCount().then((response: any[]) => {
-      this.totalBowsers = response[0]["COUNT(*)"];
-    });
-  }
-
-  getActiveBowsers() {
-    this.server.getActiveBowserCount().then((response: any[]) => {
-      this.activeBowsers = response[0]["COUNT(*)"];
-    });
-  }
-
-  getPendingTickets() {
-    this.server.getPendingTicketCount().then((response: any[]) => {
-      this.pendingTickets = response[0]["COUNT(*)"];
-    });
-  }
-
-  getActiveTickets() {
-    this.server.getActiveTicketCount().then((response: any[]) => {
-      this.activeTickets = response[0]["COUNT(*)"];
-    });
-  }
-
-  getUnavailableBowsers() {
-    this.server.getBowserMaintenanceCount().then((response: any[]) => {
-      this.bowsersDown = response[0]["COUNT(*)"];
+  getStats() {
+    this.server.getStats().then((response: any) => {
+      console.log(response);
+      this.totalBowsers = response.bowsersCount;
+      this.activeBowsers = response.activeBowsersCount;
+      this.pendingTickets = response.pendingTicketCount;
+      this.activeTickets = response.activeTicketCount;
+      this.bowsersDown = response.bowserDownCount;
     });
   }
 }

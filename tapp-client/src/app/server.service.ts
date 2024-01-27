@@ -73,24 +73,9 @@ export class ServerService {
   // End of Users
 
   // Info Cards
-  getBowsersCount() {
-    return this.request("GET", `${environment.serverUrl}/bowserscount`);
+  getStats() {
+    return this.request("GET", `${environment.serverUrl}/bowserticketstats`);
   }
 
-  getActiveBowserCount() {
-    return this.request("GET", `${environment.serverUrl}/activebowserscount`);
-  }
-
-  getPendingTicketCount() {
-    return this.request("GET", `${environment.serverUrl}/pendingticketcount`);
-  }
-
-  getActiveTicketCount() {
-    return this.request("GET", `${environment.serverUrl}/activeticketcount`);
-  }
-
-  getBowserMaintenanceCount() {
-    return this.request("GET", `${environment.serverUrl}/bowserdowncount`);
-  }
   // End of Info Cards
 }
