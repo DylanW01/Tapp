@@ -76,7 +76,7 @@ const options = {
 
 const swaggerSpec = swaggerJSDoc(options);
 
-app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerSpec, swaggerOptions));
+app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerSpec, swaggerOptions));
 //#endregion
 
   //#region Bowsers
@@ -574,5 +574,5 @@ app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerSpec, swaggerOptions));
 // START APP
 app.listen(port, () => {
   console.log(`Express server listening on port ${port}`);
-  console.log(`UI available at http://localhost:${port}/`);
+  console.log(`UI available at http://localhost:${port}/swagger`);
 });
