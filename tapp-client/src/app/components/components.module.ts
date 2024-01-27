@@ -13,9 +13,10 @@ import { DeleteBowserModalComponent } from "../pages/bowser-table/components/del
 import { EditBowserModalComponent } from "../pages/bowser-table/components/edit-bowser-modal/edit-bowser-modal.component";
 import { CreateTicketModalComponent } from "../pages/support-ticket-table/components/create-ticket-modal/create-ticket-modal.component";
 import { CreateUserModalComponent } from "../pages/accounts-table/components/create-user-modal/create-user-modal.component";
+import { ServerOfflineModalComponent } from "./header-info-cards/server-offline-modal/server-offline-modal.component";
 
 @NgModule({
-  declarations: [FooterComponent, NavbarComponent, SidebarComponent, HeaderInfoCardsComponent, DeleteBowserModalComponent, EditBowserModalComponent, CreateBowserModalComponent, CreateTicketModalComponent, CreateUserModalComponent],
+  declarations: [FooterComponent, NavbarComponent, SidebarComponent, HeaderInfoCardsComponent, DeleteBowserModalComponent, EditBowserModalComponent, CreateBowserModalComponent, CreateTicketModalComponent, CreateUserModalComponent, ServerOfflineModalComponent],
   exports: [FooterComponent, NavbarComponent, SidebarComponent, HeaderInfoCardsComponent, CreateBowserModalComponent, CreateTicketModalComponent, CreateUserModalComponent],
   imports: [CommonModule, RouterModule, NgbModule, ReactiveFormsModule, GoogleMapsModule],
 })

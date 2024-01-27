@@ -1,0 +1,26 @@
+.server-offline-modal .modal-content {
+  background-color: red;
+  color: white;
+  /* Optional: Change text color to ensure readability */
+}
+
+.alert {
+  margin-bottom: 0;
+}
+
+.custom-spinner {
+  align-self: flex-end;
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  border: 0.25em solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: custom-spin 1s linear infinite;
+}
+
+@keyframes custom-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
