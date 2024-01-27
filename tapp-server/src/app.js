@@ -220,7 +220,7 @@ app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerSpec, swaggerOptions
   //#region Tickets
 
   // Get all tickets
-  app.get('/tickets', function (req, res, next) {
+  app.get('/tickets', checkJwt, function (req, res, next) {
     tappDb.query(
       'SELECT requestId, title, description, type, status, lat, lon, priority FROM tickets WHERE deletedState=0',
       (error, results) => {
@@ -235,7 +235,7 @@ app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerSpec, swaggerOptions
   });
 
   // Get ticket by ID
-  app.get('/tickets/:id', function (req, res, next) {
+  app.get('/tickets/:id', checkJwt, function (req, res, next) {
     tappDb.query(
       'SELECT requestId, title, description, type, status, lat, lon, priority FROM tickets WHERE requestId=? AND deletedState=0',
       [req.params.id],
@@ -251,7 +251,7 @@ app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerSpec, swaggerOptions
   });
 
   // Soft delete ticket by ID
-  app.delete('/tickets/:id', function (req, res, next) {
+  app.delete('/tickets/:id', checkJwt, function (req, res, next) {
     tappDb.query(
       'UPDATE tickets SET deletedState=1 WHERE requestId=?',
       [req.params.id],
@@ -290,7 +290,7 @@ app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerSpec, swaggerOptions
   });
 
   // Update ticket by ID
-  app.put('/tickets/:id', function (req, res, next) {
+  app.put('/tickets/:id', checkJwt, function (req, res, next) {
     tappDb.query({
       sql: 'UPDATE tickets SET title=?, description=?, type=?, status=?, lat=?, lon=?, priority=? WHERE requestId=?',
       values: [req.body.title, req.body.description, req.body.type, req.body.status, req.body.lat, req.body.lon, req.body.priority, req.params.id]},
@@ -328,7 +328,7 @@ app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerSpec, swaggerOptions
   });
 
   // Create new ticket
-  app.post('/tickets', (req, res, next) => {
+  app.post('/tickets', checkJwt, (req, res, next) => {
     tappDb.query({
       sql: 'INSERT INTO tickets (title, description, type, status, lat, lon, priority) VALUES (?,?,?,?,?,?,?)',
       values: [req.body.title, req.body.description, req.body.type, req.body.status, req.body.lat, req.body.lng, req.body.priority],},
@@ -370,7 +370,7 @@ app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerSpec, swaggerOptions
   //#region User Accounts
 
   // Create user
-  app.post('/users', (req, res, next) => {
+  app.post('/users', checkJwt, (req, res, next) => {
     // Get token for Auth0 Management API
     const auth0ManagementApi = { method: 'POST',
       url: 'https://tapp.uk.auth0.com/oauth/token',
@@ -424,7 +424,7 @@ app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerSpec, swaggerOptions
   });
 
   // Delete user
-  app.delete('/users/:id', function (req, res, next) {
+  app.delete('/users/:id', checkJwt, function (req, res, next) {
     const auth0ManagementApi = { method: 'POST',
       url: 'https://tapp.uk.auth0.com/oauth/token',
       headers: { 'content-type': 'application/json' },
@@ -460,7 +460,7 @@ app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerSpec, swaggerOptions
   });
 
   // Get admin users
-  app.get('/users/role/admin', function (req, res, next) {
+  app.get('/users/role/admin', checkJwt, function (req, res, next) {
     // Get token for Auth0 Management API
     const auth0ManagementApi = { method: 'POST',
       url: 'https://tapp.uk.auth0.com/oauth/token',
@@ -499,7 +499,50 @@ app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerSpec, swaggerOptions
   //#endregion
 
   //#region Stats
-  app.get('/bowserscount', function (req, res, next) {
+  app.get('/bowserticketstats', checkJwt, async function (req, res, next) {
+    try {
+      const bowsersCountPromise = getCount('SELECT COUNT(*) FROM bowsers WHERE deletedState=0');
+      const activeBowsersCountPromise = getCount('SELECT COUNT(*) FROM bowsers WHERE status = "Active"');
+      const pendingTicketCountPromise = getCount('SELECT COUNT(*) FROM tickets WHERE status = "Pending"');
+      const activeTicketCountPromise = getCount('SELECT COUNT(*) FROM tickets WHERE status = "In Progress"');
+      const bowserDownCountPromise = getCount('SELECT COUNT(*) FROM bowsers WHERE status IN ("Problematic", "Down", "Out of Service", "Maintenance", "Needs Attention")');
+  
+      const [bowsersCount, activeBowsersCount, pendingTicketCount, activeTicketCount, bowserDownCount] = await Promise.all([
+        bowsersCountPromise,
+        activeBowsersCountPromise,
+        pendingTicketCountPromise,
+        activeTicketCountPromise,
+        bowserDownCountPromise
+      ]);
+  
+      const mergedCounts = {
+        bowsersCount,
+        activeBowsersCount,
+        pendingTicketCount,
+        activeTicketCount,
+        bowserDownCount
+      };
+  
+      res.status(200).json(mergedCounts);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ status: 'error' });
+    }
+  });
+  
+  function getCount(query) {
+    return new Promise((resolve, reject) => {
+      tappDb.query(query, (error, results) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(results[0]['COUNT(*)']);
+        }
+      });
+    });
+  }
+  
+  app.get('/bowserscount', checkJwt, function (req, res, next) {
     tappDb.query(
       'SELECT COUNT(*) FROM bowsers WHERE deletedState=0',
       (error, results) => {
@@ -513,7 +556,7 @@ app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerSpec, swaggerOptions
     );
   });
 
-  app.get('/activebowserscount', function (req, res, next) {
+  app.get('/activebowserscount', checkJwt, function (req, res, next) {
     tappDb.query(
       'SELECT COUNT(*) FROM bowsers WHERE status = "Active"',
       (error, results) => {
@@ -527,7 +570,7 @@ app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerSpec, swaggerOptions
     );
   });
 
-  app.get('/pendingticketcount', function (req, res, next) {
+  app.get('/pendingticketcount', checkJwt, function (req, res, next) {
     tappDb.query(
       'SELECT COUNT(*) FROM tickets WHERE status = "Pending"',
       (error, results) => {
@@ -541,7 +584,7 @@ app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerSpec, swaggerOptions
     );
   });
 
-  app.get('/activeticketcount', function (req, res, next) {
+  app.get('/activeticketcount', checkJwt, function (req, res, next) {
     tappDb.query(
       'SELECT COUNT(*) FROM tickets WHERE status = "In Progress"',
       (error, results) => {
@@ -555,7 +598,7 @@ app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerSpec, swaggerOptions
     );
   });
 
-  app.get('/bowserdowncount', function (req, res, next) {
+  app.get('/bowserdowncount', checkJwt, function (req, res, next) {
     tappDb.query(
       'SELECT COUNT(*) FROM bowsers WHERE status = "Problematic" OR status = "Down" OR status = "Out of Service" OR status = "Maintenance" OR status = "Needs Attention"',
       (error, results) => {

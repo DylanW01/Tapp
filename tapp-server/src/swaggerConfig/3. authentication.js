@@ -63,6 +63,8 @@
  *   description: Account management
  * /users:
  *   post:
+ *     security:
+ *       - Tapp: []
  *     summary: Create a new user
  *     tags: [User Accounts]
  *     requestBody:
@@ -82,6 +84,8 @@
  *         description: Internal server error
  * /users/{id}:
  *   delete:
+ *     security:
+ *       - Tapp: []
  *     summary: Delete user account by id
  *     tags: [User Accounts]
  *     parameters:
@@ -98,6 +102,8 @@
  *       description: User not found
  * /users/role/admin:
  *   get:
+ *     security:
+ *       - Tapp: []
  *     summary: Lists all the users with admin privileges
  *     tags: [User Accounts]
  *     responses:

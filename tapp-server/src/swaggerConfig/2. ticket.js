@@ -54,6 +54,8 @@
  *   description: Customer support tickets
  * /tickets:
  *   get:
+ *     security:
+ *       - Tapp: []
  *     summary: Lists all the tickets
  *     tags: [Support Tickets]
  *     responses:
@@ -66,6 +68,8 @@
  *               items:
  *                 $ref: '#/components/schemas/Tickets'
  *   post:
+ *     security:
+ *       - Tapp: []
  *     summary: Create a new ticket
  *     tags: [Support Tickets]
  *     requestBody:
@@ -85,6 +89,8 @@
  *         description: Internal server error
  * /tickets/{id}:
  *   get:
+ *     security:
+ *       - Tapp: []
  *     summary: Get the ticket by id
  *     tags: [Support Tickets]
  *     parameters:
@@ -104,6 +110,8 @@
  *       404:
  *         description: The ticket was not found
  *   put:
+ *     security:
+ *       - Tapp: []
  *    summary: Update the ticket by the id
  *    tags: [Support Tickets]
  *    parameters:
@@ -131,6 +139,8 @@
  *      500:
  *        description: Some error happened
  *   delete:
+ *     security:
+ *       - Tapp: []
  *     summary: Soft delete the ticket by id
  *     tags: [Support Tickets]
  *     parameters:
