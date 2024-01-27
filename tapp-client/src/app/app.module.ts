@@ -56,14 +56,14 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
       clientId: "YtDD0pvA2wPHiquxaLI7JpPoJtOhGS4S",
       authorizationParams: {
         audience: "tapp",
-        scope: "openid profile read:users update:current-user update:users",
+        scope: "openid profile",
         redirect_uri: window.location.origin,
       },
       httpInterceptor: {
         allowedList: [
           {
-            // Match any request that starts 'https://tappapi.dylanwarrell.com/' (note the asterisk)
-            uri: "https://tappapi.dylanwarrell.com/*",
+            // Match any request that starts 'https://tappapi.dylanwarrell.com:443/' (note the asterisk)
+            uri: "https://tappapi.dylanwarrell.com:443/*",
             tokenOptions: {
               authorizationParams: {
                 // The attached token should target this audience
