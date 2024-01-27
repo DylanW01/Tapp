@@ -9,10 +9,10 @@ import { AccountsTableComponent } from "src/app/pages/accounts-table/accounts-ta
 import { AuthGuard } from "@auth0/auth0-angular";
 
 export const AdminLayoutRoutes: Routes = [
-  { path: "dashboard", component: DashboardComponent },
-  { path: "bowsers", component: BowserTablesComponent },
-  { path: "tickets", component: TicketTablesComponent },
+  { path: "dashboard", component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: "bowsers", component: BowserTablesComponent, canActivate: [AuthGuard] },
+  { path: "tickets", component: TicketTablesComponent, canActivate: [AuthGuard] },
   { path: "user-profile", component: UserProfileComponent, canActivate: [AuthGuard] },
-  { path: "maps", component: MapsComponent },
+  { path: "maps", component: MapsComponent, canActivate: [AuthGuard] },
   { path: "user-accounts", component: AccountsTableComponent, canActivate: [AuthGuard] },
 ];
