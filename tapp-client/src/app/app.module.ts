@@ -62,20 +62,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
       httpInterceptor: {
         allowedList: [
           {
-            // Match any request that starts 'https://tapp.uk.auth0.com/api/v2/' (note the asterisk)
-            uri: "https://tapp.uk.auth0.com/api/v2/*",
-            tokenOptions: {
-              authorizationParams: {
-                // The attached token should target this audience
-                audience: "https://tapp.uk.auth0.com/api/v2/",
-                // The attached token should have these scopes
-                scope: "read:current_user",
-              },
-            },
-          },
-          {
-            // Match any request that starts 'http://localhost:8080' (note the asterisk)
-            uri: "http://localhost:8080/*",
+            // Match any request that starts 'https://tappapi.dylanwarrell.com/' (note the asterisk)
+            uri: "https://tappapi.dylanwarrell.com/*",
             tokenOptions: {
               authorizationParams: {
                 // The attached token should target this audience
@@ -85,8 +73,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
             },
           },
           {
-            // Match any request that starts 'https://tappapi.dylanwarrell.com/' (note the asterisk)
-            uri: "https://tappapi.dylanwarrell.com/*",
+            // Match any request that starts 'http://localhost:8080' (note the asterisk)
+            uri: "http://localhost:8080/*",
             tokenOptions: {
               authorizationParams: {
                 // The attached token should target this audience
