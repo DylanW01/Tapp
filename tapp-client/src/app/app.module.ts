@@ -80,11 +80,21 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
               authorizationParams: {
                 // The attached token should target this audience
                 audience: "tapp",
-                scope: "read:users update:current-user update:users",
+                scope: "",
               },
             },
           },
-          `${env.serverUrl}/tickets`,
+          {
+            // Match any request that starts 'https://tappapi.dylanwarrell.com/' (note the asterisk)
+            uri: "https://tappapi.dylanwarrell.com/*",
+            tokenOptions: {
+              authorizationParams: {
+                // The attached token should target this audience
+                audience: "tapp",
+                scope: "",
+              },
+            },
+          },
         ],
       },
     }),

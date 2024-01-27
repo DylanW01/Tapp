@@ -77,7 +77,7 @@
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Bowsers'
+ *               type: array
  *       500:
  *         description: Internal server error
  * /users/{id}:
