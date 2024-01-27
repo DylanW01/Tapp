@@ -15,9 +15,7 @@
     <a href="#getting-started"><strong>Get started now »</strong></a>
     <br />
     <br />
-    <a href="http://tapp.dylanwarrell.com/">View Legacy Site</a>
-    ·
-    <a href="http://test.dylanwarrell.com/">View Test Site</a>
+    <a href="http://tapp.dylanwarrell.com/">View Test Site</a>
     ·
     <a href="https://github.com/DylanW01/Tapp-Refactored/issues">Report a Problem</a>
   </p>
