@@ -105,7 +105,7 @@ app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerSpec, swaggerOptions
           console.log(error);
           res.status(500).json({status: 'error'});
         } else {
-          res.status(200).json({status: 'ok'});
+          res.status(200).json(results);
         }
       }
     );
