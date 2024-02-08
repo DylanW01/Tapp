@@ -1,4 +1,4 @@
-name: Deploy to Live
+name: Deploy to Production
 
 on:
   push:
@@ -65,8 +65,33 @@ jobs:
           path: dist.tar.gz
           retention-days: 1
 
+  test:
+    needs: install
+    runs-on: ubuntu-latest
+    name: Test
+    steps:
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Git Checkout
+        uses: actions/checkout@v3
+
+      - name: Download dependencies
+        uses: actions/download-artifact@v3
+        with:
+          name: node_modules
+          path: ./tapp-client/
+
+      - name: Extract dependencies
+        run: tar -xzf ./tapp-client/node_modules.tar.gz -C ./tapp-client/
+
+      - name: Run tests
+        run: npm test --prefix ./tapp-client/
+
   deploy:
-    needs: build
+    needs: [build, test]
     runs-on: ubuntu-latest
     name: Deploy
     steps:

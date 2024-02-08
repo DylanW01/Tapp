@@ -1,19 +1,15 @@
 {
   "name": "Tapp",
-  "version": "1.2.19",
+  "version": "1.2.20",
   "scripts": {
-    "ng": "ng",
     "start": "ng serve",
+    "test": "ng test",
     "version-patch": "npm --no-git-tag-version version patch",
     "version-minor": "npm version minor",
     "version-major": "npm version major",
-    "format-code": "prettier --write \"./**/*.{js,jsx,ts,tsx,json}\"",
-    "build-dev": "ng build -- configuration=development",
+    "build-dev": "ng build --configuration=development",
     "build-test": "ng build --configuration=test",
-    "build-live": "ng build --configuration=prod",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
+    "build-live": "ng build --configuration=prod"
   },
   "private": true,
   "dependencies": {
