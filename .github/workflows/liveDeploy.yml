@@ -17,6 +17,8 @@ jobs:
 
       - name: Archive production artifacts
         run: tar -czf node_modules.tar.gz ./tapp-client/node_modules/
+
+      - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
           name: node_modules
@@ -35,6 +37,8 @@ jobs:
         with:
           name: node_modules
           path: .
+
+      - name: Extract dependencies
         run: tar -xzf node_modules.tar.gz
 
       - name: Build for production
@@ -42,6 +46,8 @@ jobs:
 
       - name: Archive production artifacts
         run: tar -czf dist.tar.gz ./tapp-client/dist/
+
+      - name: Upload build artifacts
         uses: actions/upload-artifact@v2
         with:
           name: dist
@@ -60,6 +66,8 @@ jobs:
         with:
           name: dist
           path: .
+
+      - name: Extract build artifacts
         run: tar -xzf dist.tar.gz
 
       - name: Deploy to production server
