@@ -88,7 +88,7 @@ jobs:
         run: tar -xzf ./tapp-client/node_modules.tar.gz -C ./tapp-client/
 
       - name: Run tests
-        run: npm test --prefix ./tapp-client/
+        run: npm test --prefix ./tapp-client/ -- --no-watch --browsers=ChromeHeadless
 
   deploy:
     needs: [build, test]
