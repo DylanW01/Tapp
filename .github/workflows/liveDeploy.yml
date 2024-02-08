@@ -1,4 +1,4 @@
-name: Deploy to Live
+name: Deploy to Production
 
 on:
   push:
@@ -9,6 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     name: Install Dependencies
     steps:
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
       - name: Git Checkout
         uses: actions/checkout@v2
 
@@ -16,7 +21,7 @@ jobs:
         run: npm install --prefix ./tapp-client/
 
       - name: Archive production artifacts
-        run: tar -czf node_modules.tar.gz ./tapp-client/node_modules/
+        run: tar -czf node_modules.tar.gz -C ./tapp-client/ node_modules
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
@@ -29,6 +34,11 @@ jobs:
     runs-on: ubuntu-latest
     name: Build
     steps:
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
       - name: Git Checkout
         uses: actions/checkout@v2
 
@@ -36,16 +46,16 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: node_modules
-          path: .
+          path: ./tapp-client/
 
       - name: Extract dependencies
-        run: tar -xzf node_modules.tar.gz
+        run: tar -xzf ./tapp-client/node_modules.tar.gz -C ./tapp-client/
 
       - name: Build for production
         run: npm run build-live --prefix ./tapp-client/
 
       - name: Archive production artifacts
-        run: tar -czf dist.tar.gz ./tapp-client/dist/
+        run: tar -czf dist.tar.gz -C ./tapp-client/ dist
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v2
@@ -58,6 +68,11 @@ jobs:
     runs-on: ubuntu-latest
     name: Deploy
     steps:
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
       - name: Git Checkout
         uses: actions/checkout@v2
 
@@ -65,10 +80,10 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: dist
-          path: .
+          path: ./tapp-client/
 
       - name: Extract build artifacts
-        run: tar -xzf dist.tar.gz
+        run: tar -xzf ./tapp-client/dist.tar.gz -C ./tapp-client/
 
       - name: Deploy to production server
         uses: s0/git-publish-subdir-action@develop
