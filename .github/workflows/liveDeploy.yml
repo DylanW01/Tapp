@@ -1,4 +1,4 @@
-name: Deploy to Production
+name: Deploy to Live
 
 on:
   push:
@@ -15,7 +15,7 @@ jobs:
           node-version: 20
 
       - name: Git Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Install dependencies for Client
         run: npm install --prefix ./tapp-client/
@@ -24,10 +24,11 @@ jobs:
         run: tar -czf node_modules.tar.gz -C ./tapp-client/ node_modules
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: node_modules
           path: node_modules.tar.gz
+          retention-days: 1
 
   build:
     needs: install
@@ -40,10 +41,10 @@ jobs:
           node-version: 20
 
       - name: Git Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Download dependencies
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: node_modules
           path: ./tapp-client/
@@ -58,10 +59,11 @@ jobs:
         run: tar -czf dist.tar.gz -C ./tapp-client/ dist
 
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: dist
           path: dist.tar.gz
+          retention-days: 1
 
   deploy:
     needs: build
@@ -74,10 +76,10 @@ jobs:
           node-version: 20
 
       - name: Git Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Download build artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: dist
           path: ./tapp-client/
