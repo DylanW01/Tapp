@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { filter, map, Observable } from "rxjs";
 import { AuthService } from "@auth0/auth0-angular";
 
 @Component({

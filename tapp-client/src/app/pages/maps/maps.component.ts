@@ -5,8 +5,6 @@ import { NgxUiLoaderService } from "ngx-ui-loader";
 import { Observable, map, catchError, of } from "rxjs";
 import { ServerService } from "src/app/server.service";
 
-declare var google: any;
-
 @Component({
   selector: "app-maps",
   templateUrl: "./maps.component.html",

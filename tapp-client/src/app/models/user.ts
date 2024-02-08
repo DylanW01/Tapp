@@ -1,4 +1,4 @@
-class User {
+export class User {
   email: string;
   blocked: boolean;
   email_verified: boolean;

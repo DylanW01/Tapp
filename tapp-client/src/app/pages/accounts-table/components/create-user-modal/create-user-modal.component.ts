@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ToastrService } from "ngx-toastr";
 import { ServerService } from "src/app/server.service";
 import { NgxUiLoaderService } from "ngx-ui-loader";
+import { User } from "src/app/models/user";
 
 @Component({
   selector: "app-create-user-modal",

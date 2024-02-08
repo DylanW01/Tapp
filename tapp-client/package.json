@@ -1,6 +1,6 @@
 {
   "name": "Tapp",
-  "version": "1.2.20",
+  "version": "1.2.21",
   "scripts": {
     "start": "ng serve",
     "test": "ng test",
@@ -51,7 +51,7 @@
     "@angular/compiler-cli": "^13.0",
     "@angular/language-service": "13.0",
     "@angularclass/hmr": "^3.0.0",
-    "@types/jasmine": "^4.0.0",
+    "@types/jasmine": "^4.6.4",
     "@types/jasminewd2": "^2.0.10",
     "@types/node": "^17.0.21",
     "jasmine-core": "^4.4.0",
