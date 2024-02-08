@@ -1,4 +1,3 @@
-# .github/workflows/publish.yml
 name: Deploy to Live
 
 on:
@@ -6,9 +5,9 @@ on:
     branches: ["main"]
 
 jobs:
-  build:
+  install:
     runs-on: ubuntu-latest
-    name: Build and Push
+    name: Install Dependencies
     steps:
       - name: Git Checkout
         uses: actions/checkout@v2
@@ -16,8 +15,48 @@ jobs:
       - name: Install dependencies for Client
         run: npm install --prefix ./tapp-client/
 
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: node_modules
+          path: tapp-client/node_modules/
+
+  build:
+    needs: install
+    runs-on: ubuntu-latest
+    name: Build
+    steps:
+      - name: Git Checkout
+        uses: actions/checkout@v2
+
+      - name: Download dependencies
+        uses: actions/download-artifact@v2
+        with:
+          name: node_modules
+          path: tapp-client/
+
       - name: Build for production
         run: npm run build-live --prefix ./tapp-client/
+
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: dist
+          path: tapp-client/dist/
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    name: Deploy
+    steps:
+      - name: Git Checkout
+        uses: actions/checkout@v2
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: dist
+          path: tapp-client/dist/
 
       - name: Deploy to production server
         uses: s0/git-publish-subdir-action@develop
