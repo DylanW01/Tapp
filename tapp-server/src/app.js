@@ -182,7 +182,7 @@ app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerSpec, swaggerOptions
     );
   });
 
-  app.put('/bowsers/:id', function (req, res, next) {
+  app.put('/bowsers/:id', checkJwt, function (req, res, next) {
     tappDb.query({
       sql: 'UPDATE bowsers SET lat=?, lon=?, size=?, lastTopUp=?, status=?, capacityPercentage=? WHERE bowserId=?',
       values: [req.body.lat, req.body.lon, req.body.size, req.body.lastTopUp, req.body.status, req.body.capacityPercentage, req.params.id]},
