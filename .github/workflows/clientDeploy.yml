@@ -3,7 +3,8 @@ name: Deploy to Production
 on:
   push:
     branches: ["main"]
-    
+    paths:
+      - 'tapp-client/**'
 
 jobs:
   install:
