@@ -20,7 +20,7 @@ jobs:
       - name: Git Checkout
         uses: actions/checkout@v3
 
-      - name: Cache dependencies
+      - name: Restore dependencies from Cache
         uses: actions/cache@v3
         with:
           path: ./tapp-client/node_modules
@@ -28,7 +28,7 @@ jobs:
           restore-keys: |
             ${{ runner.OS }}-npm-
 
-      - name: Install dependencies for Client
+      - name: Install dependencies if missing/outdated
         run: npm install --prefix ./tapp-client/
 
       - name: Build for production
@@ -37,7 +37,7 @@ jobs:
       - name: Archive production artifacts
         run: tar -czf dist.tar.gz -C ./tapp-client/ dist
 
-      - name: Upload build artifacts
+      - name: Upload build artifact
         uses: actions/upload-artifact@v3
         with:
           name: dist
