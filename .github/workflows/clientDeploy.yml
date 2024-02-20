@@ -7,9 +7,9 @@ on:
       - 'tapp-client/**'
 
 jobs:
-  install:
+  install_and_build:
     runs-on: ubuntu-latest
-    name: Install Dependencies
+    name: Install Dependencies and Build
     steps:
       - name: Setup Node.js environment
         uses: actions/setup-node@v3
@@ -18,41 +18,17 @@ jobs:
 
       - name: Git Checkout
         uses: actions/checkout@v3
+
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ./tapp-client/node_modules
+          key: ${{ runner.OS }}-npm-${{ hashFiles('./tapp-client/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-npm-
 
       - name: Install dependencies for Client
         run: npm install --prefix ./tapp-client/
-
-      - name: Archive production artifacts
-        run: tar -czf node_modules.tar.gz -C ./tapp-client/ node_modules
-
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: node_modules
-          path: node_modules.tar.gz
-          retention-days: 1
-
-  build:
-    needs: install
-    runs-on: ubuntu-latest
-    name: Build
-    steps:
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v3
-        with:
-          node-version: 20
-
-      - name: Git Checkout
-        uses: actions/checkout@v3
-
-      - name: Download dependencies
-        uses: actions/download-artifact@v3
-        with:
-          name: node_modules
-          path: ./tapp-client/
-
-      - name: Extract dependencies
-        run: tar -xzf ./tapp-client/node_modules.tar.gz -C ./tapp-client/
 
       - name: Build for production
         run: npm run build-live --prefix ./tapp-client/
@@ -68,7 +44,7 @@ jobs:
           retention-days: 1
 
   deploy:
-    needs: [build]
+    needs: [install_and_build]
     runs-on: ubuntu-latest
     name: Deploy
     steps:
