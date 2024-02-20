@@ -5,6 +5,7 @@ on:
     branches: ["main"]
     paths:
       - 'tapp-client/**'
+  workflow_dispatch:
 
 jobs:
   install_and_build:
