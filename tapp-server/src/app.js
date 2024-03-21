@@ -263,7 +263,7 @@ app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerSpec, swaggerOptions
           res.status(500).json({status: 'error'});
         } else {
           const sgMail = require('@sendgrid/mail')
-          sgMail.setApiKey('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')
+          sgMail.setApiKey(process.env.SENDGRIDAPI)
           const msg = {
             to: ['d.warrell@outlook.com'],
             from: { "email": "noreply@tapp.dylanwarrell.com", 
@@ -301,7 +301,7 @@ app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerSpec, swaggerOptions
           res.status(500).json();
         } else {
           const sgMail = require('@sendgrid/mail')
-          sgMail.setApiKey('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')
+          sgMail.setApiKey(process.env.SENDGRIDAPI)
           const msg = {
             to: ['d.warrell@outlook.com'],
             from: { "email": "noreply@tapp.dylanwarrell.com", 
@@ -340,7 +340,7 @@ app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerSpec, swaggerOptions
           res.status(500).json({status: 'error'});
         } else {
           const sgMail = require('@sendgrid/mail')
-          sgMail.setApiKey('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')
+          sgMail.setApiKey(process.env.SENDGRIDAPI)
           const msg = {
             to: ['d.warrell@outlook.com'],
             from: { "email": "noreply@tapp.dylanwarrell.com", 
