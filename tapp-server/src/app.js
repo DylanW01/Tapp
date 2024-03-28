@@ -81,6 +81,10 @@ const swaggerSpec = swaggerJSDoc(options);
 app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerSpec, swaggerOptions));
 //#endregion
 
+app.get('/ping', function (req, res) {
+  res.status(200).json({status: 'success', message: 'pong'});
+  });
+  
   //#region Bowsers
   app.get('/bowsers', checkJwt, function (req, res, next) {
     tappDb.query(
