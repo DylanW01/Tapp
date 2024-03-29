@@ -13,7 +13,7 @@ jobs:
     name: Install Dependencies and Build
     steps:
       - name: Setup Node.js environment
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20
 
@@ -50,7 +50,7 @@ jobs:
     name: Deploy
     steps:
       - name: Setup Node.js environment
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20
 
