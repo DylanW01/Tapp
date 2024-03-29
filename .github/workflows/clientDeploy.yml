@@ -32,7 +32,7 @@ jobs:
         run: npm install --prefix ./tapp-client/
 
       - name: Build for production
-        run: ng build --configuration=prod --prefix ./tapp-client/
+        run: npm run build-live --prefix ./tapp-client/
 
       - name: Archive production artifacts
         run: tar -czf dist.tar.gz -C ./tapp-client/ dist
