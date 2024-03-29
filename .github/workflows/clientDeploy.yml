@@ -72,6 +72,6 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./tapp-client/dist
+          local-dir: ./tapp-client/dist/
           remote-dir: /domains/dylanwarrell.com/public_html/tapp
           args: --delete
