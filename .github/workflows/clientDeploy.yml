@@ -32,7 +32,7 @@ jobs:
         run: npm install --prefix ./tapp-client/
 
       - name: Build for production
-        run: npm run build-live --prefix ./tapp-client/
+        run: ng build --configuration=prod --prefix ./tapp-client/
 
       - name: Archive production artifacts
         run: tar -czf dist.tar.gz -C ./tapp-client/ dist
@@ -67,11 +67,9 @@ jobs:
         run: tar -xzf ./tapp-client/dist.tar.gz -C ./tapp-client/
 
       - name: Deploy to production server
-        uses: appleboy/ftp-action@v2
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./tapp-client/dist/
-          remote-dir: /domains/dylanwarrell.com/public_html/tapp
-          args: --delete
+        run: |
+          ncftp -u ${{ secrets.FTP_USERNAME }} -p ${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }} <<EOF
+          cd /domains/dylanwarrell.com/public_html/tapp
+          put -R ./tapp-client/dist/*
+          quit
+          EOF
