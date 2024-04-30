@@ -74,4 +74,3 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./tapp-client/dist/
           server-dir: /domains/dylanwarrell.com/public_html/tapp/
-          args: --delete
