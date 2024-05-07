@@ -9,6 +9,7 @@ const request = require("request");
 const { auth, requiredScopes } = require('express-oauth2-jwt-bearer');
 const axios = require('axios');
 const appVersion = require("../package.json").version;
+const crypto = require('crypto');
 
 
 //#region DB Setup - Create connection to database - Uses .env file for credentials
@@ -374,6 +375,22 @@ app.get('/ping', function (req, res) {
   //#endregion
 
   //#region User Accounts
+
+  // Get user token for support widget
+  app.post('/tawktohash', (req, res, next) => {
+    try { 
+      // Create an HMAC-SHA256 hasher
+      const hmac = crypto.createHmac('sha256', process.env.TAWK_TO_KEY);
+      hmac.update(req.body.email); // Hash the email
+      const hash = hmac.digest('hex'); // Get the hash in hexadecimal format
+  
+      // Return the hash to the user
+      res.status(200).json({"hash": hash});
+    } catch (error) {
+      console.error('Error calculating hash:', error);
+      res.status(500).json({ status: 'error' });
+    }
+  });
 
   // Create user
   app.post('/users', checkJwt, (req, res, next) => {

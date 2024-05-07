@@ -113,4 +113,30 @@
  *           application/json:
  *             schema:
  *               type: array
+ * /tawktohash:
+ *   post:
+ *     summary: Gets hash for support widget
+ *     tags: [User Accounts]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 example: "email@email.com"
+ *     responses:
+ *       200:
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 hash:
+ *                   type: string
+ *                   example: "abcde12345"
+ *       500:
+ *         description: Internal server error
  */
