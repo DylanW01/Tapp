@@ -71,6 +71,11 @@ export class ServerService {
     return this.request("GET", `${environment.serverUrl}/users/role/admin`);
   }
 
+  getTawkToHash(email: string) {
+    const requestBody = { email };
+    return this.request("POST", `${environment.serverUrl}/tawktohash`, requestBody);
+  }
+
   // End of Users
 
   // Info Cards

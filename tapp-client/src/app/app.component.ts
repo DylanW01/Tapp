@@ -1,7 +1,8 @@
-import { Component, Inject, OnInit } from "@angular/core";
-import { RouterModule, Router } from "@angular/router";
-import { NgxUiLoaderService } from "ngx-ui-loader";
-import { filter, map, Observable } from "rxjs";
+import { Component } from "@angular/core";
+import { Router } from "@angular/router";
+import { AuthService } from "@auth0/auth0-angular";
+import { Observable } from "rxjs";
+import { TawkToService } from "./tawk-to.service";
 
 @Component({
   selector: "app-root",
@@ -12,9 +13,19 @@ export class AppComponent {
   title = "Tapp";
   public isAuthenticated$!: Observable<boolean>;
 
-  constructor(private _router: Router) {}
+  constructor(private _router: Router, public auth: AuthService, public tawkToService: TawkToService) {}
 
-  public ngOnInit(): void {}
+  public ngOnInit(): void {
+    this.auth.user$.subscribe((user) => {
+      if (user) {
+        // User is authenticated, access user properties
+        this.tawkToService.tawkLogin(user.sub, user.name, user.email);
+      } else {
+        // User is not authenticated
+        console.log("User not authenticated");
+      }
+    }); // Corrected placement of closing parenthesis
+  }
 
   public async signIn(): Promise<void> {}
 

@@ -56,7 +56,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
       clientId: "YtDD0pvA2wPHiquxaLI7JpPoJtOhGS4S",
       authorizationParams: {
         audience: "tapp",
-        scope: "openid profile",
+        scope: "openid profile email",
         redirect_uri: window.location.origin,
       },
       httpInterceptor: {
