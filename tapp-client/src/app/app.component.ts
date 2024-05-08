@@ -18,8 +18,9 @@ export class AppComponent {
   public ngOnInit(): void {
     this.auth.user$.subscribe((user) => {
       if (user) {
+        console.log("User authenticated", user);
         // User is authenticated, access user properties
-        this.tawkToService.tawkLogin(user.sub, user.name, user.email);
+        this.tawkToService.tawkLogin(user.sub, user.name, user.email, user.email_verified, user.picture);
       } else {
         // User is not authenticated
         console.log("User not authenticated");

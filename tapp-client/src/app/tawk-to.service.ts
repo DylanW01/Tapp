@@ -7,7 +7,7 @@ import { ServerService } from "./server.service";
 export class TawkToService {
   constructor(private server: ServerService) {}
 
-  tawkLogin(userId, userName, userEmail) {
+  tawkLogin(userId, userName, userEmail, emailVerified, picture) {
     this.server.getTawkToHash(userEmail).then((response) => {
       console.log(userName, userEmail, (response as { hash: string }).hash);
 
@@ -25,6 +25,8 @@ export class TawkToService {
             name: userName,
             email: userEmail,
             userId: userId,
+            emailVerified: emailVerified,
+            picture: picture,
             hash: (response as { hash: string }).hash,
           });
 
