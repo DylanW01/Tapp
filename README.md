@@ -49,7 +49,7 @@
 
 ## About The Project
 
-<img src="https://i.ibb.co/NTC13yq/tapp.png" alt="Preview of the Tapp dashboard" border="0">
+<img src="https://i.ibb.co/tCgFJ7k/Screenshot-2024-05-08-123757.png" alt="Preview of the Tapp dashboard" border="0">
 
 TODO: Write a description of the application here & update screenshot
 
