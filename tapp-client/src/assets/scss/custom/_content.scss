@@ -7,7 +7,6 @@
     .navbar-top {
         position: absolute;
         left: 0;
-        top: 0;
         width: 100%;
         z-index: 1;
         background-color: transparent;
@@ -37,10 +36,12 @@
             @include media-breakpoint-up(#{$breakpoint}) {
 
                 // Left
-                &.fixed-left + .main-content {
+                &.fixed-left+.main-content {
                     margin-left: $navbar-vertical-width;
-                } // Right
-                &.fixed-right + .main-content {
+                }
+
+                // Right
+                &.fixed-right+.main-content {
                     margin-right: $navbar-vertical-width;
                 }
             }
