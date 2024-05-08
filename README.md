@@ -19,9 +19,11 @@
     ·
     <a href="https://github.com/DylanW01/Tapp-Refactored/issues">Report a Problem</a>
   </p>
-  
-![Tapp Status](https://cronitor.io/badges/3z30eu/production/v0DhWwFhNJq5bMb35_Bwj-XLK5s.svg)
-![Tapp API Status](https://cronitor.io/badges/TQrCpS/production/AGXq6O4RJhsFwe4NaSJZ2VF-dXs.svg)
+
+| Client | Status |
+| ------ | ------ |
+| Tapp SPA | [![Tapp Status](https://uptime.betterstack.com/status-badges/v1/monitor/15zgb.svg)](https://status.dylanwarrell.com) |
+| Tapp API | [![Tapp API Status](https://uptime.betterstack.com/status-badges/v1/monitor/15zge.svg)](https://status.dylanwarrell.com) |
 
 </div>
 
