@@ -145,6 +145,6 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 Dylan Warrell - [Email](mailto:admin@tapp.dylanwarrell.com) - [LinkedIn](https://www.linkedin.com/in/dylanwarrell/) - [Portfolio](https://dylanwarrell.com/)
 
-Project Link: [https://github.com/DylanW01/Tapp-Refactored](https://github.com/DylanW01/Tapp-Refactored)
+Project Link: [https://github.com/DylanW01/Tapp](https://github.com/DylanW01/Tapp)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
