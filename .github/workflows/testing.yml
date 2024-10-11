@@ -25,7 +25,7 @@ jobs:
         run: npm install --prefix ./tapp-client/
 
       - name: Create archive of node modules
-        run: zip -r node_modules.zip tapp-client/node_modules
+        run: zip -r node_modules.zip tapp-client/node_modules/*
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
