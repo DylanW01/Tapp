@@ -67,7 +67,7 @@ jobs:
         run: unzip tapp-client/node-modules.zip -d tapp-client/node_modules
 
       - name: Resolve Dependencies
-        run: npm ci --prefix ./tapp-client/
+        run: npm install --prefix ./tapp-client/
 
       - name: Build Tapp SPA
         run: npm run build-live --prefix ./tapp-client/
