@@ -68,7 +68,9 @@ jobs:
         run: npm run build-live --prefix ./tapp-client/
         
       - name: Create archive of build
-        run: zip -r tapp-build.zip ./tapp-client/dist
+        run: |
+          cd ./tapp-client/dist
+          zip -r ../../tapp-build.zip .
 
       - name: Create and publish artifact of build
         uses: actions/upload-artifact@v4
