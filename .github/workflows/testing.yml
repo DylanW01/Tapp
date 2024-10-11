@@ -57,8 +57,8 @@ jobs:
       - name: Extract shared build archive
         run: unzip tapp-client/node_modules.zip -d ./
 
-      - name: Install Angular CLI globally
-        run: npm install -g @angular/cli
+      - name: Install Angular CLI
+        run: npm install
 
       - name: Build Tapp SPA
         run: npm run build-live --prefix ./tapp-client/
@@ -75,11 +75,12 @@ jobs:
 
   cleanup:
     runs-on: ubuntu-latest
+    name: Cleanup (Delete node_modules artifact)
     needs: build
     if: always()  # Ensure the cleanup job runs regardless of the build job's outcome
 
     steps:
-      - name: Delete node-modules artifact
+      - name: Delete node_modules artifact
         uses: geekyeggo/delete-artifact@v5
         with:
           name: node_modules
