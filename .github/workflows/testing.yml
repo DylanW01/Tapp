@@ -64,7 +64,7 @@ jobs:
         run: mkdir -p tapp-client/node_modules
 
       - name: Extract shared build archive
-        run: unzip tapp-client/shared-build.zip -d tapp-client/node_modules
+        run: unzip tapp-client/node-modules.zip -d tapp-client/node_modules
 
       - name: Build Tapp SPA
         run: npm run build-live --prefix ./tapp-client/
@@ -88,6 +88,8 @@ jobs:
         node-version: [20.x]
 
     steps:
-      - uses: geekyeggo/delete-artifact@v5
+      - name: Delete node-modules artifact
+        if: always()
+        uses: geekyeggo/delete-artifact@v5
         with:
           name: node-modules
