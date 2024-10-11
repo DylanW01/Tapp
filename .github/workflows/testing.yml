@@ -63,6 +63,9 @@ jobs:
       - name: Extract shared build archive
         run: unzip tapp-client/node_modules.zip -d ./tapp-client/node_modules
 
+      - name: List contents of node_modules
+        run: ls -la ./tapp-client/node_modules
+
       - name: Add node_modules/.bin to PATH
         run: echo "$GITHUB_WORKSPACE/tapp-client/node_modules/.bin" >> $GITHUB_PATH
 
