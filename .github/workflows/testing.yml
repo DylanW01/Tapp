@@ -58,7 +58,7 @@ jobs:
         run: unzip tapp-client/node_modules.zip -d ./
 
       - name: Install Angular CLI
-        run: npm install --prefix ./tapp-client/
+        run: npm install -g @angular/cli
 
       - name: Build Tapp SPA
         run: npm run build-live --prefix ./tapp-client/
