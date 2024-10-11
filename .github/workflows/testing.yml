@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  install:
     runs-on: ubuntu-latest
 
     strategy:
@@ -27,14 +27,12 @@ jobs:
       - name: Install dependencies
         run: npm ci --prefix ./tapp-client/
 
-      - name: Build Tapp SPA
-        run: npm run build-live --prefix ./tapp-client/
-
-      - name: Upload shared build artifact
+      - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
           name: shared-build
-          path: tapp-client/dist/
+          path: tapp-client/
+          retention-days: 1
 
   lint:
     runs-on: ubuntu-latest
@@ -54,13 +52,17 @@ jobs:
       uses: actions/download-artifact@v3
       with:
         name: shared-build
-        path: build/
+        path: Tapp-SPA/
 
-    - name: Create and publish artifact of lint-build
+    - name: Build Tapp SPA
+      run: npm run build-live --prefix ./Tapp-SPA/
+
+    - name: Create and publish artifact of build
       uses: actions/upload-artifact@v4
       with:
         name: lint-build
-        path: build/
+        path: Tapp-SPA/dist
+        retention-days: 7
 
   test:
     runs-on: ubuntu-latest
@@ -76,16 +78,18 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           
-      - name: List contents of shared build directory
-        run: ls -la $GITHUB_WORKSPACE/shared-build  # List contents of shared-build
+    - name: Download shared build artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: shared-build
+        path: Tapp-SPA/
 
-      - name: Use shared build directory
-        run: |
-          mkdir -p build
-          cp -r $GITHUB_WORKSPACE/shared-build/* build/
+    - name: Build Tapp SPA
+      run: npm run build-live --prefix ./Tapp-SPA/
 
-      - name: Create and publish artifact of test-build
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-build
-          path: build/
+    - name: Create and publish artifact of build
+      uses: actions/upload-artifact@v4
+      with:
+        name: lint-build
+        path: Tapp-SPA/dist
+        retention-days: 7
