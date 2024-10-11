@@ -48,26 +48,14 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install Angular CLI globally
-        run: npm install -g @angular/cli
-
       - name: Download shared build artifact
         uses: actions/download-artifact@v4
         with:
           name: node_modules
           path: tapp-client
 
-      - name: Create node_modules directory if it doesn't exist
-        run: mkdir -p ./tapp-client/node_modules
-
       - name: Extract shared build archive
         run: unzip tapp-client/node_modules.zip -d ./
-
-      - name: List contents of node_modules after extraction
-        run: ls -la ./tapp-client/node_modules
-
-      - name: Add node_modules/.bin to PATH
-        run: echo "$GITHUB_WORKSPACE/tapp-client/node_modules/.bin" >> $GITHUB_PATH
 
       - name: Build Tapp SPA
         run: npm run build-live --prefix ./tapp-client/
