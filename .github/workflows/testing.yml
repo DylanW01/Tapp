@@ -48,6 +48,9 @@ jobs:
         with:
           node-version: 20
 
+      - name: Install Angular CLI globally
+        run: npm install -g @angular/cli
+
       - name: Download shared build artifact
         uses: actions/download-artifact@v4
         with:
