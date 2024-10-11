@@ -1,4 +1,5 @@
 name: Build & Test
+run-name: Build & Test PR ${{ github.event.pull_request.title }} by @${{ github.actor }}
 
 on:
   push:
