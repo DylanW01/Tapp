@@ -84,4 +84,4 @@ jobs:
         uses: geekyeggo/delete-artifact@v5
         with:
           name: node_modules
-          useGlob: "false"
+          useGlob: false
