@@ -76,16 +76,3 @@ jobs:
           name: tapp-build
           path: tapp-build.zip
           retention-days: 7
-
-  cleanup:
-    runs-on: ubuntu-latest
-    name: Cleanup (Delete node_modules artifact)
-    needs: build
-    if: always()  # Ensure the cleanup job runs regardless of the build job's outcome
-
-    steps:
-      - name: Delete node_modules artifact
-        uses: geekyeggo/delete-artifact@v5
-        with:
-          name: node_modules
-          useGlob: false
