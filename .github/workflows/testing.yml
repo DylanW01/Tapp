@@ -51,7 +51,14 @@ jobs:
 
     - name: Use shared build directory
       run: |
-        cp -r $GITHUB_WORKSPACE/shared-build/*
+        mkdir -p build
+        cp -r $GITHUB_WORKSPACE/shared-build/* build/
+
+    - name: Create and publish artifact of shared-build
+      uses: actions/upload-artifact@v4
+      with:
+        name: shared-build
+        path: $GITHUB_WORKSPACE/shared-build/
 
   test:
     runs-on: ubuntu-latest
@@ -69,7 +76,14 @@ jobs:
 
       - name: Use shared build directory
         run: |
-          cp -r $GITHUB_WORKSPACE/shared-build/*
+          mkdir -p build
+          cp -r $GITHUB_WORKSPACE/shared-build/* build/
+
+      - name: Create and publish artifact of shared-build
+        uses: actions/upload-artifact@v4
+        with:
+          name: shared-build
+          path: $GITHUB_WORKSPACE/shared-build/
 
   cleanup:
     runs-on: ubuntu-latest
