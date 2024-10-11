@@ -51,7 +51,7 @@ jobs:
 
     - name: Use shared build directory
       run: |
-        cp -r $GITHUB_WORKSPACE/shared-build/* build/
+        cp -r $GITHUB_WORKSPACE/shared-build/* dist/
 
   test:
     runs-on: ubuntu-latest
@@ -69,7 +69,7 @@ jobs:
 
       - name: Use shared build directory
         run: |
-          cp -r $GITHUB_WORKSPACE/shared-build/* build/
+          cp -r $GITHUB_WORKSPACE/shared-build/* dist/
 
   cleanup:
     runs-on: ubuntu-latest
