@@ -22,7 +22,7 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        run: npm ci --prefix ./tapp-client/
+        run: npm install --prefix ./tapp-client/
 
       - name: Create archive of node modules
         run: zip -r node_modules.zip tapp-client/node_modules
