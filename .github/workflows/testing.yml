@@ -28,7 +28,7 @@ jobs:
         run: npm ci --prefix ./tapp-client/
 
       - name: Create archive of node modules
-        run: zip -r shared-build.zip tapp-client/node_modules
+        run: zip -r node-modules.zip tapp-client/node_modules
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
@@ -37,7 +37,7 @@ jobs:
           path: node-modules.zip
           retention-days: 1
 
-  lint:
+  build:
     runs-on: ubuntu-latest
     needs: install
 
@@ -78,3 +78,16 @@ jobs:
           name: tapp-build
           path: tapp-build.zip
           retention-days: 7
+
+  cleanup:
+    runs-on: ubuntu-latest
+    needs: install
+
+    strategy:
+      matrix:
+        node-version: [20.x]
+
+    steps:
+      - uses: geekyeggo/delete-artifact@v5
+        with:
+          name: node-modules
