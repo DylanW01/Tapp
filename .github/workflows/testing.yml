@@ -24,8 +24,11 @@ jobs:
       - name: Install dependencies
         run: npm install --prefix ./tapp-client/
 
+      - name: List contents of node_modules after install
+        run: ls -la ./tapp-client/node_modules
+
       - name: Create archive of node modules
-        run: zip -r node_modules.zip tapp-client/node_modules/*
+        run: zip -r node_modules.zip -j tapp-client/node_modules/*
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
@@ -63,7 +66,7 @@ jobs:
       - name: Extract shared build archive
         run: unzip tapp-client/node_modules.zip -d ./tapp-client/node_modules
 
-      - name: List contents of node_modules
+      - name: List contents of node_modules after extraction
         run: ls -la ./tapp-client/node_modules
 
       - name: Add node_modules/.bin to PATH
