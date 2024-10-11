@@ -10,11 +10,11 @@ on:
 jobs:
   install:
     runs-on: ubuntu-latest
-    name: Install Dependencies and Archive
+    name: Install Dependencies
     
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
@@ -28,10 +28,10 @@ jobs:
         run: zip -r node-modules.zip tapp-client/node_modules
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: node-modules
-          path: node-modules.zip
+          name: node_modules
+          path: node_modules.zip
           retention-days: 1
 
   build:
@@ -41,7 +41,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         
       - name: Set up Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
@@ -49,16 +49,16 @@ jobs:
           node-version: 20
 
       - name: Download shared build artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
-          name: node-modules
-          path: ./tapp-client
+          name: node_modules
+          path: tapp-client
 
       - name: Create node_modules directory if it doesn't exist
-        run: mkdir -p tapp-client/node_modules
+        run: mkdir -p ./tapp-client/node_modules
 
       - name: Extract shared build archive
-        run: unzip tapp-client/node-modules.zip -d tapp-client/node_modules
+        run: unzip tapp-client/node_modules.zip -d ./tapp-client/node_modules
 
       - name: Resolve Dependencies
         run: npm install --prefix ./tapp-client/
@@ -67,7 +67,7 @@ jobs:
         run: npm run build-live --prefix ./tapp-client/
         
       - name: Create archive of build
-        run: zip -r tapp-build.zip tapp-client/dist
+        run: zip -r tapp-build.zip ./tapp-client/dist
 
       - name: Create and publish artifact of build
         uses: actions/upload-artifact@v4
@@ -85,4 +85,4 @@ jobs:
       - name: Delete node-modules artifact
         uses: geekyeggo/delete-artifact@v5
         with:
-          name: node-modules
+          name: node_modules
