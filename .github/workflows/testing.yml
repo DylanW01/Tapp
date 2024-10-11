@@ -49,6 +49,9 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
+    - name: List contents of shared build directory
+      run: ls -la $GITHUB_WORKSPACE/shared-build  # List contents of shared-build
+
     - name: Use shared build directory
       run: |
         mkdir -p build
@@ -73,6 +76,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
+          
+      - name: List contents of shared build directory
+        run: ls -la $GITHUB_WORKSPACE/shared-build  # List contents of shared-build
 
       - name: Use shared build directory
         run: |
