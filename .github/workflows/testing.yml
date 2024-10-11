@@ -33,7 +33,7 @@ jobs:
       - name: Save build to shared directory
         run: |
           mkdir -p $GITHUB_WORKSPACE/shared-build
-          cp -r dist/* $GITHUB_WORKSPACE/shared-build/
+          cp -r tapp-client/dist/* $GITHUB_WORKSPACE/shared-build/
 
   lint:
     runs-on: ubuntu-latest
