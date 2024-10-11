@@ -43,26 +43,26 @@ jobs:
         node-version: [20.x]
 
     steps:
-    - name: Set up Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node-version }}
+      - name: Set up Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
 
-    - name: Download shared build artifact
-      uses: actions/download-artifact@v3
-      with:
-        name: shared-build
-        path: Tapp-SPA/
+      - name: Download shared build artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: shared-build
+          path: Tapp-SPA/
 
-    - name: Build Tapp SPA
-      run: npm run build-live --prefix ./Tapp-SPA/
+      - name: Build Tapp SPA
+        run: npm run build-live --prefix ./Tapp-SPA/
 
-    - name: Create and publish artifact of build
-      uses: actions/upload-artifact@v4
-      with:
-        name: lint-build
-        path: Tapp-SPA/dist
-        retention-days: 7
+      - name: Create and publish artifact of build
+        uses: actions/upload-artifact@v4
+        with:
+          name: lint-build
+          path: Tapp-SPA/dist
+          retention-days: 7
 
   test:
     runs-on: ubuntu-latest
@@ -77,19 +77,19 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-          
-    - name: Download shared build artifact
-      uses: actions/download-artifact@v3
-      with:
-        name: shared-build
-        path: Tapp-SPA/
 
-    - name: Build Tapp SPA
-      run: npm run build-live --prefix ./Tapp-SPA/
+      - name: Download shared build artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: shared-build
+          path: Tapp-SPA/
 
-    - name: Create and publish artifact of build
-      uses: actions/upload-artifact@v4
-      with:
-        name: lint-build
-        path: Tapp-SPA/dist
-        retention-days: 7
+      - name: Build Tapp SPA
+        run: npm run build-live --prefix ./Tapp-SPA/
+
+      - name: Create and publish artifact of build
+        uses: actions/upload-artifact@v4
+        with:
+          name: lint-build
+          path: Tapp-SPA/dist
+          retention-days: 7
