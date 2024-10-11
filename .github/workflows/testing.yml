@@ -10,11 +10,8 @@ on:
 jobs:
   install:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [20.x]
-
+    name: Install Dependencies and Archive
+    
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -22,7 +19,7 @@ jobs:
       - name: Set up Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 20
 
       - name: Install dependencies
         run: npm ci --prefix ./tapp-client/
@@ -39,11 +36,8 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
+    name: Build Tapp SPA
     needs: install
-
-    strategy:
-      matrix:
-        node-version: [20.x]
 
     steps:
       - name: Checkout repository
@@ -52,7 +46,7 @@ jobs:
       - name: Set up Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 20
 
       - name: Download shared build artifact
         uses: actions/download-artifact@v3
@@ -86,10 +80,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     if: always()  # Ensure the cleanup job runs regardless of the build job's outcome
-
-    strategy:
-      matrix:
-        node-version: [20.x]
 
     steps:
       - name: Delete node-modules artifact
