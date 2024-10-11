@@ -22,18 +22,22 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install dependencies
+      - name: Restore dependencies from Cache
+        uses: actions/cache@v4
+        with:
+          path: ./tapp-client/node_modules
+          key: ${{ runner.OS }}-npm-${{ hashFiles('./tapp-client/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-npm-
+
+      - name: Install CLI & Audit node_modules
         run: npm install --prefix ./tapp-client/
 
-      - name: Create archive of node modules
-        run: zip -r node_modules.zip tapp-client/node_modules/*
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
+      - name: Cache node_modules if changed
+        uses: actions/cache@v4
         with:
-          name: node_modules
-          path: node_modules.zip
-          retention-days: 1
+          path: ./tapp-client/node_modules
+          key: ${{ runner.OS }}-npm-${{ hashFiles('./tapp-client/package-lock.json') }}
 
   build:
     runs-on: ubuntu-latest
@@ -49,16 +53,15 @@ jobs:
         with:
           node-version: 20
 
-      - name: Download shared build artifact
-        uses: actions/download-artifact@v4
+      - name: Restore dependencies from Cache
+        uses: actions/cache@v4
         with:
-          name: node_modules
-          path: tapp-client
+          path: ./tapp-client/node_modules
+          key: ${{ runner.OS }}-npm-${{ hashFiles('./tapp-client/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-npm-
 
-      - name: Extract shared build archive
-        run: unzip tapp-client/node_modules.zip -d ./
-
-      - name: Install Angular CLI
+      - name: Install CLI & Audit node_modules
         run: npm install -g @angular/cli
 
       - name: Build Tapp SPA
