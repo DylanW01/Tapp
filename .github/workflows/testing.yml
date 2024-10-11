@@ -57,6 +57,9 @@ jobs:
       - name: Extract shared build archive
         run: unzip tapp-client/node_modules.zip -d ./
 
+      - name: Install Angular CLI globally
+        run: npm install -g @angular/cli
+
       - name: Build Tapp SPA
         run: npm run build-live --prefix ./tapp-client/
         
