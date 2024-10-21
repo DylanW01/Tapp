@@ -1,75 +1,21 @@
-name: Build & Test
-run-name: 'Build & Test PR: ${{ github.event.pull_request.number }} "${{ github.event.pull_request.title }}" by ${{ github.event.pull_request.user.name || github.event.pull_request.user.login }} (@${{ github.event.pull_request.user.login }})'
+name: Update Deployments
 
 on:
   push:
     branches: [main]
-  pull_request:
-    branches: [build/*]
-  workflow_dispatch:
+    paths:
+      - 'tapp-server/**'
 
 jobs:
-  install:
+  deploy:
     runs-on: ubuntu-latest
-    name: Install Dependencies
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - name: Wait for Render Deployment
+        uses: Bounceapp/render-action@0.8.0
         with:
-          node-version: 20
-
-      - name: Restore dependencies from Cache
-        uses: actions/cache@v4
-        with:
-          path: ./tapp-client/node_modules
-          key: ${{ runner.OS }}-npm-${{ hashFiles('./tapp-client/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.OS }}-npm-
-
-      - name: Install CLI & Audit node_modules
-        run: npm install --prefix ./tapp-client/
-
-      - name: Cache node_modules if changed
-        uses: actions/cache@v4
-        with:
-          path: ./tapp-client/node_modules
-          key: ${{ runner.OS }}-npm-${{ hashFiles('./tapp-client/package-lock.json') }}
-
-  build:
-    runs-on: ubuntu-latest
-    name: Build Tapp SPA
-    needs: install
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Restore dependencies from Cache
-        uses: actions/cache@v4
-        with:
-          path: ./tapp-client/node_modules
-          key: ${{ runner.OS }}-npm-${{ hashFiles('./tapp-client/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.OS }}-npm-
-
-      - name: Install CLI & Audit node_modules
-        run: npm install -g @angular/cli
-
-      - name: Build Tapp SPA
-        run: npm run build-live --prefix ./tapp-client/
-
-      - name: Create and publish artifact of build
-        uses: actions/upload-artifact@v4
-        with:
-          name: tapp-build
-          path: ./tapp-client/dist
-          retention-days: 7
+          render-token: ${{ secrets.RENDER_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          service-id: srv-chkijcu4dadfmsl2v9q0
+          retries: 20
+          wait: 16000
+          sleep: 30000         
