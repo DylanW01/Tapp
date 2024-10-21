@@ -11,7 +11,6 @@ const axios = require('axios');
 const appVersion = require("../package.json").version;
 const crypto = require('crypto');
 
-
 //#region DB Setup - Create connection to database - Uses .env file for credentials
 var tappDb  = mysql.createPool({
   connectionLimit : 10,
