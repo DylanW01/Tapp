@@ -21,6 +21,14 @@ jobs:
             -d '{"ref": "main", "environment": "Production - Tapp SPA", "auto_merge": false, "required_contexts": []}' \
             https://api.github.com/repos/${{ github.repository }}/deployments | jq -r '.id')
           echo "deployment_id=$DEPLOYMENT_ID" >> $GITHUB_ENV
+      - name: Mark Deployment as In Progress
+        run: |
+          curl -X POST \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -d '{"state": "in_progress", "environment_url": "https://tapp.dylanwarrell.com"}' \
+            https://api.github.com/repos/${{ github.repository }}/deployments/${{ env.deployment_id }}/statuses
+
       - name: Setup Node.js environment
         uses: actions/setup-node@v4
         with:
@@ -90,7 +98,7 @@ jobs:
           curl -X POST \
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             -H "Content-Type: application/json" \
-            -d '{"state": "success", "description": "Deployment successful", "environment": "Production - Tapp SPA"}' \
+            -d '{"state": "success", "description": "Deployment successful"}' \
             https://api.github.com/repos/${{ github.repository }}/deployments/${{ env.deployment_id }}/statuses
             
       - name: Update Deployment Status - Failure
@@ -99,5 +107,5 @@ jobs:
           curl -X POST \
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             -H "Content-Type: application/json" \
-            -d '{"state": "failure", "description": "Deployment failed", "environment": "Production - Tapp SPA"}' \
+            -d '{"state": "failure", "description": "Deployment failed"}' \
             https://api.github.com/repos/${{ github.repository }}/deployments/${{ env.deployment_id }}/statuses
