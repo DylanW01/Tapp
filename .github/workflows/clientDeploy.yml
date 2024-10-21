@@ -86,7 +86,7 @@ jobs:
           curl -X POST \
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             -H "Content-Type: application/json" \
-            -d '{"state": "success", "description": "Deployment successful"}' \
+            -d '{"state": "success", "description": "Deployment successful", "environment_url": "https://tapp.dylanwarrell.com"}' \
             https://api.github.com/repos/${{ github.repository }}/deployments/${{ needs.install_and_build.outputs.deployment_id }}/statuses
       - name: Update Deployment Status - Failure
         if: failure()
