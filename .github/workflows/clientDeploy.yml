@@ -12,14 +12,23 @@ jobs:
     runs-on: ubuntu-latest
     name: Install Dependencies and Build
     steps:
+      - name: Create GitHub Deployment
+        id: deployment
+        run: |
+          DEPLOYMENT_ID=$(curl -X POST \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -d '{"ref": "main", "environment": "Production - Tapp SPA", "auto_merge": false, "required_contexts": []}' \
+            https://api.github.com/repos/${{ github.repository }}/deployments | jq -r '.id')
+          echo "deployment_id=$DEPLOYMENT_ID" >> $GITHUB_ENV
       - name: Setup Node.js environment
         uses: actions/setup-node@v4
         with:
           node-version: 20
-
+      
       - name: Git Checkout
         uses: actions/checkout@v4
-
+        
       - name: Restore dependencies from Cache
         uses: actions/cache@v4
         with:
@@ -27,16 +36,16 @@ jobs:
           key: ${{ runner.OS }}-npm-${{ hashFiles('./tapp-client/package-lock.json') }}
           restore-keys: |
             ${{ runner.OS }}-npm-
-
+            
       - name: Install dependencies if missing/outdated
         run: npm install --prefix ./tapp-client/
-
+        
       - name: Build for production
         run: npm run build-live --prefix ./tapp-client/
-
+        
       - name: Archive production artifacts
         run: tar -czf dist.tar.gz -C ./tapp-client/ dist
-
+        
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
@@ -53,19 +62,19 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-
+          
       - name: Git Checkout
         uses: actions/checkout@v3
-
+        
       - name: Download build artifacts
         uses: actions/download-artifact@v4
         with:
           name: dist
           path: ./tapp-client/
-
+          
       - name: Extract build artifacts
         run: tar -xzf ./tapp-client/dist.tar.gz -C ./tapp-client/
-
+        
       - name: Deploy to production server
         uses: SamKirkland/FTP-Deploy-Action@4.0.0
         with:
@@ -74,3 +83,21 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./tapp-client/dist/
           server-dir: /domains/dylanwarrell.com/public_html/tapp/
+          
+      - name: Update Deployment Status - Success
+        if: success()
+        run: |
+          curl -X POST \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -d '{"state": "success", "description": "Deployment successful", "environment": "Production - Tapp SPA"}' \
+            https://api.github.com/repos/${{ github.repository }}/deployments/${{ env.deployment_id }}/statuses
+            
+      - name: Update Deployment Status - Failure
+        if: failure()
+        run: |
+          curl -X POST \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -d '{"state": "failure", "description": "Deployment failed", "environment": "Production - Tapp SPA"}' \
+            https://api.github.com/repos/${{ github.repository }}/deployments/${{ env.deployment_id }}/statuses
