@@ -19,7 +19,7 @@
     "@angular/compiler": "^13.0",
     "@angular/core": "^13.0",
     "@angular/elements": "^13.0",
-    "@angular/fire": "^7.5.0",
+    "@angular/fire": "^19.0.0",
     "@angular/forms": "^13.0",
     "@angular/google-maps": "^13.0",
     "@angular/localize": "^13.0",
@@ -32,7 +32,7 @@
     "@ng-bootstrap/ng-bootstrap": "^12.0",
     "@popperjs/core": "^2.11.6",
     "angular-cli-ghpages": "^1.0.5",
-    "bootstrap": "4.6.1",
+    "bootstrap": "5.0.0",
     "bootstrap-icons": "^1.10.3",
     "chart.js": "2.9.4",
     "clipboard": "2.0.10",
@@ -46,7 +46,7 @@
     "zone.js": "^0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^13.3",
+    "@angular-devkit/build-angular": "^19.1",
     "@angular/cli": "^13.0",
     "@angular/compiler-cli": "^13.0",
     "@angular/language-service": "13.0",
