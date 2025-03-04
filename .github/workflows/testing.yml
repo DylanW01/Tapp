@@ -4,11 +4,13 @@ on:
   push:
     branches: [main]
     paths:
-      - 'tapp-server/**'
+      - "tapp-server/**"
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      deployments: write
     steps:
       - name: Wait for Render Deployment
         uses: Bounceapp/render-action@0.8.0
@@ -18,4 +20,4 @@ jobs:
           service-id: srv-chkijcu4dadfmsl2v9q0
           retries: 20
           wait: 16000
-          sleep: 30000         
+          sleep: 30000

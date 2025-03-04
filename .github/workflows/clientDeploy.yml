@@ -4,13 +4,15 @@ on:
   push:
     branches: ["main"]
     paths:
-      - 'tapp-client/**'
+      - "tapp-client/**"
   workflow_dispatch:
 
 jobs:
   install_and_build:
     runs-on: ubuntu-latest
     name: Install Dependencies and Build
+    permissions:
+      deployments: write
     steps:
       - name: Create GitHub Deployment
         id: create_deployment
@@ -58,6 +60,8 @@ jobs:
     needs: [install_and_build]
     runs-on: ubuntu-latest
     name: Deploy
+    permissions:
+      deployments: write
     steps:
       - name: Setup Node.js environment
         uses: actions/setup-node@v4
